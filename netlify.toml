@@ -1,11 +1,15 @@
 # Netlify build configuration — Desert Grey Music Festival
 
 [build]
-  command = "npm run build && node scripts/inject-cms-config.mjs"
+  command = "npm run build"
   publish = "dist"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "20"
+
+[functions]
+  node_bundler = "esbuild"
 
 # Site-wide security headers
 [[headers]]

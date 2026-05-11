@@ -167,7 +167,8 @@
   <div id="cms-root" style="display:none;"></div>
 
   <script>
-    const WORKER_URL = window.__CMS_WORKER_URL__ || 'https://desertgrey-cms.workers.dev';
+    // Netlify Functions endpoint — same origin, no CORS, no extra env var
+    const WORKER_URL = '/.netlify/functions/cms';
 
     const $login = document.getElementById('login-shell');
     const $cms = document.getElementById('cms-root');
