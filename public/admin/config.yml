@@ -1,10 +1,7 @@
 # Decap CMS configuration — Desert Grey Music Festival
-# Edited fields are saved as JSON files in /src/data/ and committed to GitHub.
-# The Cloudflare Worker proxies all requests, so no GitHub account is needed for editors.
-
 backend:
   name: proxy
-  proxy_url: __INJECTED_AT_RUNTIME__
+  proxy_url: /api/v1
   branch: main
   commit_messages:
     create: 'CMS: create {{collection}} "{{slug}}"'
@@ -15,66 +12,47 @@ backend:
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
-
-# Force editor to publish straight to main — no draft workflow (keep it dead simple)
 publish_mode: simple
-
-# Show site preview link from each edit screen
 site_url: https://desertgrey.netlify.app
 display_url: https://desertgrey.netlify.app
 logo_url: /favicon-256.png
 
 collections:
 
-  # ─────────────────────────────────────────────────────────────────
-  # SITE-WIDE — shared values used across components
-  # ─────────────────────────────────────────────────────────────────
   - name: "settings"
     label: "⚙️  Site Settings"
-    description: "Festival name, date, ticketing URL, Spotify link — shared by every section."
-    editor: { preview: false }
     files:
-      - name: "site_data"
-        label: "Festival Info"
+      - label: "Festival Info"
+        name: "site"
         file: "src/data/site.json"
         fields:
           - { label: "Page Title (browser tab)", name: "title", widget: "string" }
-          - { label: "Festival Name",            name: "festival_name", widget: "string" }
-          - { label: "Festival Subtitle",        name: "festival_subtitle", widget: "string" }
-          - { label: "Tagline (under wordmark)", name: "tagline", widget: "string" }
-          - { label: "Date (ISO format, used for countdown)", name: "date_iso", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ", date_format: "YYYY-MM-DD", time_format: "HH:mm" }
+          - { label: "Festival Name", name: "festival_name", widget: "string" }
+          - { label: "Festival Subtitle", name: "festival_subtitle", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Date (ISO format, used for countdown)", name: "date_iso", widget: "datetime" }
           - { label: "Date Display (shown on hero)", name: "date_display", widget: "string", hint: "e.g. Sat · 10.03.26" }
-          - { label: "Venue (short)",            name: "venue_short", widget: "string" }
-          - { label: "PurplePass Ticket URL",    name: "purplepass_url", widget: "string" }
-          - { label: "Spotify Playlist URL",     name: "spotify_playlist_url", widget: "string" }
-          - { label: "Spotify Embed URL",        name: "spotify_embed_url", widget: "string", hint: "Use the 'Embed' URL from Spotify's share menu" }
+          - { label: "Venue (short)", name: "venue_short", widget: "string" }
+          - { label: "PurplePass Ticket URL", name: "purplepass_url", widget: "string" }
+          - { label: "Spotify Playlist URL", name: "spotify_playlist_url", widget: "string" }
+          - { label: "Spotify Embed URL", name: "spotify_embed_url", widget: "string" }
 
-  # ─────────────────────────────────────────────────────────────────
-  # ANNOUNCEMENT BAR (top, with countdown)
-  # ─────────────────────────────────────────────────────────────────
   - name: "announcement"
     label: "🔔  Announcement Bar"
-    description: "Pink strip at the very top of the site with countdown."
-    editor: { preview: false }
     files:
-      - name: "announcement_data"
-        label: "Announcement Bar"
+      - label: "Announcement Bar"
+        name: "announcement"
         file: "src/data/announcement.json"
         fields:
-          - { label: "Label Text", name: "label", widget: "string", hint: "e.g. Desert Grey 2026 · 10.03.26" }
+          - { label: "Label Text", name: "label", widget: "string" }
           - { label: "Button Text", name: "cta_text", widget: "string" }
-          - { label: "Button Link", name: "cta_href", widget: "string", hint: "Use #tickets to jump to the tickets section" }
+          - { label: "Button Link", name: "cta_href", widget: "string" }
 
-  # ─────────────────────────────────────────────────────────────────
-  # HERO — top of page
-  # ─────────────────────────────────────────────────────────────────
   - name: "hero"
     label: "🎬  Hero (Top of Page)"
-    description: "The first thing visitors see — big title, video background, CTAs."
-    editor: { preview: false }
     files:
-      - name: "hero_data"
-        label: "Hero Section"
+      - label: "Hero Section"
+        name: "hero"
         file: "src/data/hero.json"
         fields:
           - { label: "Eyebrow Text (small line above title)", name: "eyebrow", widget: "string" }
@@ -82,25 +60,20 @@ collections:
           - { label: "Title Line 2 (highlighted in magenta)", name: "title_line_2", widget: "string" }
           - { label: "Title Line 3 (small, spaced)", name: "title_line_3", widget: "string" }
           - { label: "Tagline (italic line beneath title)", name: "tagline", widget: "text" }
-          - { label: "Date Eyebrow", name: "date_eyebrow", widget: "string", hint: "e.g. Mark the day" }
+          - { label: "Date Eyebrow", name: "date_eyebrow", widget: "string" }
           - { label: "Date Display", name: "date_display", widget: "string" }
-          - { label: "Date Caption", name: "date_caption", widget: "string", hint: "Gates / last set / venue" }
+          - { label: "Date Caption", name: "date_caption", widget: "string" }
           - { label: "Primary Button Text", name: "cta_primary_text", widget: "string" }
           - { label: "Primary Button Link", name: "cta_primary_href", widget: "string" }
           - { label: "Secondary Button Text", name: "cta_secondary_text", widget: "string" }
           - { label: "Secondary Button Link", name: "cta_secondary_href", widget: "string" }
-          - { label: "Background Video", name: "background_video", widget: "file", media_library: { config: { multiple: false } }, hint: "MP4 recommended. Keep under 10MB for fast loading." }
+          - { label: "Background Video", name: "background_video", widget: "file", hint: "MP4, under 10MB recommended" }
 
-  # ─────────────────────────────────────────────────────────────────
-  # NAVIGATION
-  # ─────────────────────────────────────────────────────────────────
   - name: "navigation"
     label: "🧭  Top Navigation"
-    description: "The menu bar at the top with logo and links."
-    editor: { preview: false }
     files:
-      - name: "nav_data"
-        label: "Navigation"
+      - label: "Navigation"
+        name: "nav"
         file: "src/data/nav.json"
         fields:
           - { label: "Wordmark (Top Line)", name: "wordmark_top", widget: "string" }
@@ -108,125 +81,89 @@ collections:
           - label: "Menu Links"
             name: "links"
             widget: "list"
-            summary: "{{fields.label}} → {{fields.href}}"
+            summary: "{{fields.label}}"
             fields:
               - { label: "Label", name: "label", widget: "string" }
               - { label: "Link", name: "href", widget: "string" }
           - { label: "Top-Right Button Text", name: "cta_text", widget: "string" }
           - { label: "Top-Right Button Link", name: "cta_href", widget: "string" }
 
-  # ─────────────────────────────────────────────────────────────────
-  # SCROLLING MARQUEE
-  # ─────────────────────────────────────────────────────────────────
   - name: "marquee"
     label: "📜  Scrolling Marquee"
-    description: "The two horizontal scrolling text bars (genres + festival facts)."
-    editor: { preview: false }
     files:
-      - name: "marquee_data"
-        label: "Marquee Lines"
+      - label: "Marquee Lines"
+        name: "marquee"
         file: "src/data/marquee.json"
         fields:
           - label: "Top Marquee (Genres)"
             name: "primary"
             widget: "list"
-            field: { label: "Item", name: "item", widget: "string" }
           - label: "Bottom Marquee (Facts)"
             name: "secondary"
             widget: "list"
-            field: { label: "Item", name: "item", widget: "string" }
 
-  # ─────────────────────────────────────────────────────────────────
-  # ABOUT / INTRO
-  # ─────────────────────────────────────────────────────────────────
   - name: "intro"
     label: "💬  About / Intro"
-    description: "The 'A festival carved out of dust' block."
-    editor: { preview: false }
     files:
-      - name: "intro_data"
-        label: "Intro Section"
+      - label: "Intro Section"
+        name: "intro"
         file: "src/data/intro.json"
         fields:
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Curated By", name: "curated_by", widget: "string" }
-          - { label: "Headline", name: "headline", widget: "text", hint: "The big italic-mixed sentence." }
-          - { label: "Highlighted Word in Headline", name: "headline_emphasis", widget: "string", hint: "This exact word/phrase will be styled in magenta italic. Must appear in the Headline above." }
+          - { label: "Headline", name: "headline", widget: "text" }
+          - { label: "Highlighted Word in Headline", name: "headline_emphasis", widget: "string" }
           - { label: "Paragraph 1", name: "paragraph_1", widget: "text" }
           - { label: "Paragraph 2 (muted)", name: "paragraph_2", widget: "text" }
 
-  # ─────────────────────────────────────────────────────────────────
-  # LINEUP
-  # ─────────────────────────────────────────────────────────────────
   - name: "lineup"
     label: "🎸  Lineup"
-    description: "Three tiers of bands: headliners (huge), main (medium), support (small)."
-    editor: { preview: false }
     files:
-      - name: "lineup_data"
-        label: "Lineup"
+      - label: "Lineup"
+        name: "lineup"
         file: "src/data/lineup.json"
         fields:
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-          - { label: "Rollout Note (bottom-left)", name: "rollout_note", widget: "string" }
+          - { label: "Rollout Note", name: "rollout_note", widget: "string" }
           - { label: "CTA Button Text", name: "cta_text", widget: "string" }
           - { label: "CTA Button Link", name: "cta_href", widget: "string" }
-          - label: "Headliners (huge, top tier)"
-            name: "headliners"
-            widget: "list"
-            field: { label: "Band Name", name: "name", widget: "string" }
-          - label: "Main Bill (medium tier)"
-            name: "main"
-            widget: "list"
-            field: { label: "Band Name", name: "name", widget: "string" }
-          - label: "Support / Openers (small tier)"
-            name: "support"
-            widget: "list"
-            field: { label: "Band Name", name: "name", widget: "string" }
+          - { label: "Headliners (huge, top tier)", name: "headliners", widget: "list" }
+          - { label: "Main Bill (medium tier)", name: "main", widget: "list" }
+          - { label: "Support / Openers (small tier)", name: "support", widget: "list" }
 
-  # ─────────────────────────────────────────────────────────────────
-  # SCHEDULE
-  # ─────────────────────────────────────────────────────────────────
   - name: "schedule"
     label: "🕐  Schedule"
-    description: "The full Oct 3 running order — three stages, set times, band names."
-    editor: { preview: false }
     files:
-      - name: "schedule_data"
-        label: "Schedule"
+      - label: "Schedule"
+        name: "schedule"
         file: "src/data/schedule.json"
         fields:
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Headline", name: "headline", widget: "string" }
           - { label: "Headline Emphasis Word", name: "headline_emphasis", widget: "string" }
           - { label: "Description", name: "description", widget: "text" }
-          - { label: "Fine Print (bottom note)", name: "fine_print", widget: "text" }
+          - { label: "Fine Print", name: "fine_print", widget: "text" }
           - label: "Stages"
             name: "stages"
             widget: "list"
-            summary: "{{fields.name}} — {{fields.slots.length}} sets"
+            summary: "{{fields.name}}"
             fields:
-              - { label: "Stage ID (no spaces, lowercase)", name: "id", widget: "string", hint: "Used for color coding. Keep one of: nile, underground, coffee — or set custom." }
+              - { label: "Stage ID (lowercase, no spaces)", name: "id", widget: "string" }
               - { label: "Stage Name", name: "name", widget: "string" }
               - label: "Set Times"
                 name: "slots"
                 widget: "list"
                 summary: "{{fields.time}} — {{fields.band}}"
                 fields:
-                  - { label: "Time", name: "time", widget: "string", hint: "e.g. 2:30 – 2:55" }
+                  - { label: "Time", name: "time", widget: "string" }
                   - { label: "Band / Artist", name: "band", widget: "string" }
                   - { label: "Note (optional)", name: "note", widget: "string", required: false }
 
-  # ─────────────────────────────────────────────────────────────────
-  # TICKETS
-  # ─────────────────────────────────────────────────────────────────
   - name: "tickets"
     label: "🎫  Tickets"
-    description: "The three pricing tiers. Each links to PurplePass checkout."
-    editor: { preview: false }
     files:
-      - name: "tickets_data"
-        label: "Tickets"
+      - label: "Tickets"
+        name: "tickets"
         file: "src/data/tickets.json"
         fields:
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
@@ -240,25 +177,17 @@ collections:
             summary: "{{fields.name}} — {{fields.price}}"
             fields:
               - { label: "Tier Name", name: "name", widget: "string" }
-              - { label: "Price (with $)", name: "price", widget: "string" }
-              - { label: "Note Under Name", name: "note", widget: "string" }
-              - label: "Perks (bullet points)"
-                name: "perks"
-                widget: "list"
-                field: { label: "Perk", name: "perk", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Note", name: "note", widget: "string" }
+              - { label: "Perks (bullet points)", name: "perks", widget: "list" }
               - { label: "Button Text", name: "cta", widget: "string" }
-              - { label: "Featured? (highlights this tier)", name: "featured", widget: "boolean", default: false }
+              - { label: "Featured (highlights this tier)", name: "featured", widget: "boolean", default: false }
 
-  # ─────────────────────────────────────────────────────────────────
-  # PARTNERS
-  # ─────────────────────────────────────────────────────────────────
   - name: "partners"
     label: "🤝  Partners"
-    description: "Sponsors and partner organizations in three tiers."
-    editor: { preview: false }
     files:
-      - name: "partners_data"
-        label: "Partners"
+      - label: "Partners"
+        name: "partners"
         file: "src/data/partners.json"
         fields:
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
@@ -268,24 +197,16 @@ collections:
           - label: "Tiers"
             name: "tiers"
             widget: "list"
-            summary: "{{fields.label}} — {{fields.partners.length}} partners"
+            summary: "{{fields.label}}"
             fields:
               - { label: "Tier Label (Presenting / Official / Community)", name: "label", widget: "string" }
-              - label: "Partner Names"
-                name: "partners"
-                widget: "list"
-                field: { label: "Partner Name", name: "name", widget: "string" }
+              - { label: "Partner Names", name: "partners", widget: "list" }
 
-  # ─────────────────────────────────────────────────────────────────
-  # LISTEN / SPOTIFY
-  # ─────────────────────────────────────────────────────────────────
   - name: "listen"
     label: "🎧  Listen / Spotify"
-    description: "The 'Slip into the Grey Line' Spotify section."
-    editor: { preview: false }
     files:
-      - name: "listen_data"
-        label: "Listen Section"
+      - label: "Listen Section"
+        name: "listen"
         file: "src/data/listen.json"
         fields:
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
@@ -294,18 +215,13 @@ collections:
           - { label: "Description", name: "description", widget: "text" }
           - { label: "Button Text", name: "cta_text", widget: "string" }
           - { label: "Spotify Playlist URL", name: "spotify_url", widget: "string" }
-          - { label: "Spotify Embed URL", name: "spotify_embed_url", widget: "string", hint: "Use the 'Embed' URL from Spotify's share menu" }
+          - { label: "Spotify Embed URL", name: "spotify_embed_url", widget: "string" }
 
-  # ─────────────────────────────────────────────────────────────────
-  # VENUE
-  # ─────────────────────────────────────────────────────────────────
   - name: "venue"
     label: "📍  Venue"
-    description: "The Nile Theater info, map, address, and travel details."
-    editor: { preview: false }
     files:
-      - name: "venue_data"
-        label: "Venue Section"
+      - label: "Venue Section"
+        name: "venue"
         file: "src/data/venue.json"
         fields:
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
@@ -315,9 +231,9 @@ collections:
           - { label: "Address Name", name: "address_name", widget: "string" }
           - { label: "Address Line 1", name: "address_line_1", widget: "string" }
           - { label: "Address Line 2", name: "address_line_2", widget: "string" }
-          - { label: "Map Embed URL", name: "map_embed_src", widget: "string", hint: "From Google Maps 'Share → Embed' iframe src" }
+          - { label: "Map Embed URL", name: "map_embed_src", widget: "string" }
           - { label: "Map Link URL", name: "map_link_url", widget: "string" }
-          - label: "Quick Facts (Capacity, Stages, etc.)"
+          - label: "Quick Facts"
             name: "facts"
             widget: "list"
             summary: "{{fields.key}} — {{fields.value}}"
@@ -325,7 +241,7 @@ collections:
               - { label: "Label", name: "key", widget: "string" }
               - { label: "Value", name: "value", widget: "string" }
           - { label: "Travel Section Title", name: "travel_title", widget: "string" }
-          - label: "Travel Info (Fly / Stay / Drive / Shuttle)"
+          - label: "Travel Info"
             name: "travel"
             widget: "list"
             summary: "{{fields.title}}"
@@ -333,53 +249,37 @@ collections:
               - { label: "Mode Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
 
-  # ─────────────────────────────────────────────────────────────────
-  # FAQ
-  # ─────────────────────────────────────────────────────────────────
   - name: "faq"
     label: "❓  FAQ"
-    description: "Frequently asked questions."
-    editor: { preview: false }
     files:
-      - name: "faq_data"
-        label: "FAQ"
+      - label: "FAQ"
+        name: "faq"
         file: "src/data/faq.json"
         fields:
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Headline", name: "headline", widget: "string" }
           - { label: "Headline Emphasis", name: "headline_emphasis", widget: "string" }
-          - { label: "Footer Note (under headline)", name: "footer_note", widget: "text" }
+          - { label: "Footer Note", name: "footer_note", widget: "text" }
           - label: "Questions & Answers"
             name: "items"
             widget: "list"
-            summary: "Q: {{fields.question}}"
+            summary: "{{fields.question}}"
             fields:
               - { label: "Question", name: "question", widget: "string" }
               - { label: "Answer", name: "answer", widget: "text" }
 
-  # ─────────────────────────────────────────────────────────────────
-  # FOOTER
-  # ─────────────────────────────────────────────────────────────────
   - name: "footer"
     label: "🦶  Footer"
-    description: "Sponsors strip, columns, copyright."
-    editor: { preview: false }
     files:
-      - name: "footer_data"
-        label: "Footer"
+      - label: "Footer"
+        name: "footer"
         file: "src/data/footer.json"
         fields:
           - { label: "Sponsors Strip Label", name: "sponsors_label", widget: "string" }
-          - label: "Sponsors"
-            name: "sponsors"
-            widget: "list"
-            field: { label: "Sponsor Name", name: "name", widget: "string" }
+          - { label: "Sponsors", name: "sponsors", widget: "list" }
           - { label: "Festival Name", name: "festival_name", widget: "string" }
           - { label: "Festival Subtitle", name: "festival_subtitle", widget: "string" }
-          - label: "Address Lines"
-            name: "address_lines"
-            widget: "list"
-            field: { label: "Line", name: "line", widget: "string" }
+          - { label: "Address Lines", name: "address_lines", widget: "list" }
           - { label: "'Explore' Column Label", name: "explore_label", widget: "string" }
           - label: "Explore Column Links"
             name: "explore_links"
@@ -395,16 +295,8 @@ collections:
             summary: "{{fields.label}}"
             fields:
               - { label: "Label", name: "label", widget: "string" }
-              - { label: "Link (empty = not a link, just text)", name: "href", widget: "string", required: false }
+              - { label: "Link (empty = plain text)", name: "href", widget: "string", required: false }
           - { label: "'Desert Grey' Column Label", name: "info_label", widget: "string" }
-          - label: "Info Column Items"
-            name: "info_items"
-            widget: "list"
-            field: { label: "Line", name: "line", widget: "string" }
+          - { label: "Info Column Items", name: "info_items", widget: "list" }
           - { label: "Copyright Line", name: "copyright", widget: "string" }
-          - { label: "Legal Strip (bottom-right)", name: "legal_strip", widget: "string" }
-
-  # ─────────────────────────────────────────────────────────────────
-  # MEDIA — upload + manage all images here
-  # ─────────────────────────────────────────────────────────────────
-  # (handled automatically by the media library; no separate collection needed)
+          - { label: "Legal Strip", name: "legal_strip", widget: "string" }
