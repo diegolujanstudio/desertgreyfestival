@@ -1,0 +1,77 @@
+---
+import data from '../data/nav.json';
+---
+<header class="nav">
+  <div class="nav__inner container">
+    <a href="#top" class="nav__mark" aria-label={`${data.wordmark_top} home`}>
+      <img src="/favicon-256.png" alt="" class="nav__logo" width="32" height="32" />
+      <span class="nav__wordmark">
+        <span class="display nav__wordmark-top">{data.wordmark_top}</span>
+        <span class="mono nav__wordmark-sub">{data.wordmark_sub}</span>
+      </span>
+    </a>
+
+    <nav class="nav__links mono" aria-label="Primary">
+      {data.links.map((l) => (
+        <a href={l.href} class="ulink">{l.label}</a>
+      ))}
+    </nav>
+
+    <a href={data.cta_href} class="btn btn--primary nav__cta">{data.cta_text}</a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    background: color-mix(in oklab, var(--ink) 72%, transparent);
+    border-bottom: 1px solid color-mix(in oklab, var(--bone) 10%, transparent);
+  }
+  .nav__inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+  .nav__mark {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    color: var(--bone);
+  }
+  .nav__logo {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .nav__wordmark { display: grid; line-height: 1; gap: 0.18rem; }
+  .nav__wordmark-top { font-size: 1.15rem; letter-spacing: 0.02em; }
+  .nav__wordmark-sub {
+    font-size: 0.55rem;
+    letter-spacing: 0.22em;
+    color: color-mix(in oklab, var(--bone) 55%, transparent);
+  }
+  .nav__links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    color: var(--bone);
+  }
+  .nav__cta { padding: 0.7rem 1.2rem; }
+
+  @media (max-width: 900px) {
+    .nav__links { display: none; }
+    .nav__inner { grid-template-columns: 1fr auto; }
+  }
+  @media (max-width: 480px) {
+    .nav__wordmark-top { font-size: 0.95rem; }
+    .nav__wordmark-sub { font-size: 0.5rem; }
+    .nav__logo { width: 26px; height: 26px; }
+    .nav__cta { padding: 0.55rem 0.9rem; font-size: 0.72rem; }
+  }
+</style>

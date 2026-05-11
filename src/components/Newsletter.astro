@@ -1,0 +1,80 @@
+---
+import data from '../data/listen.json';
+const emph = data.headline_emphasis;
+const parts = emph && data.headline.includes(emph) ? data.headline.split(emph) : [data.headline];
+---
+<section class="listen grain-dark">
+  <div class="container listen__grid">
+    <div class="listen__copy">
+      <span class="eyebrow eyebrow--dark">{data.eyebrow}</span>
+      <h2 class="display listen__title">
+        {parts.length > 1 ? (
+          <>{parts[0]}<span class="editorial">{emph}</span>{parts.slice(1).join(emph)}</>
+        ) : data.headline}
+      </h2>
+      <p class="listen__sub">{data.description}</p>
+      <a href={data.spotify_url} target="_blank" rel="noopener" class="btn btn--acid listen__cta">
+        {data.cta_text} →
+      </a>
+    </div>
+
+    <div class="listen__embed">
+      <iframe
+        src={data.spotify_embed_url}
+        title="Desert Grey — Spotify playlist"
+        width="100%"
+        height="420"
+        frameborder="0"
+        loading="lazy"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<style>
+  .listen {
+    background: var(--rust-deep);
+    color: var(--bone);
+    position: relative;
+    isolation: isolate;
+  }
+  .listen__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .listen__copy { display: grid; gap: 1rem; justify-items: start; }
+  .listen__title {
+    font-size: clamp(2.6rem, 6vw, 5.5rem);
+    line-height: 0.9;
+  }
+  .listen__title .editorial {
+    color: var(--acid);
+    font-style: italic;
+  }
+  .listen__sub {
+    color: color-mix(in oklab, var(--bone) 82%, transparent);
+    max-width: 42ch;
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  .listen__cta { margin-top: 0.5rem; }
+
+  .listen__embed {
+    border: 1px solid color-mix(in oklab, var(--bone) 18%, transparent);
+    background: #0E0E1A;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  .listen__embed iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+  }
+
+  @media (max-width: 900px) {
+    .listen__grid { grid-template-columns: 1fr; }
+  }
+</style>

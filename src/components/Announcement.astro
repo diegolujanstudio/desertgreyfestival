@@ -1,0 +1,109 @@
+---
+import data from '../data/announcement.json';
+import site from '../data/site.json';
+---
+<aside class="announce" role="status" aria-label="Festival countdown">
+  <div class="announce__inner container">
+    <span class="announce__dot" aria-hidden="true"></span>
+    <span class="announce__tag mono">{data.label}</span>
+    <span class="announce__count mono" data-fest-date={site.date_iso}>
+      <span data-unit="d">—</span><span class="announce__u">d</span>
+      <span data-unit="h">—</span><span class="announce__u">h</span>
+      <span data-unit="m">—</span><span class="announce__u">m</span>
+      <span data-unit="s" class="announce__s">—</span><span class="announce__u announce__u--s">s</span>
+    </span>
+    <a href={data.cta_href} class="announce__cta mono ulink">{data.cta_text} →</a>
+  </div>
+</aside>
+
+<script is:inline>
+  (() => {
+    const el = document.querySelector('.announce__count');
+    if (!el) return;
+    const target = new Date(el.getAttribute('data-fest-date')).getTime();
+    const slots = {
+      d: el.querySelector('[data-unit="d"]'),
+      h: el.querySelector('[data-unit="h"]'),
+      m: el.querySelector('[data-unit="m"]'),
+      s: el.querySelector('[data-unit="s"]'),
+    };
+    function pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
+    function tick() {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        slots.d.textContent = slots.h.textContent = slots.m.textContent = slots.s.textContent = '00';
+        return;
+      }
+      const s = Math.floor(diff / 1000);
+      const d = Math.floor(s / 86400);
+      const h = Math.floor((s % 86400) / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const sec = s % 60;
+      slots.d.textContent = pad(d);
+      slots.h.textContent = pad(h);
+      slots.m.textContent = pad(m);
+      slots.s.textContent = pad(sec);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+<style>
+  .announce {
+    position: relative;
+    z-index: 110;
+    background: var(--neon);
+    color: var(--ink);
+    font-size: 0.72rem;
+  }
+  .announce__inner {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .announce__dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--ink);
+    animation: pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.75); }
+  }
+  .announce__tag { letter-spacing: 0.18em; text-transform: uppercase; }
+  .announce__count {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.18rem;
+    padding: 0.1rem 0.6rem;
+    border: 1px solid color-mix(in oklab, var(--ink) 30%, transparent);
+    border-radius: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .announce__count [data-unit] { font-weight: 600; min-width: 1.1em; text-align: center; }
+  .announce__u {
+    opacity: 0.6;
+    margin-right: 0.3rem;
+    font-size: 0.62rem;
+    text-transform: lowercase;
+  }
+  .announce__u:last-of-type { margin-right: 0; }
+  .announce__cta {
+    color: var(--ink);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  @media (max-width: 560px) {
+    .announce__inner { gap: 0.6rem; padding: 0.45rem var(--gutter); }
+    .announce__tag { font-size: 0.62rem; letter-spacing: 0.14em; }
+    .announce__u--s, .announce__s { display: none; }
+    .announce__cta { flex-basis: 100%; text-align: center; }
+  }
+</style>

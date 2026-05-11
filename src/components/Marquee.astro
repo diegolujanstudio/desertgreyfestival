@@ -1,0 +1,20 @@
+---
+import data from '../data/marquee.json';
+export interface Props {
+  variant?: 'primary' | 'secondary';
+  items?: string[];
+}
+const { variant = 'primary', items } = Astro.props as Props;
+const list = items ?? (variant === 'secondary' ? data.secondary : data.primary);
+const doubled = [...list, ...list];
+---
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    {doubled.map((t) => (
+      <span class="ticker__item">
+        <span>{t}</span>
+        <span class="dot"></span>
+      </span>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,13 @@
+{
+  "wordmark_top": "Desert Grey",
+  "wordmark_sub": "Music Festival",
+  "links": [
+    { "label": "Lineup", "href": "#lineup" },
+    { "label": "Schedule", "href": "#schedule" },
+    { "label": "Tickets", "href": "#tickets" },
+    { "label": "Venue", "href": "#venue" },
+    { "label": "FAQ", "href": "#faq" }
+  ],
+  "cta_text": "Get Tickets",
+  "cta_href": "#tickets"
+}

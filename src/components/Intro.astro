@@ -1,0 +1,67 @@
+---
+import data from '../data/intro.json';
+// Render headline with the emphasized word wrapped in <span class="editorial">
+const emph = data.headline_emphasis;
+const parts = emph && data.headline.includes(emph)
+  ? data.headline.split(emph)
+  : [data.headline];
+---
+<section class="intro" id="about">
+  <div class="container intro__grid">
+    <aside class="intro__side">
+      <span class="eyebrow">{data.eyebrow}</span>
+      <p class="mono intro__meta">Curated by<br/>{data.curated_by}</p>
+    </aside>
+
+    <div class="intro__copy">
+      <h2 class="display intro__head">
+        {parts.length > 1 ? (
+          <>
+            {parts[0]}<span class="editorial">{emph}</span>{parts.slice(1).join(emph)}
+          </>
+        ) : data.headline}
+      </h2>
+      <p class="intro__lead">{data.paragraph_1}</p>
+      <p class="intro__lead intro__lead--muted">{data.paragraph_2}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro {
+    background: var(--ink);
+    color: var(--bone);
+    padding-top: clamp(6rem, 10vw, 9rem);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+  }
+  .intro__grid {
+    display: grid;
+    grid-template-columns: 1fr 2.2fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  .intro__side { display: grid; gap: 1rem; position: sticky; top: 100px; }
+  .intro__meta { color: var(--stone); }
+
+  .intro__head {
+    font-size: clamp(2.4rem, 6vw, 5.5rem);
+    line-height: 0.9;
+    max-width: 18ch;
+    margin-bottom: 2rem;
+  }
+  .intro__head .editorial {
+    color: var(--rust);
+  }
+  .intro__lead {
+    font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+    line-height: 1.6;
+    max-width: 56ch;
+    margin-bottom: 1.25rem;
+  }
+  .intro__lead--muted { color: var(--stone); }
+
+  @media (max-width: 800px) {
+    .intro__grid { grid-template-columns: 1fr; }
+    .intro__side { position: static; }
+  }
+</style>

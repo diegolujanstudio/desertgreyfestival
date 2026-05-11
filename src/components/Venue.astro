@@ -1,0 +1,181 @@
+---
+import data from '../data/venue.json';
+const emph = data.headline_emphasis;
+const parts = emph && data.headline.includes(emph) ? data.headline.split(emph) : [data.headline];
+---
+<section id="venue" class="venue">
+  <div class="container venue__grid">
+    <div class="venue__copy">
+      <span class="eyebrow">{data.eyebrow}</span>
+      <h2 class="display venue__title">
+        {parts.length > 1 ? (
+          <>{parts[0]}<br/><span class="editorial">{emph}</span>{parts.slice(1).join(emph)}</>
+        ) : data.headline}
+      </h2>
+      <p class="venue__lead">{data.description}</p>
+
+      <dl class="venue__facts">
+        {data.facts.map((f) => (
+          <div class="fact">
+            <dt class="mono">{f.key}</dt>
+            <dd class="display fact__v">{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <div class="venue__visual">
+      <iframe
+        class="venue__map"
+        title={data.address_name}
+        src={data.map_embed_src}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+      <span class="venue__tint" aria-hidden="true"></span>
+      <a
+        class="venue__address mono"
+        href={data.map_link_url}
+        target="_blank" rel="noopener noreferrer"
+      >
+        <div class="display venue__address-name">{data.address_name}</div>
+        <div>{data.address_line_1}</div>
+        <div>{data.address_line_2}</div>
+        <div class="venue__address-cta">Open in Maps →</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="container venue__travel">
+    <h3 class="display venue__travel-title">{data.travel_title}</h3>
+    <ul class="travel__list">
+      {data.travel.map((item) => (
+        <li class="travel__item">
+          <span class="display travel__t">{item.title}</span>
+          <span class="travel__d">{item.description}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .venue {
+    background: var(--ink-soft);
+    color: var(--bone);
+  }
+  .venue__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .venue__copy { display: grid; gap: 1.25rem; }
+  .venue__title {
+    font-size: clamp(2.6rem, 6.5vw, 5.5rem);
+    line-height: 0.9;
+  }
+  .venue__title .editorial { color: var(--rust); font-style: italic; }
+  .venue__lead { font-size: 1.05rem; line-height: 1.6; max-width: 52ch; }
+
+  .venue__facts {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    border-top: 1px solid color-mix(in oklab, var(--bone) 14%, transparent);
+    padding-top: 1.5rem;
+  }
+  .fact { display: grid; gap: 0.25rem; }
+  .fact dt { color: var(--lavender); }
+  .fact__v { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+
+  .venue__visual {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--midnight);
+    border: 1px solid color-mix(in oklab, var(--bone) 10%, transparent);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .venue__map {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0;
+    filter: grayscale(0.55) contrast(1.05) brightness(0.85);
+  }
+  .venue__tint {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    background: linear-gradient(180deg,
+      color-mix(in oklab, var(--midnight) 55%, transparent) 0%,
+      color-mix(in oklab, var(--neon) 18%, transparent) 100%);
+    z-index: 1;
+  }
+  .venue__address {
+    position: absolute;
+    left: 1.25rem; bottom: 1.25rem;
+    z-index: 2;
+    color: var(--bone);
+    background: color-mix(in oklab, var(--ink) 92%, transparent);
+    backdrop-filter: blur(8px);
+    padding: 0.9rem 1.1rem;
+    border: 1px solid color-mix(in oklab, var(--bone) 20%, transparent);
+    display: grid;
+    gap: 0.25rem;
+    text-decoration: none;
+    transition: background .3s var(--ease), border-color .3s var(--ease);
+  }
+  .venue__address:hover {
+    background: var(--neon);
+    color: var(--ink);
+    border-color: var(--neon);
+  }
+  .venue__address-name {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.25rem;
+  }
+  .venue__address-cta {
+    margin-top: 0.4rem;
+    padding-top: 0.4rem;
+    border-top: 1px dashed color-mix(in oklab, currentColor 30%, transparent);
+    color: var(--neon);
+    letter-spacing: 0.14em;
+  }
+  .venue__address:hover .venue__address-cta { color: var(--ink); }
+
+  .venue__travel {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid color-mix(in oklab, var(--bone) 14%, transparent);
+  }
+  .venue__travel-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 2rem;
+  }
+  .travel__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .travel__item { display: grid; gap: 0.5rem; }
+  .travel__t {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    color: var(--rust);
+  }
+  .travel__d { color: var(--lavender); line-height: 1.5; }
+
+  @media (max-width: 900px) {
+    .venue__grid { grid-template-columns: 1fr; }
+    .travel__list { grid-template-columns: repeat(2, 1fr); }
+    .venue__facts { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .travel__list { grid-template-columns: 1fr; }
+  }
+</style>

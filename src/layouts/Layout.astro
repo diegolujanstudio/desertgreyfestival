@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Desert Grey Music Festival — Oct 3, 2026 · Phoenix, AZ',
+  description = 'Desert Grey is a one-day alternative rock festival in the Sonoran desert. Acoustic, rock, pop, metal — 25+ bands across three stages at the Nile Theater.',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0E0E1A" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon-256.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <!-- social -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- fonts: Anton (display), Fraunces (editorial), Inter (body), JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <script>
+      // tiny progress line on scroll (rust bar at the very top)
+      const bar = document.createElement('div');
+      bar.style.cssText =
+        'position:fixed;top:0;left:0;height:2px;background:#D945DC;z-index:9999;width:0;transition:width .1s linear;';
+      document.body.appendChild(bar);
+      const update = () => {
+        const h = document.documentElement;
+        const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        bar.style.width = pct + '%';
+      };
+      document.addEventListener('scroll', update, { passive: true });
+
+      // IntersectionObserver reveal helper
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll('[data-io]').forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

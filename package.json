@@ -1,0 +1,17 @@
+{
+  "name": "desert-grey-music-festival",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page for Desert Grey Music Festival — alternative rock in the desert.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.18"
+  }
+}

@@ -1,0 +1,113 @@
+---
+import data from '../data/faq.json';
+const emph = data.headline_emphasis;
+const parts = emph && data.headline.includes(emph) ? data.headline.split(emph) : [data.headline];
+---
+<section id="faq" class="faq">
+  <div class="container faq__grid">
+    <aside class="faq__side">
+      <span class="eyebrow">{data.eyebrow}</span>
+      <h2 class="display faq__title">
+        {parts.length > 1 ? (
+          <>{parts[0]}<br/><span class="editorial">{emph}</span>{parts.slice(1).join(emph)}</>
+        ) : data.headline}
+      </h2>
+      <p class="faq__contact">{data.footer_note}</p>
+    </aside>
+
+    <ul class="faq__list">
+      {data.items.map((f, i) => (
+        <li class="faq__item">
+          <details>
+            <summary>
+              <span class="mono faq__num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="faq__q">{f.question}</span>
+              <span class="faq__toggle" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="16" height="16">
+                  <path d="M8 3 V13 M3 8 H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </summary>
+            <p class="faq__a">{f.answer}</p>
+          </details>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background: var(--ink);
+    color: var(--bone);
+  }
+  .faq__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.7fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  .faq__side {
+    position: sticky;
+    top: 100px;
+    display: grid; gap: 1rem;
+  }
+  .faq__title {
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    line-height: 0.9;
+  }
+  .faq__title .editorial { color: var(--neon); font-style: italic; }
+  .faq__contact { color: var(--lavender); }
+
+  .faq__list { display: grid; gap: 0; }
+  .faq__item {
+    border-top: 1px solid color-mix(in oklab, var(--bone) 15%, transparent);
+  }
+  .faq__item:last-child {
+    border-bottom: 1px solid color-mix(in oklab, var(--bone) 15%, transparent);
+  }
+
+  details { padding: 1.5rem 0; }
+  summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    gap: 1rem;
+    align-items: center;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .faq__num { color: var(--lavender); }
+  .faq__q {
+    font-family: var(--f-display);
+    text-transform: uppercase;
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    letter-spacing: 0.01em;
+  }
+  .faq__toggle {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid color-mix(in oklab, var(--bone) 30%, transparent);
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: transform .35s var(--ease), background .35s var(--ease), color .35s var(--ease);
+  }
+  details[open] .faq__toggle {
+    transform: rotate(45deg);
+    background: var(--neon);
+    color: var(--ink);
+    border-color: var(--neon);
+  }
+  .faq__a {
+    padding: 0.75rem 0 0 4rem;
+    color: var(--lavender);
+    font-size: 1rem;
+    line-height: 1.65;
+    max-width: 60ch;
+  }
+
+  @media (max-width: 900px) {
+    .faq__grid { grid-template-columns: 1fr; }
+    .faq__side { position: static; }
+    .faq__a { padding-left: 3rem; }
+  }
+</style>

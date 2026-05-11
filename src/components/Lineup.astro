@@ -1,0 +1,130 @@
+---
+import data from '../data/lineup.json';
+---
+<section id="lineup" class="lineup grain-soft">
+  <div class="container">
+    <header class="lineup__head">
+      <span class="eyebrow">{data.eyebrow}</span>
+    </header>
+
+    <div class="lineup__tier lineup__tier--head">
+      {data.headliners.map((b, i) => (
+        <span class="lineup__band lineup__band--head" style={`--i:${i}`}>{b}</span>
+      ))}
+    </div>
+
+    <div class="rule lineup__rule"></div>
+
+    <div class="lineup__tier lineup__tier--main">
+      {data.main.map((b) => (
+        <span class="lineup__band lineup__band--main">{b}</span>
+      ))}
+    </div>
+
+    <div class="rule lineup__rule"></div>
+
+    <div class="lineup__tier lineup__tier--support">
+      {data.support.map((b) => (
+        <span class="lineup__band lineup__band--sup">{b}</span>
+      ))}
+    </div>
+
+    <footer class="lineup__foot">
+      <p class="mono">{data.rollout_note}</p>
+      <a href={data.cta_href} class="btn btn--acid">{data.cta_text}</a>
+    </footer>
+  </div>
+</section>
+
+<style>
+  .lineup {
+    background: var(--ink);
+    color: var(--bone);
+    position: relative;
+  }
+  .lineup__head {
+    max-width: 64rem;
+    margin: 0 auto 4rem;
+    text-align: center;
+    display: grid; gap: 1rem; justify-items: center;
+  }
+  .lineup__title {
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 0.9;
+  }
+  .lineup__title .editorial { color: var(--rust); font-style: italic; }
+  .lineup__sub { color: var(--stone); max-width: 42ch; }
+
+  .lineup__tier {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(0.5rem, 1vw, 1rem) clamp(1rem, 2.5vw, 2rem);
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .lineup__band {
+    font-family: var(--f-display);
+    text-transform: uppercase;
+    display: inline-block;
+    transition: color .3s var(--ease), transform .3s var(--ease);
+  }
+  .lineup__band:hover { color: var(--rust); transform: translateY(-2px); }
+
+  .lineup__band--head {
+    font-size: clamp(2.8rem, 7.2vw, 6.5rem);
+    letter-spacing: -0.01em;
+    line-height: 0.92;
+    flex: 1 1 100%;
+  }
+
+  .lineup__band--main {
+    font-size: clamp(1.6rem, 3.2vw, 2.8rem);
+    line-height: 1;
+  }
+
+  .lineup__band--sup {
+    font-family: var(--f-mono);
+    font-size: clamp(0.8rem, 1vw, 0.95rem);
+    letter-spacing: 0.15em;
+    color: var(--stone);
+  }
+
+  .lineup__rule { margin: 1.75rem auto; max-width: 80%; opacity: 0.15; }
+
+  .lineup__foot {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    border-top: 1px solid color-mix(in oklab, var(--bone) 14%, transparent);
+  }
+  .lineup__foot .mono { color: var(--lavender); }
+  .lineup__band--sup { color: var(--lavender); }
+
+  @media (max-width: 560px) {
+    .lineup__head { margin-bottom: 2.5rem; }
+    .lineup__tier { padding: 1rem 0; gap: 0.5rem 1.25rem; }
+    .lineup__band--head {
+      font-size: clamp(2rem, 13vw, 3.4rem);
+      line-height: 0.95;
+    }
+    .lineup__band--main { font-size: clamp(1.2rem, 5vw, 1.8rem); }
+    .lineup__band--sup {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+    }
+    .lineup__rule { margin: 1.25rem auto; }
+    .lineup__foot {
+      margin-top: 2.5rem;
+      justify-content: center;
+      text-align: center;
+    }
+    .lineup__foot .mono { flex: 1 1 100%; }
+    .lineup__foot .btn { width: 100%; justify-content: center; }
+  }
+</style>

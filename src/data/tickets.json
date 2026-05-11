@@ -1,0 +1,33 @@
+{
+  "eyebrow": "Tickets · On sale now",
+  "headline": "Lock in your pass.",
+  "headline_emphasis": "your pass.",
+  "description": "Checkout runs on PurplePass — pick a tier, split the total into three payments at checkout, and your wristband waits at will-call.",
+  "fine_print": "Prices include all fees. Payment plans via Klarna / Affirm at PurplePass checkout. Transferable until 10 days before the festival. No refunds.",
+  "tiers": [
+    {
+      "name": "Single Day",
+      "price": "$48",
+      "note": "General admission",
+      "perks": ["All three stages", "Re-entry until 10pm", "Standard wristband"],
+      "cta": "Buy pass",
+      "featured": false
+    },
+    {
+      "name": "Inner Circle",
+      "price": "$95",
+      "note": "Limited · drops monthly",
+      "perks": ["Mezzanine access", "Private bar + lounge", "Early entry at 1pm", "Commemorative poster"],
+      "cta": "Join Inner Circle",
+      "featured": true
+    },
+    {
+      "name": "Crew Pass",
+      "price": "$320",
+      "note": "Four wristbands — bring the band",
+      "perks": ["4 × Single Day passes", "Dedicated group entry", "Shared locker", "Save $17 vs. individual"],
+      "cta": "Get group",
+      "featured": false
+    }
+  ]
+}

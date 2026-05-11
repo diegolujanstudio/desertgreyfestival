@@ -1,0 +1,34 @@
+# build output
+dist/
+.output/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# astro
+.astro/
+
+# previews + scratch
+preview.html
+build-workspace/
+
+# wrangler / CF workers
+.wrangler/
+workers/*/node_modules/
+
+# editor
+.vscode/
+.idea/

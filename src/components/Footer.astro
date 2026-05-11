@@ -1,0 +1,170 @@
+---
+import data from '../data/footer.json';
+---
+<footer class="foot grain">
+  <div class="container">
+
+    <!-- sponsors -->
+    <div class="foot__sponsors">
+      <span class="eyebrow">{data.sponsors_label}</span>
+      <ul class="sponsors">
+        {data.sponsors.map((s) => (
+          <li class="display sponsor">{s}</li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="foot__rule rule"></div>
+
+    <!-- main footer grid -->
+    <div class="foot__grid">
+      <div class="foot__mark">
+        <div class="foot__mark-row">
+          <img src="/favicon-256.png" alt="" class="foot__logo" width="48" height="48" />
+          <h3 class="display foot__wordmark">
+            {data.festival_name}
+            <span class="foot__wordmark-sub">{data.festival_subtitle}</span>
+          </h3>
+        </div>
+        <p class="mono foot__address">
+          {data.address_lines.map((line, i) => (
+            <>{line}{i < data.address_lines.length - 1 && <br/>}</>
+          ))}
+        </p>
+      </div>
+
+      <div class="foot__col">
+        <h4 class="eyebrow">{data.explore_label}</h4>
+        <ul class="foot__list">
+          {data.explore_links.map((l) => (
+            <li><a href={l.href} class="ulink">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="foot__col">
+        <h4 class="eyebrow">{data.follow_label}</h4>
+        <ul class="foot__list">
+          {data.follow_items.map((item) => (
+            <li>
+              {item.href ? (
+                <a href={item.href} target="_blank" rel="noopener" class="ulink">{item.label}</a>
+              ) : (
+                <span class="foot__soon">{item.label}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="foot__col">
+        <h4 class="eyebrow">{data.info_label}</h4>
+        <ul class="foot__list">
+          {data.info_items.map((line) => (
+            <li><span class="foot__soon">{line}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- bottom strip -->
+    <div class="foot__bottom">
+      <p class="mono">{data.copyright}</p>
+      <p class="mono foot__credit">{data.legal_strip}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    background: var(--ink);
+    color: var(--bone);
+    padding: clamp(4rem, 8vw, 7rem) 0 2rem;
+    position: relative;
+    isolation: isolate;
+  }
+
+  .foot__sponsors {
+    display: grid; gap: 1.25rem;
+    margin-bottom: 4rem;
+  }
+  .foot__sponsors .eyebrow { color: color-mix(in oklab, var(--bone) 55%, transparent); }
+  .sponsors {
+    display: flex; flex-wrap: wrap;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+    align-items: center;
+  }
+  .sponsor {
+    font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: color-mix(in oklab, var(--bone) 82%, transparent);
+    transition: color .3s var(--ease);
+  }
+  .sponsor:hover { color: var(--acid); }
+
+  .foot__rule { opacity: 0.2; margin-bottom: 3rem; }
+
+  .foot__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: clamp(1.5rem, 3vw, 3rem);
+  }
+  .foot__mark-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .foot__logo {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .foot__wordmark {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    line-height: 1;
+    display: grid;
+    gap: 0.25rem;
+  }
+  .foot__wordmark-sub {
+    font-family: var(--f-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.24em;
+    color: color-mix(in oklab, var(--bone) 55%, transparent);
+    text-transform: uppercase;
+  }
+  .foot__address { color: color-mix(in oklab, var(--bone) 65%, transparent); }
+
+  .foot__col { display: grid; gap: 1rem; }
+  .foot__col .eyebrow { color: color-mix(in oklab, var(--bone) 55%, transparent); }
+  .foot__list { display: grid; gap: 0.45rem; font-size: 0.95rem; }
+  .foot__soon {
+    color: color-mix(in oklab, var(--bone) 45%, transparent);
+    font-size: 0.88rem;
+  }
+
+  .foot__bottom {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid color-mix(in oklab, var(--bone) 15%, transparent);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    color: color-mix(in oklab, var(--bone) 55%, transparent);
+  }
+
+  @media (max-width: 900px) {
+    .foot__grid { grid-template-columns: 1fr 1fr; }
+    .foot__mark { grid-column: 1 / -1; }
+  }
+  @media (max-width: 560px) {
+    .foot { padding-top: 3rem; }
+    .foot__sponsors { margin-bottom: 2.5rem; }
+    .sponsors { gap: 0.75rem 1.5rem; }
+    .sponsor { font-size: 0.95rem; }
+    .foot__grid { grid-template-columns: 1fr; gap: 2rem; }
+    .foot__wordmark { font-size: 1.7rem; }
+    .foot__bottom { margin-top: 2.5rem; flex-direction: column; gap: 0.25rem; }
+    .foot__bottom .mono { font-size: 0.58rem; letter-spacing: 0.1em; }
+  }
+</style>

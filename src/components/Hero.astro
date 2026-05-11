@@ -1,0 +1,188 @@
+---
+import data from '../data/hero.json';
+---
+<section id="top" class="hero">
+  <!-- video bg -->
+  <video
+    class="hero__video"
+    src={data.background_video}
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    aria-hidden="true"
+  ></video>
+
+  <!-- darken + color wash -->
+  <div class="hero__scrim" aria-hidden="true"></div>
+  <div class="hero__grain grain" aria-hidden="true"></div>
+
+  <!-- top-right coord readout -->
+  <div class="hero__float mono">
+    <span>33.4484° N</span>
+    <span>112.0740° W</span>
+    <span>Moon · Waxing Gibbous</span>
+  </div>
+
+  <div class="hero__content container">
+    <div class="hero__meta reveal">
+      <span class="mono">{data.eyebrow}</span>
+    </div>
+
+    <h1 class="display hero__title reveal delay-1">
+      {data.title_line_1}
+      <span class="hero__grey">{data.title_line_2}</span>
+      <span class="hero__festival">{data.title_line_3}</span>
+    </h1>
+
+    <div class="hero__subline reveal delay-2">
+      <p class="editorial hero__tag">{data.tagline}</p>
+    </div>
+
+    <div class="hero__bottom">
+      <div class="hero__date reveal delay-2">
+        <span class="eyebrow">{data.date_eyebrow}</span>
+        <p class="display hero__date-num">{data.date_display}</p>
+        <span class="mono">{data.date_caption}</span>
+      </div>
+
+      <div class="hero__cta reveal delay-3">
+        <a href={data.cta_primary_href} class="btn btn--primary">{data.cta_primary_text} →</a>
+        <a href={data.cta_secondary_href} class="btn btn--ghost">{data.cta_secondary_text}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
+    color: var(--bone);
+    background: #000;
+    padding-top: clamp(6rem, 12vh, 8.5rem);
+    padding-bottom: clamp(2rem, 6vh, 5rem);
+    isolation: isolate;
+    display: flex;
+  }
+
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(80% 55% at 22% 35%, rgba(14,14,26,0.15) 0%, transparent 70%),
+      linear-gradient(180deg,
+        rgba(14,14,26,0.55) 0%,
+        rgba(14,14,26,0.28) 25%,
+        rgba(14,14,26,0.35) 55%,
+        rgba(14,14,26,0.85) 100%);
+  }
+  .hero__grain {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  }
+
+  .hero__content {
+    position: relative; z-index: 3;
+    display: grid;
+    gap: clamp(1.25rem, 2.5vh, 2rem);
+    width: 100%;
+    min-height: calc(100svh - 12vh);
+  }
+  .hero__meta { color: color-mix(in oklab, var(--bone) 88%, transparent); }
+
+  .hero__title {
+    font-size: clamp(3.4rem, 11vw, 10.5rem);
+    line-height: 0.86;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+    text-shadow: 0 4px 30px rgba(0,0,0,0.55);
+    display: grid;
+    gap: 0;
+  }
+  .hero__grey { color: var(--neon); display: block; }
+  .hero__festival {
+    font-size: 0.32em;
+    letter-spacing: 0.22em;
+    color: color-mix(in oklab, var(--bone) 80%, transparent);
+    display: block;
+    margin-top: 0.3em;
+    font-weight: 400;
+  }
+
+  .hero__subline {
+    max-width: 38ch;
+    margin-left: auto;
+  }
+  .hero__tag {
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    line-height: 1.45;
+    color: color-mix(in oklab, var(--bone) 94%, transparent);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+  }
+
+  .hero__bottom {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: auto;
+    flex-wrap: wrap;
+  }
+  .hero__date { display: grid; gap: 0.4rem; max-width: 26rem; }
+  .hero__date-num {
+    font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+    line-height: 0.9;
+    color: var(--neon);
+  }
+  .hero__cta { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+  .hero__float {
+    position: absolute;
+    right: var(--gutter);
+    top: clamp(5.5rem, 10vh, 7rem);
+    z-index: 4;
+    display: grid;
+    gap: 0.2rem;
+    text-align: right;
+    color: color-mix(in oklab, var(--bone) 75%, transparent);
+    font-size: 0.68rem;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  }
+
+  @media (max-width: 900px) {
+    .hero__float { font-size: 0.62rem; }
+  }
+  @media (max-width: 720px) {
+    .hero__subline { margin-left: 0; max-width: 100%; }
+    .hero__bottom { flex-direction: column; align-items: start; gap: 1.25rem; }
+    .hero__cta { width: 100%; }
+    .hero__cta .btn { flex: 1; justify-content: center; }
+  }
+  @media (max-width: 720px) {
+    .hero__float { display: none; }
+  }
+  @media (max-width: 560px) {
+    .hero {
+      padding-top: clamp(5rem, 10vh, 6.5rem);
+      padding-bottom: clamp(1.75rem, 5vh, 3rem);
+    }
+    .hero__content { gap: 1rem; }
+    .hero__title { font-size: clamp(3rem, 16vw, 5rem); }
+    .hero__tag { font-size: 0.95rem; line-height: 1.4; }
+    .hero__date-num { font-size: 1.55rem; }
+    .hero__date .mono { font-size: 0.68rem; letter-spacing: 0.12em; }
+    .hero__meta .mono { font-size: 0.62rem; letter-spacing: 0.12em; }
+  }
+</style>

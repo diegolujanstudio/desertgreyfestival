@@ -1,0 +1,11 @@
+{
+  "eyebrow": "Partners / 2026",
+  "headline": "Built with the valley.",
+  "headline_emphasis": "the valley.",
+  "description": "Desert Grey only happens because a handful of local businesses, radio stations, hotels and independents chip in. Partnership slots for 2027 open after doors close.",
+  "tiers": [
+    { "label": "Presenting", "partners": ["Four Peaks Brewing", "KWSS 93.9"] },
+    { "label": "Official",   "partners": ["Hotel Valley Ho", "Saguaro Press", "Jade Monkey Studio", "Mesa Coffee Co."] },
+    { "label": "Community",  "partners": ["The Clarendon", "Phx Film Co-op", "Grey Line Shuttle", "Downtown Mesa", "Local First AZ", "Rainbow Records"] }
+  ]
+}
