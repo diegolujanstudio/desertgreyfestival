@@ -19,7 +19,7 @@ logo_url: /favicon-256.png
 
 collections:
 
-  - name: "settings"
+  - name: "site_info"
     label: "⚙️  Site Settings"
     files:
       - label: "Festival Info"
