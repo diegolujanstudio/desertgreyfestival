@@ -34,7 +34,7 @@ collections:
     description: "Festival name, date, ticketing URL, Spotify link — shared by every section."
     editor: { preview: false }
     files:
-      - name: "site"
+      - name: "site_data"
         label: "Festival Info"
         file: "src/data/site.json"
         fields:
@@ -57,7 +57,7 @@ collections:
     description: "Pink strip at the very top of the site with countdown."
     editor: { preview: false }
     files:
-      - name: "announcement"
+      - name: "announcement_data"
         label: "Announcement Bar"
         file: "src/data/announcement.json"
         fields:
@@ -73,7 +73,7 @@ collections:
     description: "The first thing visitors see — big title, video background, CTAs."
     editor: { preview: false }
     files:
-      - name: "hero"
+      - name: "hero_data"
         label: "Hero Section"
         file: "src/data/hero.json"
         fields:
@@ -99,7 +99,7 @@ collections:
     description: "The menu bar at the top with logo and links."
     editor: { preview: false }
     files:
-      - name: "nav"
+      - name: "nav_data"
         label: "Navigation"
         file: "src/data/nav.json"
         fields:
@@ -123,7 +123,7 @@ collections:
     description: "The two horizontal scrolling text bars (genres + festival facts)."
     editor: { preview: false }
     files:
-      - name: "marquee"
+      - name: "marquee_data"
         label: "Marquee Lines"
         file: "src/data/marquee.json"
         fields:
@@ -144,7 +144,7 @@ collections:
     description: "The 'A festival carved out of dust' block."
     editor: { preview: false }
     files:
-      - name: "intro"
+      - name: "intro_data"
         label: "Intro Section"
         file: "src/data/intro.json"
         fields:
@@ -163,7 +163,7 @@ collections:
     description: "Three tiers of bands: headliners (huge), main (medium), support (small)."
     editor: { preview: false }
     files:
-      - name: "lineup"
+      - name: "lineup_data"
         label: "Lineup"
         file: "src/data/lineup.json"
         fields:
@@ -192,7 +192,7 @@ collections:
     description: "The full Oct 3 running order — three stages, set times, band names."
     editor: { preview: false }
     files:
-      - name: "schedule"
+      - name: "schedule_data"
         label: "Schedule"
         file: "src/data/schedule.json"
         fields:
@@ -225,7 +225,7 @@ collections:
     description: "The three pricing tiers. Each links to PurplePass checkout."
     editor: { preview: false }
     files:
-      - name: "tickets"
+      - name: "tickets_data"
         label: "Tickets"
         file: "src/data/tickets.json"
         fields:
@@ -257,7 +257,7 @@ collections:
     description: "Sponsors and partner organizations in three tiers."
     editor: { preview: false }
     files:
-      - name: "partners"
+      - name: "partners_data"
         label: "Partners"
         file: "src/data/partners.json"
         fields:
@@ -284,7 +284,7 @@ collections:
     description: "The 'Slip into the Grey Line' Spotify section."
     editor: { preview: false }
     files:
-      - name: "listen"
+      - name: "listen_data"
         label: "Listen Section"
         file: "src/data/listen.json"
         fields:
@@ -304,7 +304,7 @@ collections:
     description: "The Nile Theater info, map, address, and travel details."
     editor: { preview: false }
     files:
-      - name: "venue"
+      - name: "venue_data"
         label: "Venue Section"
         file: "src/data/venue.json"
         fields:
@@ -341,7 +341,7 @@ collections:
     description: "Frequently asked questions."
     editor: { preview: false }
     files:
-      - name: "faq"
+      - name: "faq_data"
         label: "FAQ"
         file: "src/data/faq.json"
         fields:
@@ -365,7 +365,7 @@ collections:
     description: "Sponsors strip, columns, copyright."
     editor: { preview: false }
     files:
-      - name: "footer"
+      - name: "footer_data"
         label: "Footer"
         file: "src/data/footer.json"
         fields:
