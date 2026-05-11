@@ -197,6 +197,14 @@ async function handleProxy(event, env) {
       case "info":
         return json({ repo: `${env.GITHUB_OWNER}/${env.GITHUB_REPO}`, publish_modes: ["simple"], type: "github" });
 
+      case "allowedActions":
+        return json([
+          "info", "allowedActions",
+          "entriesByFolder", "entriesByFiles", "getEntry", "entry",
+          "persistEntry", "deleteEntry", "deleteEntries",
+          "getMedia", "getMediaFile", "persistMedia", "deleteMedia",
+        ]);
+
       case "entriesByFolder": {
         const { folder, extension } = params;
         const res = await fetch(`${ghBase}/contents/${encodeURIComponent(folder)}?ref=${branch}`, { headers: ghHeaders });
@@ -224,7 +232,8 @@ async function handleProxy(event, env) {
         return json(results.filter(Boolean));
       }
 
-      case "entry": {
+      case "entry":
+      case "getEntry": {
         const { path } = params;
         const res = await fetch(`${ghBase}/contents/${encodeURIComponent(path)}?ref=${branch}`, { headers: ghHeaders });
         if (!res.ok) return passThroughError(res);
@@ -242,6 +251,7 @@ async function handleProxy(event, env) {
       }
 
       case "deleteEntry":
+      case "deleteEntries":
       case "deleteFile":
       case "deleteFiles": {
         const paths = params.paths || (params.path ? [params.path] : []);
