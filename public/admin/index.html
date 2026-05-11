@@ -228,6 +228,7 @@
     // 3. Boot Decap CMS pointed at the Worker proxy
     function bootCMS(session) {
       $login.style.display = 'none';
+      // Show transient loading message in our root, then remove once Decap mounts
       $cms.style.display = 'block';
       $cms.classList.add('active');
       $cms.innerHTML = '<div class="loading">Loading editor…</div>';
@@ -236,7 +237,7 @@
       const s = document.createElement('script');
       s.src = 'https://unpkg.com/decap-cms@^3.6.0/dist/decap-cms.js';
       s.onload = async () => {
-        const cfgText = await fetch('/admin/config.yml').then(r => r.text());
+        const cfgText = await fetch('/admin/config.yml', { cache: 'no-store' }).then(r => r.text());
         const jsyaml = await import('https://cdn.skypack.dev/js-yaml').then(m => m.default);
         const cfg = jsyaml.load(cfgText);
         cfg.backend = {
@@ -249,6 +250,19 @@
         cfg.display_url = window.location.origin;
         cfg.logo_url = '/favicon-256.png';
         window.CMS.init({ config: cfg });
+
+        // Hide our placeholder root the moment Decap mounts to #nc-root
+        const observer = new MutationObserver(() => {
+          const nc = document.getElementById('nc-root');
+          if (nc && nc.children.length > 0) {
+            $cms.style.display = 'none';
+            $cms.innerHTML = '';
+            observer.disconnect();
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+        // Fallback: also hide after 2s just in case
+        setTimeout(() => { $cms.style.display = 'none'; $cms.innerHTML = ''; }, 2500);
       };
       document.head.appendChild(s);
     }
