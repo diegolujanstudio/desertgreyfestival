@@ -212,6 +212,18 @@ async function handleProxy(event, env) {
         return json(files.filter(Boolean));
       }
 
+      case "entriesByFiles": {
+        // For files-collections: params.files is an array of { path, label } objects
+        const requestedFiles = params.files || [];
+        const results = await Promise.all(requestedFiles.map(async (f) => {
+          const r = await fetch(`${ghBase}/contents/${encodeURIComponent(f.path)}?ref=${branch}`, { headers: ghHeaders });
+          if (!r.ok) return null;
+          const item = await r.json();
+          return { file: { path: item.path, sha: item.sha, label: f.label }, data: Buffer.from(item.content || "", "base64").toString("utf-8") };
+        }));
+        return json(results.filter(Boolean));
+      }
+
       case "entry": {
         const { path } = params;
         const res = await fetch(`${ghBase}/contents/${encodeURIComponent(path)}?ref=${branch}`, { headers: ghHeaders });
