@@ -243,10 +243,14 @@ async function handleProxy(event, env) {
 
       case "persistEntry": {
         const { entry, assets = [] } = params;
+        // Decap proxy protocol: entry.dataFiles[] (newer) OR entry.path/raw (older)
+        const dataFiles = entry?.dataFiles || (entry?.path ? [{ path: entry.path, raw: entry.raw, slug: entry.slug }] : []);
         for (const asset of assets) {
           await putFile(ghBase, ghHeaders, branch, asset.path, asset.content, asset.encoding, commitMsg("upload", asset.path));
         }
-        await putFile(ghBase, ghHeaders, branch, entry.path, entry.raw, "utf-8", commitMsg("save", entry.path));
+        for (const df of dataFiles) {
+          await putFile(ghBase, ghHeaders, branch, df.path, df.raw, "utf-8", commitMsg("save", df.path));
+        }
         return json({ ok: true });
       }
 
