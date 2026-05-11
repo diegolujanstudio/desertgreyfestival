@@ -242,16 +242,44 @@ async function handleProxy(event, env) {
       }
 
       case "persistEntry": {
-        const { entry, assets = [] } = params;
-        // Decap proxy protocol: entry.dataFiles[] (newer) OR entry.path/raw (older)
-        const dataFiles = entry?.dataFiles || (entry?.path ? [{ path: entry.path, raw: entry.raw, slug: entry.slug }] : []);
+        const { entry, assets = [], dataFiles: topDataFiles } = params;
+        // Decap proxy protocol — payload format varies across versions:
+        //   v3+:  params.dataFiles[] at top level (each with slug + path + raw)
+        //   v2+:  params.entry.dataFiles[]
+        //   v1:   params.entry.path + params.entry.raw
+        let dataFiles = [];
+        if (Array.isArray(topDataFiles) && topDataFiles.length) dataFiles = topDataFiles;
+        else if (Array.isArray(entry?.dataFiles) && entry.dataFiles.length) dataFiles = entry.dataFiles;
+        else if (entry?.path) dataFiles = [{ path: entry.path, raw: entry.raw, slug: entry.slug }];
+
+        // Debug: surface what we got
+        const debugSummary = {
+          hasTopDataFiles: Array.isArray(topDataFiles),
+          topCount: Array.isArray(topDataFiles) ? topDataFiles.length : 0,
+          hasEntry: !!entry,
+          entryKeys: entry ? Object.keys(entry) : [],
+          entryHasDataFiles: Array.isArray(entry?.dataFiles),
+          assetsCount: assets.length,
+          resolvedDataFilesCount: dataFiles.length,
+          firstPath: dataFiles[0]?.path,
+        };
+        console.log("persistEntry payload summary:", JSON.stringify(debugSummary));
+        console.log("persistEntry full params keys:", JSON.stringify(Object.keys(params)));
+
+        if (dataFiles.length === 0) {
+          return json({ error: "No data files in payload", debug: debugSummary, paramKeys: Object.keys(params) }, 400);
+        }
+
         for (const asset of assets) {
           await putFile(ghBase, ghHeaders, branch, asset.path, asset.content, asset.encoding, commitMsg("upload", asset.path));
         }
         for (const df of dataFiles) {
+          if (!df.path || df.raw === undefined) {
+            return json({ error: "Missing path or raw in dataFile", debug: { df } }, 400);
+          }
           await putFile(ghBase, ghHeaders, branch, df.path, df.raw, "utf-8", commitMsg("save", df.path));
         }
-        return json({ ok: true });
+        return json({ ok: true, persisted: dataFiles.length });
       }
 
       case "deleteEntry":
