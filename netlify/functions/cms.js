@@ -94,15 +94,10 @@ function randHex(bytes = 32) {
   return crypto.randomBytes(bytes).toString("hex");
 }
 
-function verifyPbkdf2(stored, password) {
-  if (!stored || !stored.startsWith("pbkdf2$")) return false;
-  const parts = stored.split("$");
-  if (parts.length !== 4) return false;
-  const iterations = parseInt(parts[1], 10);
-  const salt = Buffer.from(parts[2], "hex");
-  const expected = Buffer.from(parts[3], "hex");
-  const derived = crypto.pbkdf2Sync(password, salt, iterations, expected.length, "sha256");
-  return crypto.timingSafeEqual(derived, expected);
+function verifyPassword(expectedPlain, given) {
+  if (!expectedPlain || typeof given !== "string") return false;
+  if (expectedPlain.length !== given.length) return false;
+  return crypto.timingSafeEqual(Buffer.from(expectedPlain), Buffer.from(given));
 }
 
 function parseCookies(event) {
@@ -134,7 +129,7 @@ async function handleLogin(event, env) {
 
   const expectedUser = (env.ADMIN_USERNAME || "admin").trim();
   if (!timingSafeEq(username, expectedUser)) return json({ error: "Invalid credentials" }, 401);
-  if (!verifyPbkdf2(env.ADMIN_PASSWORD_HASH, password)) return json({ error: "Invalid credentials" }, 401);
+  if (!verifyPassword(env.ADMIN_PASSWORD, password)) return json({ error: "Invalid credentials" }, 401);
 
   const sessionId = randHex(32);
   const expiresAt = Math.floor(Date.now() / 1000) + SESSION_TTL_S;
