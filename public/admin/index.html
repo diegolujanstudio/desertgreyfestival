@@ -8,128 +8,172 @@
   <link rel="icon" href="/favicon-32.png" />
   <style>
     :root {
-      --ink: #0E0E1A;
-      --neon: #D945DC;
-      --bone: #E2E3E1;
-      --lavender: #897DA9;
+      --bg: #000000;
+      --fg: #FFFFFF;
+      --muted: #6B6B6B;
+      --line: #1A1A1A;
+      --line-strong: #2A2A2A;
+      --error: #FF6363;
+      --success: #6BE578;
     }
-    html, body { margin: 0; padding: 0; height: 100%; background: var(--ink); color: var(--bone); font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-    .login-shell {
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+      font-feature-settings: "ss01", "cv01";
+      -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.005em;
+    }
+    a { color: inherit; }
+    .shell {
       display: grid;
       place-items: center;
       min-height: 100vh;
-      padding: 1.5rem;
+      padding: 24px;
     }
-    .login-card {
+    .card {
       width: 100%;
-      max-width: 420px;
-      background: #15152B;
-      border: 1px solid rgba(226, 227, 225, 0.1);
-      padding: 2.5rem 2rem;
-      border-radius: 4px;
+      max-width: 380px;
+    }
+    .brand {
       text-align: center;
+      margin-bottom: 56px;
     }
-    .login-card h1 {
-      margin: 0 0 0.5rem;
-      font-family: 'Anton', 'Archivo Black', sans-serif;
+    .brand-mark {
+      font-size: 11px;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      letter-spacing: 0.02em;
-      font-size: 1.85rem;
-      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 28px;
     }
-    .login-card .sub {
-      color: var(--lavender);
-      margin: 0 0 2rem;
-      font-size: 0.92rem;
-      line-height: 1.5;
+    .brand-title {
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin: 0 0 8px 0;
     }
-    .login-card input[type="email"] {
-      width: 100%;
-      padding: 0.9rem 1rem;
-      background: var(--ink);
-      border: 1px solid rgba(226, 227, 225, 0.18);
-      border-radius: 2px;
-      color: var(--bone);
-      font: inherit;
-      box-sizing: border-box;
-      margin-bottom: 0.85rem;
+    .brand-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
     }
-    .login-card input[type="email"]:focus {
-      outline: 2px solid var(--neon);
-      outline-offset: 1px;
+    form {
+      display: grid;
+      gap: 14px;
     }
-    .login-card button {
-      width: 100%;
-      padding: 0.9rem 1rem;
-      background: var(--neon);
-      color: var(--ink);
-      border: 0;
-      border-radius: 999px;
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 0.78rem;
+    label {
+      font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      cursor: pointer;
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .field {
+      display: grid;
+    }
+    input {
+      width: 100%;
+      padding: 14px 0;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--line-strong);
+      color: var(--fg);
+      font: inherit;
+      font-size: 15px;
+      letter-spacing: -0.005em;
+      transition: border-color 0.2s ease;
+    }
+    input:focus {
+      outline: none;
+      border-bottom-color: var(--fg);
+    }
+    input::placeholder { color: var(--muted); }
+    button {
+      width: 100%;
+      padding: 16px 0;
+      margin-top: 14px;
+      background: var(--fg);
+      color: var(--bg);
+      border: 0;
+      font: inherit;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       font-weight: 600;
-      transition: opacity .2s, transform .2s;
+      cursor: pointer;
+      transition: opacity 0.15s ease;
     }
-    .login-card button:hover { transform: translateY(-1px); }
-    .login-card button[disabled] { opacity: 0.5; cursor: wait; }
-    .login-card .status {
-      margin-top: 1rem;
-      font-size: 0.85rem;
+    button:hover { opacity: 0.85; }
+    button:disabled { opacity: 0.4; cursor: wait; }
+    .status {
+      margin-top: 18px;
+      font-size: 12px;
+      text-align: center;
       min-height: 1.2em;
+      letter-spacing: 0;
     }
-    .login-card .status.ok { color: #B6F2A1; }
-    .login-card .status.err { color: #FF7F8E; }
-    .login-card .footnote {
-      margin-top: 2rem;
-      font-size: 0.7rem;
-      color: var(--lavender);
-      letter-spacing: 0.08em;
+    .status.err { color: var(--error); }
+    .status.ok { color: var(--success); }
+    .footer-note {
+      margin-top: 56px;
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
-    .cms-loading {
+    .loading {
       display: grid;
       place-items: center;
       min-height: 100vh;
-      color: var(--lavender);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      letter-spacing: 0.18em;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
     }
+    /* CMS body overrides — make Decap fit our aesthetic */
+    #cms-root.active { background: #F5F5F5; min-height: 100vh; }
   </style>
 </head>
 <body>
-  <!-- Login screen (shown when no session) -->
-  <div id="login-shell" class="login-shell">
-    <div class="login-card">
-      <h1>Desert Grey</h1>
-      <p class="sub">Sign in to edit the website.<br/>We'll email you a one-click login link.</p>
+  <!-- Login -->
+  <div id="login-shell" class="shell">
+    <div class="card">
+      <div class="brand">
+        <div class="brand-mark">Desert Grey</div>
+        <h1 class="brand-title">Content Editor</h1>
+        <p class="brand-sub">Sign in to manage the website.</p>
+      </div>
       <form id="login-form" autocomplete="off">
-        <input id="email" type="email" placeholder="your@email.com" autocomplete="email" required />
-        <button id="submit-btn" type="submit">Send login link</button>
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" type="text" autocomplete="username" autofocus required />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="current-password" required />
+        </div>
+        <button id="submit-btn" type="submit">Sign in</button>
         <div id="status" class="status"></div>
       </form>
-      <div class="footnote">No password to remember.</div>
+      <div class="footer-note">desertgreymusicfestival.com</div>
     </div>
   </div>
 
-  <!-- CMS root (mounted after auth) -->
+  <!-- CMS mount point -->
   <div id="cms-root" style="display:none;"></div>
 
   <script>
-    // ============================================================
-    // Bootstrap: check session → either load CMS or show login form
-    // ============================================================
-    // The Worker URL is injected at deploy-time via netlify env var.
-    // For local previews we fall back to a placeholder.
     const WORKER_URL = window.__CMS_WORKER_URL__ || 'https://desertgrey-cms.workers.dev';
 
     const $login = document.getElementById('login-shell');
     const $cms = document.getElementById('cms-root');
     const $form = document.getElementById('login-form');
-    const $email = document.getElementById('email');
+    const $username = document.getElementById('username');
+    const $password = document.getElementById('password');
     const $btn = document.getElementById('submit-btn');
     const $status = document.getElementById('status');
 
@@ -138,124 +182,72 @@
       $status.className = 'status' + (type ? ' ' + type : '');
     }
 
-    // 1. If we just came back from a magic link (?token=...), verify it
-    const urlParams = new URLSearchParams(window.location.search);
-    const magicToken = urlParams.get('token');
+    // 1. Check existing session
+    fetch(WORKER_URL + '/auth/me', { credentials: 'include' })
+      .then(r => r.ok ? r.json() : null)
+      .then(session => {
+        if (session && session.username) bootCMS(session);
+        else $login.style.display = 'grid';
+      })
+      .catch(() => { $login.style.display = 'grid'; });
 
-    async function verifyMagicToken(token) {
-      $login.innerHTML = '<div class="cms-loading">Signing you in…</div>';
+    // 2. Sign in
+    $form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = $username.value.trim();
+      const password = $password.value;
+      if (!username || !password) return;
+      $btn.disabled = true;
+      setStatus('Signing in…');
       try {
-        const res = await fetch(WORKER_URL + '/auth/verify', {
+        const res = await fetch(WORKER_URL + '/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
-          body: JSON.stringify({ token })
-        });
-        if (!res.ok) {
-          const err = await res.json().catch(() => ({}));
-          throw new Error(err.error || 'Link expired or already used');
-        }
-        // Clear ?token=… from URL and reload to bootstrap CMS
-        window.history.replaceState({}, '', '/admin/');
-        location.reload();
-      } catch (e) {
-        $login.innerHTML = `
-          <div class="login-shell"><div class="login-card">
-            <h1>Link expired</h1>
-            <p class="sub">${e.message || 'Please request a new login link.'}</p>
-            <button onclick="location.href='/admin/'">Try again</button>
-          </div></div>`;
-      }
-    }
-
-    if (magicToken) {
-      verifyMagicToken(magicToken);
-    } else {
-      // 2. Check if we already have a valid session
-      fetch(WORKER_URL + '/auth/me', { credentials: 'include' })
-        .then(r => r.ok ? r.json() : null)
-        .then(session => {
-          if (session && session.email) {
-            bootCMS(session);
-          } else {
-            $login.style.display = 'grid';
-          }
-        })
-        .catch(() => { $login.style.display = 'grid'; });
-    }
-
-    // 3. Magic-link request handler
-    $form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = $email.value.trim().toLowerCase();
-      if (!email) return;
-      $btn.disabled = true;
-      setStatus('Sending…');
-      try {
-        const res = await fetch(WORKER_URL + '/auth/magic-link', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, redirect: window.location.origin + '/admin/' })
+          body: JSON.stringify({ username, password })
         });
         if (res.status === 429) {
-          setStatus('Too many requests — please wait a minute and try again.', 'err');
-        } else if (res.status === 403) {
-          setStatus("That email isn't authorized. Ask Diego to add you.", 'err');
+          setStatus('Too many attempts. Please wait a moment.', 'err');
+        } else if (res.status === 401) {
+          setStatus('Incorrect username or password.', 'err');
         } else if (!res.ok) {
-          setStatus('Something went wrong. Please try again.', 'err');
+          setStatus('Something went wrong. Try again.', 'err');
         } else {
-          const data = await res.json().catch(() => ({}));
-          if (data.debug_link) {
-            // Email service not configured yet — show the link inline (for setup/demo).
-            $status.innerHTML = `Email service not configured yet. <a href="${data.debug_link}" style="color:var(--neon)">Click to sign in →</a>`;
-            $status.className = 'status ok';
-          } else {
-            setStatus('Check your inbox — the link arrives in a few seconds.', 'ok');
-            $email.value = '';
-          }
+          const data = await res.json();
+          setStatus('Welcome.', 'ok');
+          setTimeout(() => bootCMS(data), 400);
         }
       } catch (err) {
-        setStatus('Network error. Please try again.', 'err');
+        setStatus('Network error. Try again.', 'err');
       } finally {
         $btn.disabled = false;
       }
     });
 
-    // 4. Boot Decap CMS with proxy-backend pointed at the Worker
+    // 3. Boot Decap CMS pointed at the Worker proxy
     function bootCMS(session) {
       $login.style.display = 'none';
       $cms.style.display = 'block';
-      $cms.innerHTML = '<div class="cms-loading">Loading editor…</div>';
+      $cms.classList.add('active');
+      $cms.innerHTML = '<div class="loading">Loading editor…</div>';
 
-      // Tell Decap to use proxy backend pointing at the Worker
       window.CMS_MANUAL_INIT = true;
-
       const s = document.createElement('script');
       s.src = 'https://unpkg.com/decap-cms@^3.6.0/dist/decap-cms.js';
       s.onload = async () => {
-        const cfg = await fetch('/admin/config.yml').then(r => r.text());
-        // Inject session credentials and worker URL
-        window.__CMS_SESSION__ = session;
-        // Use a custom backend init so all API requests are proxied through the worker
-        // Decap's `proxy` backend expects a Netlify CMS-style proxy server protocol;
-        // our Worker speaks the same protocol.
-        const yaml = window.jsyaml || (await import('https://cdn.skypack.dev/js-yaml').then(m => m.default));
-        const configObj = yaml.load ? yaml.load(cfg) : window.jsyaml.load(cfg);
-        // Force proxy backend with our Worker URL
-        configObj.backend = {
+        const cfgText = await fetch('/admin/config.yml').then(r => r.text());
+        const jsyaml = await import('https://cdn.skypack.dev/js-yaml').then(m => m.default);
+        const cfg = jsyaml.load(cfgText);
+        cfg.backend = {
           name: 'proxy',
           proxy_url: WORKER_URL + '/api/v1',
-          branch: configObj.backend && configObj.backend.branch ? configObj.backend.branch : 'main'
+          branch: (cfg.backend && cfg.backend.branch) || 'main'
         };
-        // Add logo / styling
-        configObj.logo_url = '/favicon-256.png';
-        configObj.site_url = window.location.origin;
-        configObj.display_url = window.location.origin;
-        window.CMS.init({ config: configObj });
-        window.CMS.registerEventListener({
-          name: 'preSave',
-          handler: ({ entry }) => entry.get('data')
-        });
+        cfg.publish_mode = 'simple';
+        cfg.site_url = window.location.origin;
+        cfg.display_url = window.location.origin;
+        cfg.logo_url = '/favicon-256.png';
+        window.CMS.init({ config: cfg });
       };
       document.head.appendChild(s);
     }

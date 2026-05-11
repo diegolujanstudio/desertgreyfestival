@@ -2,24 +2,20 @@ name = "desertgrey-cms"
 main = "src/index.js"
 compatibility_date = "2026-01-15"
 
-# KV namespace stores magic-link tokens (15 min TTL) and session cookies (7 day TTL).
-# IDs are populated by `wrangler kv namespace create` — see DEPLOYMENT.md.
+# KV namespace for sessions + rate limiting. Set the id after `wrangler kv namespace create`.
 [[kv_namespaces]]
 binding = "CMS_KV"
 id = "REPLACE_WITH_KV_ID"
 
-# Non-secret config (edit these here, then `npm run deploy`)
+# Non-secret config (edit then `npm run deploy`)
 [vars]
 GITHUB_OWNER     = "diegolujanstudio"
 GITHUB_REPO      = "desertgreyfestival"
 GITHUB_BRANCH    = "main"
-ALLOWED_DOMAIN   = ""                                  # optional: e.g. "desertgreyfestival.com" to allowlist a whole domain
-FROM_EMAIL       = "cms@diegolujanstudio.com"          # the From: address for magic-link emails (verified in Resend)
+ADMIN_USERNAME   = "admin"
 SITE_URL         = "https://desertgrey.netlify.app"
-# Comma-separated email allowlist. The client + team go here.
-ALLOWED_EMAILS   = "diego@diegolujanstudio.com,justin@desertgreymusicfestival.com"
 
 # Secrets (set via `wrangler secret put` — never commit these):
-#   GITHUB_TOKEN       — fine-grained PAT scoped to repo Contents:RW
-#   RESEND_API_KEY     — from resend.com → API Keys
-#   SESSION_SECRET     — random 32-byte hex string for signing session cookies
+#   GITHUB_TOKEN          fine-grained PAT, Contents:RW on the target repo
+#   ADMIN_PASSWORD_HASH   PBKDF2 hash, format "pbkdf2$iter$saltHex$hashHex"
+#   SESSION_SECRET        random 32-byte hex for signing session cookies
