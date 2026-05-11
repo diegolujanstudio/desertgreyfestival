@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Desert Grey · Sign In</title>
+  <link rel="icon" href="/favicon-32.png" />
+  <style>
+    :root {
+      --bg: #000000; --fg: #FFFFFF; --muted: #6B6B6B;
+      --line-strong: #2A2A2A; --error: #FF6363; --success: #6BE578;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      background: var(--bg); color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.005em;
+    }
+    .shell { display: grid; place-items: center; min-height: 100vh; padding: 24px; }
+    .card { width: 100%; max-width: 380px; }
+    .brand { text-align: center; margin-bottom: 56px; }
+    .brand-mark { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+    .brand-title { font-size: 22px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 8px 0; }
+    .brand-sub { font-size: 13px; color: var(--muted); margin: 0; }
+    form { display: grid; gap: 14px; }
+    label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: block; }
+    .field { display: grid; }
+    input {
+      width: 100%; padding: 14px 0;
+      background: transparent; border: 0; border-bottom: 1px solid var(--line-strong);
+      color: var(--fg); font: inherit; font-size: 15px; letter-spacing: -0.005em;
+      transition: border-color 0.2s ease;
+    }
+    input:focus { outline: none; border-bottom-color: var(--fg); }
+    input::placeholder { color: var(--muted); }
+    button {
+      width: 100%; padding: 16px 0; margin-top: 14px;
+      background: var(--fg); color: var(--bg); border: 0; font: inherit;
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 600; cursor: pointer; transition: opacity 0.15s ease;
+    }
+    button:hover { opacity: 0.85; }
+    button:disabled { opacity: 0.4; cursor: wait; }
+    .status { margin-top: 18px; font-size: 12px; text-align: center; min-height: 1.2em; letter-spacing: 0; }
+    .status.err { color: var(--error); }
+    .status.ok { color: var(--success); }
+    .footer-note { margin-top: 56px; text-align: center; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="card">
+      <div class="brand">
+        <div class="brand-mark">Desert Grey</div>
+        <h1 class="brand-title">Content Editor</h1>
+        <p class="brand-sub">Sign in to manage the website.</p>
+      </div>
+      <form id="login-form" autocomplete="off">
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" type="text" autocomplete="username" autofocus required />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="current-password" required />
+        </div>
+        <button id="submit-btn" type="submit">Sign in</button>
+        <div id="status" class="status"></div>
+      </form>
+      <div class="footer-note">desertgreymusicfestival.com</div>
+    </div>
+  </div>
+  <script>
+    const $form = document.getElementById('login-form');
+    const $btn = document.getElementById('submit-btn');
+    const $u = document.getElementById('username');
+    const $p = document.getElementById('password');
+    const $s = document.getElementById('status');
+    function setStatus(msg, type) { $s.textContent = msg || ''; $s.className = 'status' + (type ? ' ' + type : ''); }
+
+    // If already logged in, jump straight to /admin/
+    fetch('/.netlify/functions/cms/auth/me', { credentials: 'include' })
+      .then(r => { if (r.ok) location.replace('/admin/'); });
+
+    $form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = $u.value.trim();
+      const password = $p.value;
+      if (!username || !password) return;
+      $btn.disabled = true;
+      setStatus('Signing in…');
+      try {
+        const res = await fetch('/.netlify/functions/cms/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ username, password })
+        });
+        if (res.status === 429) setStatus('Too many attempts. Please wait a moment.', 'err');
+        else if (res.status === 401) setStatus('Incorrect username or password.', 'err');
+        else if (!res.ok) setStatus('Something went wrong. Try again.', 'err');
+        else { setStatus('Welcome.', 'ok'); setTimeout(() => location.replace('/admin/'), 300); }
+      } catch (err) {
+        setStatus('Network error. Try again.', 'err');
+      } finally { $btn.disabled = false; }
+    });
+  </script>
+</body>
+</html>
