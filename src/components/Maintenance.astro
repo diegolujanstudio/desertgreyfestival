@@ -1,0 +1,211 @@
+---
+// Maintenance / Coming-Soon page — shown when maintenance_mode is ON.
+import site from '../data/site.json';
+import hero from '../data/hero.json';
+---
+<section class="maint">
+  <video
+    class="maint__video"
+    src={hero.background_video}
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    aria-hidden="true"
+  ></video>
+
+  <div class="maint__scrim" aria-hidden="true"></div>
+  <div class="maint__grain grain" aria-hidden="true"></div>
+
+  <div class="maint__content container">
+    <span class="eyebrow maint__eyebrow">{site.maintenance_eyebrow}</span>
+
+    <h1 class="display maint__title">
+      {site.maintenance_title}
+      <span class="maint__sub">{site.maintenance_subtitle}</span>
+    </h1>
+
+    <div class="maint__countdown mono" data-fest-date={site.date_iso}>
+      <div class="cd-cell"><span class="cd-num" data-unit="d">—</span><span class="cd-lbl">days</span></div>
+      <div class="cd-cell"><span class="cd-num" data-unit="h">—</span><span class="cd-lbl">hours</span></div>
+      <div class="cd-cell"><span class="cd-num" data-unit="m">—</span><span class="cd-lbl">minutes</span></div>
+      <div class="cd-cell"><span class="cd-num" data-unit="s">—</span><span class="cd-lbl">seconds</span></div>
+    </div>
+
+    <p class="maint__message">{site.maintenance_message}</p>
+
+    {site.maintenance_cta_text && site.maintenance_cta_href && (
+      <a href={site.maintenance_cta_href} target="_blank" rel="noopener" class="btn btn--acid maint__cta">
+        {site.maintenance_cta_text} →
+      </a>
+    )}
+
+    <div class="maint__foot mono">
+      {site.venue_short}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const el = document.querySelector('.maint__countdown');
+    if (!el) return;
+    const target = new Date(el.getAttribute('data-fest-date')).getTime();
+    const slots = {
+      d: el.querySelector('[data-unit="d"]'),
+      h: el.querySelector('[data-unit="h"]'),
+      m: el.querySelector('[data-unit="m"]'),
+      s: el.querySelector('[data-unit="s"]'),
+    };
+    const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
+    function tick() {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        slots.d.textContent = slots.h.textContent = slots.m.textContent = slots.s.textContent = '00';
+        return;
+      }
+      const s = Math.floor(diff / 1000);
+      const d = Math.floor(s / 86400);
+      const h = Math.floor((s % 86400) / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const sec = s % 60;
+      slots.d.textContent = pad(d);
+      slots.h.textContent = pad(h);
+      slots.m.textContent = pad(m);
+      slots.s.textContent = pad(sec);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+<style>
+  .maint {
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
+    color: var(--bone);
+    background: #000;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    padding: clamp(2rem, 5vh, 4rem) var(--gutter);
+  }
+
+  .maint__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .maint__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(80% 55% at 50% 35%, rgba(14,14,26,0.30) 0%, transparent 70%),
+      linear-gradient(180deg,
+        rgba(14,14,26,0.65) 0%,
+        rgba(14,14,26,0.40) 40%,
+        rgba(14,14,26,0.55) 70%,
+        rgba(14,14,26,0.90) 100%);
+  }
+  .maint__grain {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  }
+
+  .maint__content {
+    position: relative; z-index: 3;
+    display: grid;
+    gap: clamp(1.25rem, 3vh, 2.5rem);
+    justify-items: center;
+    text-align: center;
+    max-width: 56rem;
+  }
+
+  .maint__eyebrow {
+    color: color-mix(in oklab, var(--bone) 75%, transparent);
+    letter-spacing: 0.32em;
+  }
+
+  .maint__title {
+    font-size: clamp(3.5rem, 11vw, 9rem);
+    line-height: 0.86;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+    display: grid;
+    gap: 0.4em;
+  }
+  .maint__sub {
+    font-size: 0.22em;
+    letter-spacing: 0.26em;
+    color: color-mix(in oklab, var(--bone) 75%, transparent);
+    font-weight: 400;
+    display: block;
+  }
+
+  .maint__countdown {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 5.5rem));
+    gap: clamp(0.5rem, 1.5vw, 1.5rem);
+    margin: 0.5rem 0;
+  }
+  .cd-cell {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.85rem 0.5rem;
+    border: 1px solid color-mix(in oklab, var(--bone) 18%, transparent);
+    background: color-mix(in oklab, var(--ink) 35%, transparent);
+    backdrop-filter: blur(8px);
+    border-radius: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-num {
+    display: block;
+    font-family: var(--f-display);
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    line-height: 1;
+    color: var(--bone);
+  }
+  .cd-lbl {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: lowercase;
+    color: color-mix(in oklab, var(--bone) 60%, transparent);
+  }
+
+  .maint__message {
+    font-family: var(--f-editorial);
+    font-style: italic;
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    line-height: 1.55;
+    color: color-mix(in oklab, var(--bone) 88%, transparent);
+    max-width: 38ch;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+  }
+
+  .maint__cta {
+    margin-top: 0.25rem;
+  }
+
+  .maint__foot {
+    margin-top: clamp(1.5rem, 4vh, 3rem);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: color-mix(in oklab, var(--bone) 60%, transparent);
+  }
+
+  @media (max-width: 560px) {
+    .maint__countdown {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      width: 100%;
+      max-width: 22rem;
+    }
+    .cd-cell { padding: 0.65rem 0.35rem; }
+    .maint__title { font-size: clamp(3rem, 16vw, 5rem); }
+    .maint__message { font-size: 0.95rem; }
+  }
+</style>

@@ -32,12 +32,27 @@ collections:
           - { label: "Festival Name", name: "festival_name", widget: "string" }
           - { label: "Festival Subtitle", name: "festival_subtitle", widget: "string" }
           - { label: "Tagline", name: "tagline", widget: "string" }
-          - { label: "Date (ISO format, used for countdown)", name: "date_iso", widget: "datetime" }
+          - label: "Festival Date (drives every countdown on the site)"
+            name: "date_iso"
+            widget: "datetime"
+            hint: "This is the single source of truth for the countdown in both the announcement bar and the coming-soon page."
           - { label: "Date Display (shown on hero)", name: "date_display", widget: "string", hint: "e.g. Sat · 10.03.26" }
           - { label: "Venue (short)", name: "venue_short", widget: "string" }
           - { label: "PurplePass Ticket URL (default for ticket buttons)", name: "purplepass_url", widget: "string" }
           - { label: "Spotify Playlist URL", name: "spotify_playlist_url", widget: "string" }
           - { label: "Spotify Embed URL", name: "spotify_embed_url", widget: "string" }
+          # ─── Coming-Soon / Maintenance Mode ───
+          - label: "🚧  Coming-Soon Mode (hides the full site, shows a countdown page instead)"
+            name: "maintenance_mode"
+            widget: "boolean"
+            default: false
+            hint: "Turn ON to replace the public site with a minimalist coming-soon page (video + countdown). Turn OFF to show the full site."
+          - { label: "Coming-Soon Eyebrow", name: "maintenance_eyebrow", widget: "string", required: false, hint: "Small caps line above the title — e.g. 'Coming soon'" }
+          - { label: "Coming-Soon Title", name: "maintenance_title", widget: "string", required: false }
+          - { label: "Coming-Soon Subtitle", name: "maintenance_subtitle", widget: "string", required: false }
+          - { label: "Coming-Soon Message", name: "maintenance_message", widget: "text", required: false, hint: "Short paragraph beneath the countdown" }
+          - { label: "Coming-Soon Button Text", name: "maintenance_cta_text", widget: "string", required: false, hint: "Leave blank to hide the button" }
+          - { label: "Coming-Soon Button Link", name: "maintenance_cta_href", widget: "string", required: false }
 
   # 2. Brand globals — colors and favicon
   - name: "globals"

@@ -1,12 +1,19 @@
 {
   "title": "Desert Grey Music Festival 2026",
   "festival_name": "Desert Grey",
-  "festival_subtitle": "Music Festival 2026",
+  "festival_subtitle": "Music Festival",
   "tagline": "Volume 04 · Sonoran Desert · Phoenix, AZ",
   "date_iso": "2026-10-03T14:00:00-07:00",
   "date_display": "Sat · 10.03.26",
   "venue_short": "Nile Theater · Mesa, AZ",
   "purplepass_url": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th",
   "spotify_playlist_url": "https://open.spotify.com/playlist/4u9vTmmW3SQiMWSyFTVgHJ",
-  "spotify_embed_url": "https://open.spotify.com/embed/playlist/4u9vTmmW3SQiMWSyFTVgHJ?utm_source=generator&theme=0"
+  "spotify_embed_url": "https://open.spotify.com/embed/playlist/4u9vTmmW3SQiMWSyFTVgHJ?utm_source=generator&theme=0",
+  "maintenance_mode": false,
+  "maintenance_eyebrow": "Coming soon",
+  "maintenance_title": "Desert Grey",
+  "maintenance_subtitle": "Music Festival",
+  "maintenance_message": "Saturday · October 3, 2026 · Phoenix, AZ. The full site lands soon — tickets and lineup just around the corner.",
+  "maintenance_cta_text": "Reserve early access",
+  "maintenance_cta_href": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th"
 }
