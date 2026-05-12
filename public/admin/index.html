@@ -6,19 +6,48 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>Desert Grey · Content Editor</title>
   <link rel="icon" href="/favicon-32.png" />
+  <style>
+    /* Discrete studio credit at the very bottom of the editor */
+    .dls-credit {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif;
+      font-size: 11px;
+      color: #6B6B6B;
+      letter-spacing: 0.02em;
+      text-align: center;
+      pointer-events: none;
+    }
+    .dls-credit a { color: #0E0E1A; text-decoration: none; pointer-events: auto; }
+    .dls-credit a:hover { text-decoration: underline; }
+    .dls-credit strong { color: #0E0E1A; font-weight: 500; }
+    /* Lift Decap's bottom UI so it isn't covered by the credit strip */
+    #nc-root { padding-bottom: 44px; }
+  </style>
 </head>
 <body>
   <script>
-    // Session gate — check /auth/me first; redirect to login if not authenticated.
     fetch('/.netlify/functions/cms/auth/me', { credentials: 'include' })
       .then(r => {
         if (!r.ok) {
           location.replace('/admin/login.html');
         } else {
-          // Load Decap CMS — it auto-loads /admin/config.yml
           const s = document.createElement('script');
           s.src = 'https://unpkg.com/decap-cms@^3.6.0/dist/decap-cms.js';
           document.head.appendChild(s);
+
+          // Inject the studio credit footer once Decap mounts
+          const footer = document.createElement('div');
+          footer.className = 'dls-credit';
+          footer.innerHTML = 'Built with care by <strong>Diego Lujan Studio</strong> — questions, updates or feedback: <a href="mailto:diego@diegolujanstudio.com">diego@diegolujanstudio.com</a>';
+          document.body.appendChild(footer);
         }
       })
       .catch(() => location.replace('/admin/login.html'));

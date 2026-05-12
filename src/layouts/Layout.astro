@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import globals from '../data/globals.json';
 
 export interface Props {
   title?: string;
@@ -10,6 +11,19 @@ const {
   title = 'Desert Grey Music Festival — Oct 3, 2026 · Phoenix, AZ',
   description = 'Desert Grey is a one-day alternative rock festival in the Sonoran desert. Acoustic, rock, pop, metal — 25+ bands across three stages at the Nile Theater.',
 } = Astro.props;
+
+// CMS-editable theme colors — override defaults from global.css
+const themeStyle = `
+  :root {
+    --neon: ${globals.primary_accent_color};
+    --rust: ${globals.primary_accent_color};
+    --acid: ${globals.primary_accent_color};
+    --lavender: ${globals.secondary_accent_color};
+    --sand: ${globals.secondary_accent_color};
+    --ink: ${globals.background_color};
+    --bone: ${globals.text_color};
+  }
+`;
 ---
 <!doctype html>
 <html lang="en">
@@ -18,8 +32,9 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0E0E1A" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <meta name="theme-color" content={globals.background_color} />
+    <style set:html={themeStyle}></style>
+    <link rel="icon" type="image/png" sizes="32x32" href={globals.favicon} />
     <link rel="icon" type="image/png" sizes="256x256" href="/favicon-256.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -45,7 +60,7 @@ const {
       // tiny progress line on scroll (rust bar at the very top)
       const bar = document.createElement('div');
       bar.style.cssText =
-        'position:fixed;top:0;left:0;height:2px;background:#D945DC;z-index:9999;width:0;transition:width .1s linear;';
+        'position:fixed;top:0;left:0;height:2px;background:var(--neon);z-index:9999;width:0;transition:width .1s linear;';
       document.body.appendChild(bar);
       const update = () => {
         const h = document.documentElement;

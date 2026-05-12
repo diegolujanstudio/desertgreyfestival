@@ -35,7 +35,7 @@ const parts = emph && data.headline.includes(emph) ? data.headline.split(emph) :
               </li>
             ))}
           </ul>
-          <a href={site.purplepass_url} target="_blank" rel="noopener" class={`btn ${t.featured ? 'btn--acid' : 'btn--ghost'} tier__cta`}>
+          <a href={t.cta_href || site.purplepass_url} target="_blank" rel="noopener" class={`btn ${t.featured ? 'btn--acid' : 'btn--ghost'} tier__cta`}>
             {t.cta} →
           </a>
         </article>

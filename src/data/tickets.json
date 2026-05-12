@@ -11,6 +11,7 @@
       "note": "General admission",
       "perks": ["All three stages", "Re-entry until 10pm", "Standard wristband"],
       "cta": "Buy pass",
+      "cta_href": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th",
       "featured": false
     },
     {
@@ -19,6 +20,7 @@
       "note": "Limited · drops monthly",
       "perks": ["Mezzanine access", "Private bar + lounge", "Early entry at 1pm", "Commemorative poster"],
       "cta": "Join Inner Circle",
+      "cta_href": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th",
       "featured": true
     },
     {
@@ -27,6 +29,7 @@
       "note": "Four wristbands — bring the band",
       "perks": ["4 × Single Day passes", "Dedicated group entry", "Shared locker", "Save $17 vs. individual"],
       "cta": "Get group",
+      "cta_href": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th",
       "featured": false
     }
   ]

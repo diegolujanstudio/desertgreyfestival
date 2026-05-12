@@ -1,4 +1,5 @@
 # Decap CMS configuration — Desert Grey Music Festival
+# Sections are ordered the same way they appear on the public site.
 backend:
   name: proxy
   proxy_url: /api/v1
@@ -19,6 +20,7 @@ logo_url: /favicon-256.png
 
 collections:
 
+  # 1. Site-wide settings (master values used in many places)
   - name: "site_info"
     label: "⚙️  Site Settings"
     files:
@@ -33,10 +35,25 @@ collections:
           - { label: "Date (ISO format, used for countdown)", name: "date_iso", widget: "datetime" }
           - { label: "Date Display (shown on hero)", name: "date_display", widget: "string", hint: "e.g. Sat · 10.03.26" }
           - { label: "Venue (short)", name: "venue_short", widget: "string" }
-          - { label: "PurplePass Ticket URL", name: "purplepass_url", widget: "string" }
+          - { label: "PurplePass Ticket URL (default for ticket buttons)", name: "purplepass_url", widget: "string" }
           - { label: "Spotify Playlist URL", name: "spotify_playlist_url", widget: "string" }
           - { label: "Spotify Embed URL", name: "spotify_embed_url", widget: "string" }
 
+  # 2. Brand globals — colors and favicon
+  - name: "globals"
+    label: "🎨  Brand & Theme"
+    files:
+      - label: "Theme Colors & Favicon"
+        name: "brand"
+        file: "src/data/globals.json"
+        fields:
+          - { label: "Primary Accent Color (magenta highlights, buttons, links)", name: "primary_accent_color", widget: "color", default: "#D945DC", hint: "Used for hero highlight, marquee, CTAs, hovers" }
+          - { label: "Secondary Accent Color (muted purple body accents)", name: "secondary_accent_color", widget: "color", default: "#897DA9" }
+          - { label: "Background Color (page background)", name: "background_color", widget: "color", default: "#0E0E1A", hint: "Keep dark — site is designed for a dark theme" }
+          - { label: "Text Color (body copy on dark)", name: "text_color", widget: "color", default: "#CACCC9" }
+          - { label: "Favicon (browser tab icon)", name: "favicon", widget: "file", hint: "PNG, 32×32 or larger square" }
+
+  # 3. Announcement bar (top of every page)
   - name: "announcement"
     label: "🔔  Announcement Bar"
     files:
@@ -46,29 +63,9 @@ collections:
         fields:
           - { label: "Label Text", name: "label", widget: "string" }
           - { label: "Button Text", name: "cta_text", widget: "string" }
-          - { label: "Button Link", name: "cta_href", widget: "string" }
+          - { label: "Button Link", name: "cta_href", widget: "string", hint: "Use #tickets to jump to the tickets section" }
 
-  - name: "hero"
-    label: "🎬  Hero (Top of Page)"
-    files:
-      - label: "Hero Section"
-        name: "hero"
-        file: "src/data/hero.json"
-        fields:
-          - { label: "Eyebrow Text (small line above title)", name: "eyebrow", widget: "string" }
-          - { label: "Title Line 1", name: "title_line_1", widget: "string" }
-          - { label: "Title Line 2 (highlighted in magenta)", name: "title_line_2", widget: "string" }
-          - { label: "Title Line 3 (small, spaced)", name: "title_line_3", widget: "string" }
-          - { label: "Tagline (italic line beneath title)", name: "tagline", widget: "text" }
-          - { label: "Date Eyebrow", name: "date_eyebrow", widget: "string" }
-          - { label: "Date Display", name: "date_display", widget: "string" }
-          - { label: "Date Caption", name: "date_caption", widget: "string" }
-          - { label: "Primary Button Text", name: "cta_primary_text", widget: "string" }
-          - { label: "Primary Button Link", name: "cta_primary_href", widget: "string" }
-          - { label: "Secondary Button Text", name: "cta_secondary_text", widget: "string" }
-          - { label: "Secondary Button Link", name: "cta_secondary_href", widget: "string" }
-          - { label: "Background Video", name: "background_video", widget: "file", hint: "MP4, under 10MB recommended" }
-
+  # 4. Top navigation
   - name: "navigation"
     label: "🧭  Top Navigation"
     files:
@@ -88,6 +85,29 @@ collections:
           - { label: "Top-Right Button Text", name: "cta_text", widget: "string" }
           - { label: "Top-Right Button Link", name: "cta_href", widget: "string" }
 
+  # 5. Hero (first thing visitors see)
+  - name: "hero"
+    label: "🎬  Hero (Top of Page)"
+    files:
+      - label: "Hero Section"
+        name: "hero"
+        file: "src/data/hero.json"
+        fields:
+          - { label: "Eyebrow Text (small line above title)", name: "eyebrow", widget: "string" }
+          - { label: "Title Line 1", name: "title_line_1", widget: "string" }
+          - { label: "Title Line 2 (highlighted)", name: "title_line_2", widget: "string" }
+          - { label: "Title Line 3 (small, spaced)", name: "title_line_3", widget: "string" }
+          - { label: "Tagline (italic line beneath title)", name: "tagline", widget: "text" }
+          - { label: "Date Eyebrow", name: "date_eyebrow", widget: "string" }
+          - { label: "Date Display", name: "date_display", widget: "string" }
+          - { label: "Date Caption", name: "date_caption", widget: "string" }
+          - { label: "Primary Button Text", name: "cta_primary_text", widget: "string" }
+          - { label: "Primary Button Link", name: "cta_primary_href", widget: "string" }
+          - { label: "Secondary Button Text", name: "cta_secondary_text", widget: "string" }
+          - { label: "Secondary Button Link", name: "cta_secondary_href", widget: "string" }
+          - { label: "Background Video", name: "background_video", widget: "file", hint: "MP4, under 10MB recommended" }
+
+  # 6. Scrolling marquee
   - name: "marquee"
     label: "📜  Scrolling Marquee"
     files:
@@ -102,6 +122,7 @@ collections:
             name: "secondary"
             widget: "list"
 
+  # 7. Intro / About
   - name: "intro"
     label: "💬  About / Intro"
     files:
@@ -116,6 +137,7 @@ collections:
           - { label: "Paragraph 1", name: "paragraph_1", widget: "text" }
           - { label: "Paragraph 2 (muted)", name: "paragraph_2", widget: "text" }
 
+  # 8. Lineup
   - name: "lineup"
     label: "🎸  Lineup"
     files:
@@ -131,6 +153,7 @@ collections:
           - { label: "Main Bill (medium tier)", name: "main", widget: "list" }
           - { label: "Support / Openers (small tier)", name: "support", widget: "list" }
 
+  # 9. Schedule
   - name: "schedule"
     label: "🕐  Schedule"
     files:
@@ -159,6 +182,27 @@ collections:
                   - { label: "Band / Artist", name: "band", widget: "string" }
                   - { label: "Note (optional)", name: "note", widget: "string", required: false }
 
+  # 10. Partners
+  - name: "partners"
+    label: "🤝  Partners"
+    files:
+      - label: "Partners"
+        name: "partners"
+        file: "src/data/partners.json"
+        fields:
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Headline Emphasis", name: "headline_emphasis", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - label: "Tiers"
+            name: "tiers"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Tier Label (Presenting / Official / Community)", name: "label", widget: "string" }
+              - { label: "Partner Names", name: "partners", widget: "list" }
+
+  # 11. Tickets
   - name: "tickets"
     label: "🎫  Tickets"
     files:
@@ -181,42 +225,10 @@ collections:
               - { label: "Note", name: "note", widget: "string" }
               - { label: "Perks (bullet points)", name: "perks", widget: "list" }
               - { label: "Button Text", name: "cta", widget: "string" }
+              - { label: "Button Link (PurplePass URL for this tier)", name: "cta_href", widget: "string", required: false, hint: "Leave blank to use the global PurplePass URL from Site Settings" }
               - { label: "Featured (highlights this tier)", name: "featured", widget: "boolean", default: false }
 
-  - name: "partners"
-    label: "🤝  Partners"
-    files:
-      - label: "Partners"
-        name: "partners"
-        file: "src/data/partners.json"
-        fields:
-          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-          - { label: "Headline", name: "headline", widget: "string" }
-          - { label: "Headline Emphasis", name: "headline_emphasis", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - label: "Tiers"
-            name: "tiers"
-            widget: "list"
-            summary: "{{fields.label}}"
-            fields:
-              - { label: "Tier Label (Presenting / Official / Community)", name: "label", widget: "string" }
-              - { label: "Partner Names", name: "partners", widget: "list" }
-
-  - name: "listen"
-    label: "🎧  Listen / Spotify"
-    files:
-      - label: "Listen Section"
-        name: "listen"
-        file: "src/data/listen.json"
-        fields:
-          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
-          - { label: "Headline", name: "headline", widget: "string" }
-          - { label: "Headline Emphasis", name: "headline_emphasis", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Button Text", name: "cta_text", widget: "string" }
-          - { label: "Spotify Playlist URL", name: "spotify_url", widget: "string" }
-          - { label: "Spotify Embed URL", name: "spotify_embed_url", widget: "string" }
-
+  # 12. Venue
   - name: "venue"
     label: "📍  Venue"
     files:
@@ -249,6 +261,7 @@ collections:
               - { label: "Mode Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
 
+  # 13. FAQ
   - name: "faq"
     label: "❓  FAQ"
     files:
@@ -268,6 +281,23 @@ collections:
               - { label: "Question", name: "question", widget: "string" }
               - { label: "Answer", name: "answer", widget: "text" }
 
+  # 14. Listen / Spotify
+  - name: "listen"
+    label: "🎧  Listen / Spotify"
+    files:
+      - label: "Listen Section"
+        name: "listen"
+        file: "src/data/listen.json"
+        fields:
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Headline Emphasis", name: "headline_emphasis", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Button Text", name: "cta_text", widget: "string" }
+          - { label: "Spotify Playlist URL", name: "spotify_url", widget: "string" }
+          - { label: "Spotify Embed URL", name: "spotify_embed_url", widget: "string" }
+
+  # 15. Footer
   - name: "footer"
     label: "🦶  Footer"
     files:
