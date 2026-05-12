@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+Disallow: /.netlify/
+Disallow: /api/
+Disallow: /uploads/  # block raw asset paths from index; uploads are inlined by build
+
+# Allow major search crawlers explicitly
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Allow AI/LLM crawlers (festival benefits from being referenced in chat answers)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://desertgrey.netlify.app/sitemap.xml

@@ -1,6 +1,10 @@
 ---
 import '../styles/global.css';
 import globals from '../data/globals.json';
+import site from '../data/site.json';
+import lineup from '../data/lineup.json';
+import venue from '../data/venue.json';
+import tickets from '../data/tickets.json';
 
 export interface Props {
   title?: string;
@@ -9,8 +13,12 @@ export interface Props {
 
 const {
   title = 'Desert Grey Music Festival — Oct 3, 2026 · Phoenix, AZ',
-  description = 'Desert Grey is a one-day alternative rock festival in the Sonoran desert. Acoustic, rock, pop, metal — 25+ bands across three stages at the Nile Theater.',
+  description = 'A one-day pilgrimage for alternative rock in the Sonoran desert. Acoustic, fuzz, post-punk, doom & everything between — 25+ bands across three stages at the Nile Theater in downtown Mesa, Arizona.',
 } = Astro.props;
+
+const SITE_URL = 'https://desertgrey.netlify.app';
+const canonicalURL = new URL(Astro.url.pathname, SITE_URL).toString();
+const ogImage = `${SITE_URL}/favicon-256.png`; // square fallback; ideally a 1200×630 hero image
 
 // CMS-editable theme colors — override defaults from global.css
 const themeStyle = `
@@ -24,6 +32,51 @@ const themeStyle = `
     --bone: ${globals.text_color};
   }
 `;
+
+// JSON-LD: MusicFestival schema (gets rich results in Google)
+const allBands = [...(lineup.headliners || []), ...(lineup.main || []), ...(lineup.support || [])];
+const minPrice = (() => {
+  const nums = (tickets.tiers || []).map(t => parseFloat(String(t.price).replace(/[^0-9.]/g, ''))).filter(n => !isNaN(n));
+  return nums.length ? Math.min(...nums) : 48;
+})();
+const jsonLD = {
+  '@context': 'https://schema.org',
+  '@type': 'MusicFestival',
+  name: `${site.festival_name} ${site.festival_subtitle}`,
+  description,
+  startDate: site.date_iso,
+  endDate: site.date_iso,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  url: SITE_URL,
+  image: [ogImage],
+  location: {
+    '@type': 'MusicVenue',
+    name: venue.address_name || 'Nile Theater',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: venue.address_line_1 || '105 W Main St.',
+      addressLocality: 'Mesa',
+      addressRegion: 'AZ',
+      postalCode: '85201',
+      addressCountry: 'US',
+    },
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: 'Desert Grey Music Festival',
+    url: SITE_URL,
+  },
+  performer: allBands.map(name => ({ '@type': 'MusicGroup', name })),
+  offers: {
+    '@type': 'Offer',
+    url: site.purplepass_url,
+    price: String(minPrice),
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    validFrom: '2026-01-01',
+  },
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -31,28 +84,62 @@ const themeStyle = `
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary meta -->
+    <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content="Desert Grey, Desert Grey Music Festival, Desert Grey 2026, Phoenix music festival, Mesa AZ music festival, Nile Theater, alternative rock festival, indie festival Arizona, Sonoran desert music, post-punk shoegaze doom festival" />
+    <meta name="author" content="Desert Grey Music Festival" />
     <meta name="theme-color" content={globals.background_color} />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Favicons -->
     <style set:html={themeStyle}></style>
     <link rel="icon" type="image/png" sizes="32x32" href={globals.favicon} />
     <link rel="icon" type="image/png" sizes="256x256" href="/favicon-256.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
 
-    <!-- social -->
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="Desert Grey Music Festival" />
+    <meta property="og:site_name" content="Desert Grey Music Festival" />
+    <meta property="og:locale" content="en_US" />
 
-    <!-- fonts: Anton (display), Fraunces (editorial), Inter (body), JetBrains Mono -->
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Discovery -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Desert Grey updates" href="/sitemap.xml" />
+
+    <!-- Performance hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://open.spotify.com" />
+    <link rel="dns-prefetch" href="https://www.purplepass.com" />
+
+    <!-- Fonts -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     />
 
-    <title>{title}</title>
+    <!-- Structured data: MusicFestival -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
   </head>
   <body>
     <slot />
