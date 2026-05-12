@@ -3,7 +3,11 @@
   "rollout_note": "Rollout schedule · Feb · Apr · Jul · Sep",
   "cta_text": "Lock in Tickets",
   "cta_href": "#tickets",
-  "headliners": ["Sorry X", "No Halos", "Emerald Isle"],
+  "headliners": [
+    "Sorry XE",
+    "No Halos",
+    "Emerald Isle"
+  ],
   "main": [
     "Arsenic Kitchen",
     "Those Kind Of People",
