@@ -1,24 +1,48 @@
 {
-  "eyebrow": "Venue",
-  "headline": "The Nile Theater, Mesa AZ",
   "headline_emphasis": "Theater,",
-  "description": "A century-old art-deco shell gutted into a three-stage sound labyrinth — mainfloor, mezzanine, and basement. Walls that sweat. A roof that trembles. Located on Main Street, Mesa — 20 minutes east of downtown Phoenix.",
-  "address_name": "Nile Theater",
+  "facts": [
+    {
+      "key": "Capacity",
+      "value": "1,500"
+    },
+    {
+      "key": "Stages",
+      "value": "Three"
+    },
+    {
+      "key": "Age",
+      "value": "All ages · 21+ bar"
+    },
+    {
+      "key": "Built",
+      "value": "1924"
+    }
+  ],
+  "eyebrow": "Venue",
+  "map_link_url": "https://www.google.com/maps/place/Nile+Theater/@33.4152,-111.8315,17z",
   "address_line_1": "105 W Main St.",
   "address_line_2": "Mesa, AZ 85201",
-  "map_embed_src": "https://maps.google.com/maps?q=Nile%20Theater%20Mesa%20AZ&t=k&z=16&output=embed",
-  "map_link_url": "https://www.google.com/maps/place/Nile+Theater/@33.4152,-111.8315,17z",
-  "facts": [
-    { "key": "Capacity", "value": "2,400" },
-    { "key": "Stages", "value": "Three" },
-    { "key": "Age", "value": "All ages · 21+ bar" },
-    { "key": "Built", "value": "1924" }
-  ],
   "travel_title": "Getting there.",
+  "headline": "The Nile Theater, Mesa AZ",
+  "address_name": "Nile Theater",
   "travel": [
-    { "title": "Fly",     "description": "PHX Sky Harbor · 15 min rideshare to venue." },
-    { "title": "Stay",    "description": "Partner rates at Hotel Valley Ho and The Clarendon." },
-    { "title": "Drive",   "description": "Parking at Arizona Center & Civic Space Park." },
-    { "title": "Shuttle", "description": "Free Grey Line shuttle: 6th Ave + Roosevelt, every 20 min." }
-  ]
+    {
+      "title": "Fly",
+      "description": "PHX Sky Harbor · 15 min rideshare to venue."
+    },
+    {
+      "title": "Stay",
+      "description": "Partner rates at Hotel Valley Ho and The Clarendon."
+    },
+    {
+      "title": "Drive",
+      "description": "Parking at Arizona Center & Civic Space Park."
+    },
+    {
+      "title": "Shuttle",
+      "description": "Free Grey Line shuttle: 6th Ave + Roosevelt, every 20 min."
+    }
+  ],
+  "map_embed_src": "https://maps.google.com/maps?q=Nile%20Theater%20Mesa%20AZ&t=k&z=16&output=embed",
+  "description": "A century-old art-deco shell gutted into a three-stage sound labyrinth — mainfloor, mezzanine, and basement. Walls that sweat. A roof that trembles. Located on Main Street, Mesa — 20 minutes east of downtown Phoenix."
 }
