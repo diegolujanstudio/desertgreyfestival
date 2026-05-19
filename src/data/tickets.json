@@ -6,29 +6,43 @@
   "fine_print": "Prices include all fees. Payment plans via Klarna / Affirm at PurplePass checkout. Transferable until 10 days before the festival. No refunds.",
   "tiers": [
     {
-      "name": "Single Day",
-      "price": "$48",
+      "name": "Grey Pass",
+      "price": "$30",
       "note": "General admission",
-      "perks": ["All three stages", "Re-entry until 10pm", "Standard wristband"],
+      "perks": [
+        "All three stages",
+        "Re-entry until 10pm",
+        "Standard wristband"
+      ],
       "cta": "Buy pass",
       "cta_href": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th",
       "featured": false
     },
     {
-      "name": "Inner Circle",
-      "price": "$95",
-      "note": "Limited · drops monthly",
-      "perks": ["Mezzanine access", "Private bar + lounge", "Early entry at 1pm", "Commemorative poster"],
-      "cta": "Join Inner Circle",
+      "name": "Blue Pass",
+      "price": "$45",
+      "note": "Get your ticket & extras!",
+      "perks": [
+        "Ticket",
+        "50 Raffle Tickets",
+        "Commemorative Poster"
+      ],
+      "cta": "Buy pass",
       "cta_href": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th",
       "featured": true
     },
     {
-      "name": "Crew Pass",
-      "price": "$320",
-      "note": "Four wristbands — bring the band",
-      "perks": ["4 × Single Day passes", "Dedicated group entry", "Shared locker", "Save $17 vs. individual"],
-      "cta": "Get group",
+      "name": "Purple Pass",
+      "price": "$60",
+      "note": "Best Value!",
+      "perks": [
+        "Ticket",
+        "Tee",
+        "Tote Bag",
+        "50 Raffle Tickets",
+        "Commemorative Poster"
+      ],
+      "cta": "Buy pass",
       "cta_href": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th",
       "featured": false
     }
