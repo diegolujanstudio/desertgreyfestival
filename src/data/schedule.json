@@ -2,54 +2,170 @@
   "eyebrow": "Schedule · Saturday · October 3, 2026",
   "headline": "The running order.",
   "headline_emphasis": "order.",
-  "description": "Doors at 2:00 PM. Twenty-nine sets across three rooms — main hall, underground, and the coffee shop. Acoustic openers up top, doom by midnight.",
+  "description": "Doors at 2:00 PM. Twenty-nine sets across three rooms — The Nile, Underground, and The Nile Coffee Shop.",
   "fine_print": "Set times subject to change. Final schedule locks 72 hours before doors.",
   "stages": [
     {
       "id": "nile",
       "name": "Nile",
       "slots": [
-        { "time": "2:30 – 2:55", "band": "Nile", "note": "Winner of B.o.B" },
-        { "time": "3:10 – 3:35", "band": "Phantom Spring / Phage / I Am Anything / The Blissins / Angela Drive", "note": "" },
-        { "time": "3:50 – 4:15", "band": "Mattstagraham", "note": "" },
-        { "time": "4:30 – 4:55", "band": "rio wiley", "note": "" },
-        { "time": "5:10 – 5:35", "band": "Diva Bleach", "note": "" },
-        { "time": "5:50 – 6:15", "band": "An Awful Mess", "note": "" },
-        { "time": "6:30 – 6:55", "band": "Those Kind Of People", "note": "" },
-        { "time": "7:10 – 7:40", "band": "No Halos", "note": "" },
-        { "time": "8:00 – 8:30", "band": "Arsenic Kitchen", "note": "" },
-        { "time": "9:00 – 9:30", "band": "Emerald Isle", "note": "" },
-        { "time": "10:00 – END", "band": "Sorry X", "note": "Closer" }
+        {
+          "time": "2:30 – 2:55",
+          "band": "Nile",
+          "note": "Winner of B.o.B"
+        },
+        {
+          "time": "3:10 – 3:35",
+          "band": "Phantom Spring / Phage / I Am Anything / The Blissins / Angela Drive",
+          "note": ""
+        },
+        {
+          "time": "3:50 – 4:15",
+          "band": "Mattstagraham",
+          "note": ""
+        },
+        {
+          "time": "4:30 – 4:55",
+          "band": "rio wiley",
+          "note": ""
+        },
+        {
+          "time": "5:10 – 5:35",
+          "band": "Diva Bleach",
+          "note": ""
+        },
+        {
+          "time": "5:50 – 6:15",
+          "band": "An Awful Mess",
+          "note": ""
+        },
+        {
+          "time": "6:30 – 6:55",
+          "band": "Those Kind Of People",
+          "note": ""
+        },
+        {
+          "time": "7:10 – 7:40",
+          "band": "No Halos",
+          "note": ""
+        },
+        {
+          "time": "8:00 – 8:30",
+          "band": "Arsenic Kitchen",
+          "note": ""
+        },
+        {
+          "time": "9:00 – 9:30",
+          "band": "Emerald Isle",
+          "note": ""
+        },
+        {
+          "time": "10:00 – END",
+          "band": "Sorry X",
+          "note": "Closer"
+        }
       ]
     },
     {
       "id": "underground",
       "name": "Underground",
       "slots": [
-        { "time": "2:50 – 3:15", "band": "Phantom Spring / Phage / I Am Anything / The Blissins / Angela Drive", "note": "" },
-        { "time": "3:30 – 3:50", "band": "Gnumb", "note": "" },
-        { "time": "4:10 – 4:35", "band": "SLOWBVRN", "note": "" },
-        { "time": "4:50 – 5:15", "band": "Hometurf", "note": "" },
-        { "time": "5:30 – 5:55", "band": "Sundressed", "note": "" },
-        { "time": "6:10 – 6:35", "band": "Killed by Yeti", "note": "" },
-        { "time": "6:50 – 7:15", "band": "Danny Silvertone", "note": "" },
-        { "time": "7:35 – 8:05", "band": "death dot gov", "note": "" },
-        { "time": "8:30 – 9:00", "band": "Something Outrageous", "note": "" },
-        { "time": "9:30 – 10:00", "band": "Perfect Sense", "note": "" }
+        {
+          "time": "2:50 – 3:15",
+          "band": "Phantom Spring / Phage / I Am Anything / The Blissins / Angela Drive",
+          "note": ""
+        },
+        {
+          "time": "3:30 – 3:50",
+          "band": "Gnumb",
+          "note": ""
+        },
+        {
+          "time": "4:10 – 4:35",
+          "band": "SLOWBVRN",
+          "note": ""
+        },
+        {
+          "time": "4:50 – 5:15",
+          "band": "Hometurf",
+          "note": ""
+        },
+        {
+          "time": "5:30 – 5:55",
+          "band": "Sundressed",
+          "note": ""
+        },
+        {
+          "time": "6:10 – 6:35",
+          "band": "Killed by Yeti",
+          "note": ""
+        },
+        {
+          "time": "6:50 – 7:15",
+          "band": "Danny Silvertone",
+          "note": ""
+        },
+        {
+          "time": "7:35 – 8:05",
+          "band": "death dot gov",
+          "note": ""
+        },
+        {
+          "time": "8:30 – 9:00",
+          "band": "Something Outrageous",
+          "note": ""
+        },
+        {
+          "time": "9:30 – 10:00",
+          "band": "Perfect Sense",
+          "note": ""
+        }
       ]
     },
     {
       "id": "coffee",
       "name": "Coffee Shop",
       "slots": [
-        { "time": "3:00 – 3:25", "band": "TBA", "note": "" },
-        { "time": "3:40 – 4:05", "band": "Doublespeak", "note": "" },
-        { "time": "4:20 – 4:45", "band": "TBA", "note": "" },
-        { "time": "5:00 – 5:25", "band": "Chris Crawford", "note": "" },
-        { "time": "5:40 – 6:05", "band": "YesterdaySoup", "note": "" },
-        { "time": "6:20 – 6:45", "band": "Chris Crimmins", "note": "" },
-        { "time": "7:00 – 7:25", "band": "TBA", "note": "" },
-        { "time": "7:40 – 8:05", "band": "TBA", "note": "" }
+        {
+          "time": "3:00 – 3:25",
+          "band": "TBA",
+          "note": ""
+        },
+        {
+          "time": "3:40 – 4:05",
+          "band": "Doublespeak",
+          "note": ""
+        },
+        {
+          "time": "4:20 – 4:45",
+          "band": "TBA",
+          "note": ""
+        },
+        {
+          "time": "5:00 – 5:25",
+          "band": "Chris Crawford",
+          "note": ""
+        },
+        {
+          "time": "5:40 – 6:05",
+          "band": "YesterdaySoup",
+          "note": ""
+        },
+        {
+          "time": "6:20 – 6:45",
+          "band": "Chris Crimmins",
+          "note": ""
+        },
+        {
+          "time": "7:00 – 7:25",
+          "band": "TBA",
+          "note": ""
+        },
+        {
+          "time": "7:40 – 8:05",
+          "band": "TBA",
+          "note": ""
+        }
       ]
     }
   ]
