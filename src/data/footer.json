@@ -1,41 +1,70 @@
 {
-  "sponsors_label": "In partnership with",
-  "sponsors": [
-    "Jade Monkey Studio",
-    "Mesa Coffee Co.",
-    "Four Peaks Brewing",
-    "Saguaro Press",
-    "KWSS 93.9",
-    "Valley Ho"
-  ],
-  "festival_name": "Desert Grey",
-  "festival_subtitle": "Music Festival",
-  "address_lines": [
-    "Saturday · October 3, 2026",
-    "Nile Theater · Mesa, AZ"
-  ],
+  "info_label": "Desert Grey",
+  "follow_label": "Follow",
+  "copyright": "© 2022–2026 Desert Grey Music Festival. Built in Phoenix.",
   "explore_label": "Explore",
   "explore_links": [
-    { "label": "Lineup", "href": "#lineup" },
-    { "label": "Schedule", "href": "#schedule" },
-    { "label": "Partners", "href": "#partners" },
-    { "label": "Tickets", "href": "#tickets" },
-    { "label": "Venue", "href": "#venue" },
-    { "label": "FAQ", "href": "#faq" }
+    {
+      "label": "Lineup",
+      "href": "#lineup"
+    },
+    {
+      "label": "Schedule",
+      "href": "#schedule"
+    },
+    {
+      "label": "Partners",
+      "href": "#partners"
+    },
+    {
+      "label": "Tickets",
+      "href": "#tickets"
+    },
+    {
+      "label": "Venue",
+      "href": "#venue"
+    },
+    {
+      "label": "FAQ",
+      "href": "#faq"
+    }
   ],
-  "follow_label": "Follow",
-  "follow_items": [
-    { "label": "Instagram — soon", "href": "" },
-    { "label": "TikTok — soon", "href": "" },
-    { "label": "YouTube — soon", "href": "" },
-    { "label": "Spotify playlist", "href": "https://open.spotify.com/playlist/4u9vTmmW3SQiMWSyFTVgHJ" }
-  ],
-  "info_label": "Desert Grey",
+  "sponsors_label": "In partnership with",
   "info_items": [
     "Vol. 04 · 2026",
     "All-ages · 21+ bar",
     "Built in Phoenix"
   ],
-  "copyright": "© 2022–2026 Desert Grey Music Festival. Built in Phoenix.",
-  "legal_strip": "Privacy · Terms · Accessibility"
+  "festival_name": "Desert Grey",
+  "follow_items": [
+    {
+      "label": "Instagram — soon",
+      "href": ""
+    },
+    {
+      "label": "TikTok — soon",
+      "href": ""
+    },
+    {
+      "label": "YouTube — soon",
+      "href": ""
+    },
+    {
+      "label": "Spotify playlist",
+      "href": "https://open.spotify.com/playlist/4u9vTmmW3SQiMWSyFTVgHJ"
+    }
+  ],
+  "legal_strip": "Privacy · Terms · Accessibility",
+  "address_lines": [
+    "Saturday · October 3, 2026",
+    "Nile Theater · Mesa, AZ"
+  ],
+  "sponsors": [
+    "Jade Monkey Studio",
+    "The Nile Theater",
+    "Visions Productions",
+    "be real; not right",
+    "Pedal Haus"
+  ],
+  "festival_subtitle": "Music Festival"
 }
