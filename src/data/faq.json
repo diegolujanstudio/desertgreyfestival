@@ -4,11 +4,30 @@
   "headline_emphasis": "quietly",
   "footer_note": "Didn't find it? More info drops closer to the gate — we'll announce on the 2026 Spotify playlist and inside the ticket confirmation.",
   "items": [
-    { "question": "When do tickets go on sale?", "answer": "General tickets are on sale now. Inner Circle passes drop in waves — we announce each release on our newsletter 48 hours prior." },
-    { "question": "Is the festival all-ages?", "answer": "Yes. Under-18s must be accompanied by a legal guardian after 9pm. Valid ID required for the 21+ bar. The main floor is step-free." },
-    { "question": "What about re-entry, bags and food?", "answer": "Re-entry is allowed until 10pm with your wristband. Small bags (12\" × 12\") are welcome. Six food trucks, vegan options at each. No outside food or drink." },
-    { "question": "How does the payment plan work?", "answer": "At checkout you can split any ticket into three interest-free payments via Klarna or Affirm. Last instalment must clear by 10.18.25." },
-    { "question": "Can I transfer my ticket?", "answer": "Yes — through our official ticketing partner until seven days before the festival. After that, tickets are name-locked." },
-    { "question": "What happens if it rains?", "answer": "The festival is indoor across all three stages. Rain or shine, Desert Grey happens. Flash-flood warning? Check our channels for updates." }
-  ]
+    {
+      "question": "When do tickets go on sale?",
+      "answer": "General tickets are on sale now. Inner Circle passes drop in waves — we announce each release on our newsletter 48 hours prior."
+    },
+    {
+      "question": "Is the festival all-ages?",
+      "answer": "Yes. Under-18s must be accompanied by a legal guardian after 9pm. Valid ID required for the 21+ bar. The main floor is step-free."
+    },
+    {
+      "question": "What about re-entry, bags and food?",
+      "answer": "Re-entry is allowed until 10pm with your wristband. Small bags (12\" × 12\") are welcome. Six food trucks, vegan options at each. No outside food or drink."
+    },
+    {
+      "question": "How does the payment plan work?",
+      "answer": "At checkout you can split any ticket into three interest-free payments via Klarna or Affirm. Last instalment must clear by 10.18.25."
+    },
+    {
+      "question": "Can I transfer my ticket?",
+      "answer": "Yes — through our official ticketing partner until seven days before the festival. After that, tickets are name-locked."
+    },
+    {
+      "question": "What happens if it rains?",
+      "answer": "The festival is indoor across all three stages. Rain or shine, Desert Grey happens. Flash-flood warning? Check our channels for updates."
+    }
+  ],
+  "visible": true
 }
