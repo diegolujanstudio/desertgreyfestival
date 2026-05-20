@@ -1,5 +1,6 @@
 {
   "label": "Desert Grey 2026 · 10.03.26",
   "cta_text": "Reserve now",
-  "cta_href": "#tickets"
+  "cta_href": "#tickets",
+  "visible": true
 }
