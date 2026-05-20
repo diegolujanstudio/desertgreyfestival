@@ -5,5 +5,6 @@
   "description": "The official 2026 Desert Grey playlist — every artist on the bill, updated as the lineup rolls out. Stream it on Spotify and show up already knowing every chorus.",
   "cta_text": "Open in Spotify",
   "spotify_url": "https://open.spotify.com/playlist/4u9vTmmW3SQiMWSyFTVgHJ",
-  "spotify_embed_url": "https://open.spotify.com/embed/playlist/4u9vTmmW3SQiMWSyFTVgHJ?utm_source=generator&theme=0"
+  "spotify_embed_url": "https://open.spotify.com/embed/playlist/4u9vTmmW3SQiMWSyFTVgHJ?utm_source=generator&theme=0",
+  "visible": true
 }
