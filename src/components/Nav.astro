@@ -1,5 +1,45 @@
 ---
 import data from '../data/nav.json';
+import hero from '../data/hero.json';
+import lineup from '../data/lineup.json';
+import schedule from '../data/schedule.json';
+import partners from '../data/partners.json';
+import tickets from '../data/tickets.json';
+import venue from '../data/venue.json';
+import faq from '../data/faq.json';
+import listen from '../data/listen.json';
+import intro from '../data/intro.json';
+
+// Visibility map keyed by section anchor. If a nav link points to a section
+// whose `visible` flag is false in its CMS data file, we drop that link.
+const sectionVisibility: Record<string, boolean> = {
+  '#hero':     hero?.visible     !== false,
+  '#top':      hero?.visible     !== false,
+  '#intro':    intro?.visible    !== false,
+  '#about':    intro?.visible    !== false,
+  '#lineup':   lineup?.visible   !== false,
+  '#schedule': schedule?.visible !== false,
+  '#partners': partners?.visible !== false,
+  '#tickets':  tickets?.visible  !== false,
+  '#venue':    venue?.visible    !== false,
+  '#faq':      faq?.visible      !== false,
+  '#listen':   listen?.visible   !== false,
+};
+
+const visibleLinks = (data.links || []).filter((l: { href: string }) => {
+  // If the link targets a known section, honor its visibility.
+  // External / unknown links always show.
+  if (Object.prototype.hasOwnProperty.call(sectionVisibility, l.href)) {
+    return sectionVisibility[l.href];
+  }
+  return true;
+});
+
+// If the CTA points at a hidden section (e.g. tickets is hidden), suppress it.
+const ctaHidden =
+  data.cta_href &&
+  Object.prototype.hasOwnProperty.call(sectionVisibility, data.cta_href) &&
+  sectionVisibility[data.cta_href] === false;
 ---
 <header class="nav">
   <div class="nav__inner container">
@@ -12,12 +52,14 @@ import data from '../data/nav.json';
     </a>
 
     <nav class="nav__links mono" aria-label="Primary">
-      {data.links.map((l) => (
+      {visibleLinks.map((l) => (
         <a href={l.href} class="ulink">{l.label}</a>
       ))}
     </nav>
 
-    <a href={data.cta_href} class="btn btn--primary nav__cta">{data.cta_text}</a>
+    {!ctaHidden && (
+      <a href={data.cta_href} class="btn btn--primary nav__cta">{data.cta_text}</a>
+    )}
   </div>
 </header>
 
