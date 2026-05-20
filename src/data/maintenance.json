@@ -1,11 +1,11 @@
 {
-  "enabled": true,
-  "show_countdown": false,
-  "show_cta": false,
+  "enabled": false,
+  "message": "Saturday · October 3, 2026 · Phoenix, AZ. The full site lands soon — tickets and lineup just around the corner.",
   "eyebrow": "Coming soon",
-  "title": "Desert Grey",
+  "show_cta": false,
+  "show_countdown": false,
   "subtitle": "Music Festival",
-  "message": "Saturday \u00b7 October 3, 2026 \u00b7 Phoenix, AZ. The full site lands soon \u2014 tickets and lineup just around the corner.",
-  "cta_text": "Reserve early access",
-  "cta_href": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th"
+  "title": "Desert Grey",
+  "cta_href": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th",
+  "cta_text": "Reserve early access"
 }
