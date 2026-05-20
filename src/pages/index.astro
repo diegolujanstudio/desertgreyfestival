@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import site from '../data/site.json';
+import maintenance from '../data/maintenance.json';
 import announcement from '../data/announcement.json';
 import hero from '../data/hero.json';
 import marquee from '../data/marquee.json';
@@ -31,7 +32,7 @@ import Maintenance from '../components/Maintenance.astro';
 const show = (data) => data?.visible !== false;
 ---
 <Layout>
-  {site.maintenance_mode ? (
+  {maintenance.enabled ? (
     <Maintenance />
   ) : (
     <>

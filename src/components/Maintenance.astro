@@ -1,7 +1,12 @@
 ---
-// Maintenance / Coming-Soon page — shown when maintenance_mode is ON.
+// Maintenance / Coming-Soon page — shown when maintenance.enabled is ON.
+// Content lives in src/data/maintenance.json; festival date comes from site.json
+// (single source of truth for the countdown).
+import maint from '../data/maintenance.json';
 import site from '../data/site.json';
 import hero from '../data/hero.json';
+const showCountdown = maint.show_countdown !== false;
+const showCta = maint.show_cta !== false && maint.cta_text && maint.cta_href;
 ---
 <section class="maint">
   <video
@@ -19,25 +24,27 @@ import hero from '../data/hero.json';
   <div class="maint__grain grain" aria-hidden="true"></div>
 
   <div class="maint__content container">
-    <span class="eyebrow maint__eyebrow">{site.maintenance_eyebrow}</span>
+    <span class="eyebrow maint__eyebrow">{maint.eyebrow}</span>
 
     <h1 class="display maint__title">
-      {site.maintenance_title}
-      <span class="maint__sub">{site.maintenance_subtitle}</span>
+      {maint.title}
+      <span class="maint__sub">{maint.subtitle}</span>
     </h1>
 
-    <div class="maint__countdown mono" data-fest-date={site.date_iso}>
+    {showCountdown && (
+      <div class="maint__countdown mono" data-fest-date={site.date_iso}>
       <div class="cd-cell"><span class="cd-num" data-unit="d">—</span><span class="cd-lbl">days</span></div>
       <div class="cd-cell"><span class="cd-num" data-unit="h">—</span><span class="cd-lbl">hours</span></div>
       <div class="cd-cell"><span class="cd-num" data-unit="m">—</span><span class="cd-lbl">minutes</span></div>
       <div class="cd-cell"><span class="cd-num" data-unit="s">—</span><span class="cd-lbl">seconds</span></div>
     </div>
+    )}
 
-    <p class="maint__message">{site.maintenance_message}</p>
+    <p class="maint__message">{maint.message}</p>
 
-    {site.maintenance_cta_text && site.maintenance_cta_href && (
-      <a href={site.maintenance_cta_href} target="_blank" rel="noopener" class="btn btn--acid maint__cta">
-        {site.maintenance_cta_text} →
+    {showCta && (
+      <a href={maint.cta_href} target="_blank" rel="noopener" class="btn btn--acid maint__cta">
+        {maint.cta_text} →
       </a>
     )}
 

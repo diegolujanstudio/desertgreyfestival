@@ -41,18 +41,36 @@ collections:
           - { label: "PurplePass Ticket URL (default for ticket buttons)", name: "purplepass_url", widget: "string" }
           - { label: "Spotify Playlist URL", name: "spotify_playlist_url", widget: "string" }
           - { label: "Spotify Embed URL", name: "spotify_embed_url", widget: "string" }
-          # ─── Coming-Soon / Maintenance Mode ───
-          - label: "🚧  Coming-Soon Mode (hides the full site, shows a countdown page instead)"
-            name: "maintenance_mode"
+
+  # 1b. Coming-Soon / Maintenance mode (full-page takeover)
+  - name: "maintenance"
+    label: "🚧 Coming-Soon Mode"
+    files:
+      - label: "Coming-Soon Page"
+        name: "maintenance"
+        file: "src/data/maintenance.json"
+        fields:
+          - label: "🚧 Enable Coming-Soon Mode (hides the full site, shows a countdown page instead)"
+            name: "enabled"
             widget: "boolean"
             default: false
-            hint: "Turn ON to replace the public site with a minimalist coming-soon page (video + countdown). Turn OFF to show the full site."
-          - { label: "Coming-Soon Eyebrow", name: "maintenance_eyebrow", widget: "string", required: false, hint: "Small caps line above the title — e.g. 'Coming soon'" }
-          - { label: "Coming-Soon Title", name: "maintenance_title", widget: "string", required: false }
-          - { label: "Coming-Soon Subtitle", name: "maintenance_subtitle", widget: "string", required: false }
-          - { label: "Coming-Soon Message", name: "maintenance_message", widget: "text", required: false, hint: "Short paragraph beneath the countdown" }
-          - { label: "Coming-Soon Button Text", name: "maintenance_cta_text", widget: "string", required: false, hint: "Leave blank to hide the button" }
-          - { label: "Coming-Soon Button Link", name: "maintenance_cta_href", widget: "string", required: false }
+            hint: "Turn ON to replace the public site with a minimalist coming-soon page. Turn OFF to show the full site."
+          - label: "👁️ Show Countdown Timer"
+            name: "show_countdown"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide the days/hours/minutes/seconds countdown grid on the coming-soon page."
+          - label: "👁️ Show CTA Button"
+            name: "show_cta"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide the call-to-action button on the coming-soon page (button text and link are kept so you can re-enable later)."
+          - { label: "Eyebrow", name: "eyebrow", widget: "string", required: false, hint: "Small caps line above the title — e.g. 'Coming soon'" }
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Message", name: "message", widget: "text", required: false, hint: "Short paragraph beneath the countdown" }
+          - { label: "Button Text", name: "cta_text", widget: "string", required: false, hint: "Shown on the button when 'Show CTA Button' is ON" }
+          - { label: "Button Link", name: "cta_href", widget: "string", required: false }
 
   # 2. Brand globals — colors and favicon
   - name: "globals"
