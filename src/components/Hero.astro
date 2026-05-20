@@ -1,5 +1,28 @@
 ---
 import data from '../data/hero.json';
+import lineup from '../data/lineup.json';
+import schedule from '../data/schedule.json';
+import tickets from '../data/tickets.json';
+import venue from '../data/venue.json';
+import faq from '../data/faq.json';
+import partners from '../data/partners.json';
+
+// Hide a CTA button if it links to a hidden section.
+const sectionVisibility: Record<string, boolean> = {
+  '#lineup':   lineup?.visible   !== false,
+  '#schedule': schedule?.visible !== false,
+  '#tickets':  tickets?.visible  !== false,
+  '#venue':    venue?.visible    !== false,
+  '#faq':      faq?.visible      !== false,
+  '#partners': partners?.visible !== false,
+};
+const ctaVisible = (href?: string) => {
+  if (!href) return false;
+  if (Object.prototype.hasOwnProperty.call(sectionVisibility, href)) {
+    return sectionVisibility[href];
+  }
+  return true;
+};
 ---
 <section id="top" class="hero">
   <!-- video bg -->
@@ -48,8 +71,12 @@ import data from '../data/hero.json';
       </div>
 
       <div class="hero__cta reveal delay-3">
-        <a href={data.cta_primary_href} class="btn btn--primary">{data.cta_primary_text} →</a>
-        <a href={data.cta_secondary_href} class="btn btn--ghost">{data.cta_secondary_text}</a>
+        {ctaVisible(data.cta_primary_href) && (
+          <a href={data.cta_primary_href} class="btn btn--primary">{data.cta_primary_text} →</a>
+        )}
+        {ctaVisible(data.cta_secondary_href) && (
+          <a href={data.cta_secondary_href} class="btn btn--ghost">{data.cta_secondary_text}</a>
+        )}
       </div>
     </div>
   </div>

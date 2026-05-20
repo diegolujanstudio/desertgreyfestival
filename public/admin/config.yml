@@ -76,6 +76,11 @@ collections:
         name: "announcement"
         file: "src/data/announcement.json"
         fields:
+          - label: "👁️ Show this section on the site"
+            name: "visible"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide this section from the public site. Other sections stay visible."
           - { label: "Label Text", name: "label", widget: "string" }
           - { label: "Button Text", name: "cta_text", widget: "string" }
           - { label: "Button Link", name: "cta_href", widget: "string", hint: "Use #tickets to jump to the tickets section" }
@@ -108,6 +113,11 @@ collections:
         name: "hero"
         file: "src/data/hero.json"
         fields:
+          - label: "👁️ Show this section on the site"
+            name: "visible"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide this section from the public site. Other sections stay visible."
           - { label: "Eyebrow Text (small line above title)", name: "eyebrow", widget: "string" }
           - { label: "Title Line 1", name: "title_line_1", widget: "string" }
           - { label: "Title Line 2 (highlighted)", name: "title_line_2", widget: "string" }
@@ -130,6 +140,11 @@ collections:
         name: "marquee"
         file: "src/data/marquee.json"
         fields:
+          - label: "👁️ Show this section on the site"
+            name: "visible"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide this section from the public site. Other sections stay visible."
           - label: "Top Marquee (Genres)"
             name: "primary"
             widget: "list"
@@ -145,6 +160,11 @@ collections:
         name: "intro"
         file: "src/data/intro.json"
         fields:
+          - label: "👁️ Show this section on the site"
+            name: "visible"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide this section from the public site. Other sections stay visible."
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Curated By", name: "curated_by", widget: "string" }
           - { label: "Headline", name: "headline", widget: "text" }
@@ -160,6 +180,11 @@ collections:
         name: "lineup"
         file: "src/data/lineup.json"
         fields:
+          - label: "👁️ Show this section on the site"
+            name: "visible"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide this section from the public site. Other sections stay visible."
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Rollout Note", name: "rollout_note", widget: "string" }
           - { label: "CTA Button Text", name: "cta_text", widget: "string" }
@@ -176,6 +201,11 @@ collections:
         name: "schedule"
         file: "src/data/schedule.json"
         fields:
+          - label: "👁️ Show this section on the site"
+            name: "visible"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide this section from the public site. Other sections stay visible."
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Headline", name: "headline", widget: "string" }
           - { label: "Headline Emphasis Word", name: "headline_emphasis", widget: "string" }
@@ -205,6 +235,11 @@ collections:
         name: "partners"
         file: "src/data/partners.json"
         fields:
+          - label: "👁️ Show this section on the site"
+            name: "visible"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide this section from the public site. Other sections stay visible."
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Headline", name: "headline", widget: "string" }
           - { label: "Headline Emphasis", name: "headline_emphasis", widget: "string" }
@@ -225,6 +260,11 @@ collections:
         name: "tickets"
         file: "src/data/tickets.json"
         fields:
+          - label: "👁️ Show this section on the site"
+            name: "visible"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide this section from the public site. Other sections stay visible."
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Headline", name: "headline", widget: "string" }
           - { label: "Headline Emphasis", name: "headline_emphasis", widget: "string" }
@@ -251,6 +291,11 @@ collections:
         name: "venue"
         file: "src/data/venue.json"
         fields:
+          - label: "👁️ Show this section on the site"
+            name: "visible"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide this section from the public site. Other sections stay visible."
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Headline", name: "headline", widget: "string" }
           - { label: "Headline Emphasis", name: "headline_emphasis", widget: "string" }
@@ -284,6 +329,11 @@ collections:
         name: "faq"
         file: "src/data/faq.json"
         fields:
+          - label: "👁️ Show this section on the site"
+            name: "visible"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide this section from the public site. Other sections stay visible."
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Headline", name: "headline", widget: "string" }
           - { label: "Headline Emphasis", name: "headline_emphasis", widget: "string" }
@@ -304,6 +354,11 @@ collections:
         name: "listen"
         file: "src/data/listen.json"
         fields:
+          - label: "👁️ Show this section on the site"
+            name: "visible"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide this section from the public site. Other sections stay visible."
           - { label: "Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Headline", name: "headline", widget: "string" }
           - { label: "Headline Emphasis", name: "headline_emphasis", widget: "string" }

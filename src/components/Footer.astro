@@ -1,5 +1,36 @@
 ---
 import data from '../data/footer.json';
+import hero from '../data/hero.json';
+import lineup from '../data/lineup.json';
+import schedule from '../data/schedule.json';
+import partners from '../data/partners.json';
+import tickets from '../data/tickets.json';
+import venue from '../data/venue.json';
+import faq from '../data/faq.json';
+import listen from '../data/listen.json';
+import intro from '../data/intro.json';
+
+// Section visibility map — used to filter out footer Explore links that point
+// to sections the CMS has hidden.
+const sectionVisibility: Record<string, boolean> = {
+  '#hero':     hero?.visible     !== false,
+  '#top':      hero?.visible     !== false,
+  '#intro':    intro?.visible    !== false,
+  '#about':    intro?.visible    !== false,
+  '#lineup':   lineup?.visible   !== false,
+  '#schedule': schedule?.visible !== false,
+  '#partners': partners?.visible !== false,
+  '#tickets':  tickets?.visible  !== false,
+  '#venue':    venue?.visible    !== false,
+  '#faq':      faq?.visible      !== false,
+  '#listen':   listen?.visible   !== false,
+};
+const exploreLinks = (data.explore_links || []).filter((l: { href: string }) => {
+  if (Object.prototype.hasOwnProperty.call(sectionVisibility, l.href)) {
+    return sectionVisibility[l.href];
+  }
+  return true;
+});
 ---
 <footer class="foot grain">
   <div class="container">
@@ -36,7 +67,7 @@ import data from '../data/footer.json';
       <div class="foot__col">
         <h4 class="eyebrow">{data.explore_label}</h4>
         <ul class="foot__list">
-          {data.explore_links.map((l) => (
+          {exploreLinks.map((l) => (
             <li><a href={l.href} class="ulink">{l.label}</a></li>
           ))}
         </ul>
