@@ -1,6 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import site from '../data/site.json';
+import announcement from '../data/announcement.json';
+import hero from '../data/hero.json';
+import marquee from '../data/marquee.json';
+import intro from '../data/intro.json';
+import lineup from '../data/lineup.json';
+import schedule from '../data/schedule.json';
+import partners from '../data/partners.json';
+import tickets from '../data/tickets.json';
+import venue from '../data/venue.json';
+import faq from '../data/faq.json';
 import Announcement from '../components/Announcement.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
@@ -15,25 +25,29 @@ import FAQ from '../components/FAQ.astro';
 import Newsletter from '../components/Newsletter.astro';
 import Footer from '../components/Footer.astro';
 import Maintenance from '../components/Maintenance.astro';
+
+// A section is visible by default. The CMS writes `visible: false`
+// when the admin toggles a section OFF.
+const show = (data) => data?.visible !== false;
 ---
 <Layout>
   {site.maintenance_mode ? (
     <Maintenance />
   ) : (
     <>
-      <Announcement />
+      {show(announcement) && <Announcement />}
       <Nav />
       <main>
-        <Hero />
-        <Marquee />
-        <Intro />
-        <Lineup />
-        <Schedule />
-        <Partners />
-        <Marquee variant="secondary" />
-        <Tickets />
-        <Venue />
-        <FAQ />
+        {show(hero) && <Hero />}
+        {show(marquee) && <Marquee />}
+        {show(intro) && <Intro />}
+        {show(lineup) && <Lineup />}
+        {show(schedule) && <Schedule />}
+        {show(partners) && <Partners />}
+        {show(marquee) && <Marquee variant="secondary" />}
+        {show(tickets) && <Tickets />}
+        {show(venue) && <Venue />}
+        {show(faq) && <FAQ />}
         <Newsletter />
         <Footer />
       </main>
