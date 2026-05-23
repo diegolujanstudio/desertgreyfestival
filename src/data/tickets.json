@@ -6,8 +6,8 @@
   "fine_print": "Prices include all fees. Payment plans via Klarna / Affirm at PurplePass checkout. Transferable until 10 days before the festival. No refunds.",
   "tiers": [
     {
-      "name": "Grey Pass",
-      "price": "$30",
+      "name": "Ticket Only",
+      "price": "$25",
       "note": "General admission",
       "perks": [
         "All three stages",
@@ -19,12 +19,12 @@
       "featured": false
     },
     {
-      "name": "Blue Pass",
-      "price": "$45",
+      "name": "Desert Pack",
+      "price": "$35",
       "note": "Get your ticket & extras!",
       "perks": [
         "Ticket",
-        "50 Raffle Tickets",
+        "25 Raffle Tickets",
         "Commemorative Poster"
       ],
       "cta": "Buy pass",
@@ -32,19 +32,34 @@
       "featured": true
     },
     {
-      "name": "Purple Pass",
+      "name": "Grey Pack",
       "price": "$60",
-      "note": "Best Value!",
+      "note": "Get Your Gear!",
       "perks": [
         "Ticket",
         "Tee",
-        "Tote Bag",
         "50 Raffle Tickets",
         "Commemorative Poster"
       ],
       "cta": "Buy pass",
       "cta_href": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th",
       "featured": false
+    },
+    {
+      "featured": false,
+      "name": "Wolf Pack",
+      "price": "$80",
+      "note": "For the real fans!",
+      "perks": [
+        "Ticket",
+        "Tee",
+        "Tote Bag",
+        "50 Raffle Tickets",
+        "Commemorative Laminate & Poster",
+        "Front of Line"
+      ],
+      "cta_href": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th",
+      "cta": "Buy pass"
     }
   ],
   "visible": true
