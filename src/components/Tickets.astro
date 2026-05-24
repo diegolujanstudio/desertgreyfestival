@@ -76,7 +76,7 @@ const parts = emph && data.headline.includes(emph) ? data.headline.split(emph) :
 
   .tiers {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0;
     border: 1px solid color-mix(in oklab, var(--bone) 14%, transparent);
   }
@@ -146,6 +146,16 @@ const parts = emph && data.headline.includes(emph) ? data.headline.split(emph) :
   .tickets__fine {
     text-align: center;
     color: var(--lavender);
+  }
+
+  /* Tablet: 4 tiles get too narrow side-by-side, so wrap to 2x2. */
+  @media (max-width: 1200px) and (min-width: 901px) {
+    .tiers { grid-template-columns: repeat(2, 1fr); }
+    .tier:nth-child(2) { border-right: 0; }
+    .tier:nth-child(1),
+    .tier:nth-child(2) {
+      border-bottom: 1px solid color-mix(in oklab, var(--bone) 14%, transparent);
+    }
   }
 
   @media (max-width: 900px) {
