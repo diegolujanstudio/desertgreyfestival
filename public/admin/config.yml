@@ -207,10 +207,38 @@ collections:
           - { label: "Rollout Note", name: "rollout_note", widget: "string" }
           - { label: "CTA Button Text", name: "cta_text", widget: "string" }
           - { label: "CTA Button Link", name: "cta_href", widget: "string" }
-          - { label: "Tier 1 — Headliners (huge text, alternating neon/bone)", name: "tier_1", widget: "list", required: false }
-          - { label: "Tier 2 — Featured (large text)", name: "tier_2", widget: "list", required: false }
-          - { label: "Tier 3 — Mid-bill (medium text)", name: "tier_3", widget: "list", required: false }
-          - { label: "Tier 4 — Also appearing (small inline list, dot-separated)", name: "tier_4", widget: "list", required: false }
+          - label: "Tier 1 — Headliners (huge text)"
+            name: "tier_1"
+            widget: "list"
+            required: false
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Band Name", name: "name", widget: "string" }
+              - { label: "Instagram URL (optional)", name: "instagram", widget: "string", required: false, hint: "Full URL like https://instagram.com/handle — leave blank to render as plain text." }
+          - label: "Tier 2 — Featured (large text)"
+            name: "tier_2"
+            widget: "list"
+            required: false
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Band Name", name: "name", widget: "string" }
+              - { label: "Instagram URL (optional)", name: "instagram", widget: "string", required: false }
+          - label: "Tier 3 — Mid-bill (medium text)"
+            name: "tier_3"
+            widget: "list"
+            required: false
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Band Name", name: "name", widget: "string" }
+              - { label: "Instagram URL (optional)", name: "instagram", widget: "string", required: false }
+          - label: "Tier 4 — Also appearing (small inline list, dot-separated)"
+            name: "tier_4"
+            widget: "list"
+            required: false
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Band Name", name: "name", widget: "string" }
+              - { label: "Instagram URL (optional)", name: "instagram", widget: "string", required: false }
 
   # 9. Schedule
   - name: "schedule"
