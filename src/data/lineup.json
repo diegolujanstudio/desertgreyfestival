@@ -4,32 +4,98 @@
   "cta_text": "Lock in Tickets",
   "cta_href": "#tickets",
   "tier_1": [
-    "Emerald Isle",
-    "Something Outrageous",
-    "Those Kind Of People",
-    "rio wiley",
-    "Arsenic Kitchen",
-    "death dot gov",
-    "No Halos"
+    {
+      "name": "Emerald Isle",
+      "instagram": ""
+    },
+    {
+      "name": "Something Outrageous",
+      "instagram": ""
+    },
+    {
+      "name": "Those Kind Of People",
+      "instagram": ""
+    },
+    {
+      "name": "rio wiley",
+      "instagram": ""
+    },
+    {
+      "name": "Arsenic Kitchen",
+      "instagram": ""
+    },
+    {
+      "name": "deathdotgov",
+      "instagram": ""
+    },
+    {
+      "name": "No Halos",
+      "instagram": ""
+    }
   ],
   "tier_2": [
-    "Danny Silvertone",
-    "Diva Bleach",
-    "Killed by Yeti",
-    "An Awful Mess",
-    "Phage",
-    "SLOWBVRN",
-    "Hometurf"
+    {
+      "name": "Danny Silvertone",
+      "instagram": ""
+    },
+    {
+      "name": "Diva Bleach",
+      "instagram": ""
+    },
+    {
+      "name": "Killed By A Yeti",
+      "instagram": ""
+    },
+    {
+      "name": "An Awful Mess",
+      "instagram": ""
+    },
+    {
+      "name": "Phage",
+      "instagram": ""
+    },
+    {
+      "name": "SLØWBVRN",
+      "instagram": ""
+    },
+    {
+      "name": "HOMETURF",
+      "instagram": ""
+    }
   ],
   "tier_3": [
-    "Phantom Spring",
-    "Gnumb",
-    "sophia bavishi",
-    "Shane Pogue",
-    "Chris Crimmins",
-    "Chris Crawford",
-    "yesterdayssoup",
-    "Doublespeak"
+    {
+      "name": "Phantom Spring",
+      "instagram": ""
+    },
+    {
+      "name": "GNUMB",
+      "instagram": ""
+    },
+    {
+      "name": "Sophia Bavishi",
+      "instagram": ""
+    },
+    {
+      "name": "Shane Pogue",
+      "instagram": ""
+    },
+    {
+      "name": "crimmins",
+      "instagram": ""
+    },
+    {
+      "name": "Chris Crawford",
+      "instagram": ""
+    },
+    {
+      "name": "yesterdayssoup",
+      "instagram": ""
+    },
+    {
+      "name": "Doublespeak",
+      "instagram": ""
+    }
   ],
   "tier_4": [],
   "visible": true
