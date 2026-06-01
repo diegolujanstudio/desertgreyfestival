@@ -1,0 +1,96 @@
+---
+import data from '../data/raffle.json';
+const emph = data.headline_emphasis;
+const headlineParts = emph && data.headline && data.headline.includes(emph) ? data.headline.split(emph) : [data.headline];
+const prizeItems = Array.isArray(data.prize_items) ? data.prize_items : [];
+const ctaHref = data.cta_href || '#tickets';
+---
+<section id="raffle" class="raffle">
+  <div class="container raffle__inner">
+    <div class="raffle__copy">
+      <span class="eyebrow raffle__eyebrow">{data.eyebrow}</span>
+      <h2 class="display raffle__title">
+        {headlineParts.length > 1 ? (
+          <>{headlineParts[0]}<span class="raffle__em">{emph}</span>{headlineParts.slice(1).join(emph)}</>
+        ) : data.headline}
+      </h2>
+      <p class="raffle__lead">{data.description}</p>
+      {prizeItems.length > 0 && (
+        <ul class="raffle__prizes mono" aria-label="Example prizes">
+          {prizeItems.map((p) => (
+            <li class="raffle__chip">{p}</li>
+          ))}
+        </ul>
+      )}
+      {data.fine_print && <p class="raffle__fine mono">{data.fine_print}</p>}
+    </div>
+    {data.cta_text && (
+      <a href={ctaHref} class="btn btn--acid raffle__cta">{data.cta_text} →</a>
+    )}
+  </div>
+</section>
+
+<style>
+  .raffle {
+    background: var(--ink);
+    color: var(--bone);
+    padding-block: clamp(2.25rem, 5vw, 4rem);
+    border-block: 1px solid color-mix(in oklab, var(--bone) 14%, transparent);
+    position: relative;
+  }
+  .raffle::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--neon);
+  }
+  .raffle__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    align-items: center;
+  }
+  .raffle__copy { display: grid; gap: 0.85rem; max-width: 64rem; }
+  .raffle__eyebrow { color: var(--neon); }
+  .raffle__title {
+    font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--bone);
+  }
+  .raffle__em { color: var(--neon); font-style: italic; }
+  .raffle__lead {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--lavender);
+    max-width: 60ch;
+  }
+  .raffle__prizes {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 0.6rem;
+    list-style: none; padding: 0; margin: 0.25rem 0 0;
+  }
+  .raffle__chip {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid color-mix(in oklab, var(--bone) 22%, transparent);
+    border-radius: 999px;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--bone);
+    text-transform: uppercase;
+  }
+  .raffle__fine {
+    margin-top: 0.5rem;
+    color: var(--lavender);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .raffle__cta { white-space: nowrap; align-self: center; }
+
+  @media (max-width: 720px) {
+    .raffle__inner { grid-template-columns: 1fr; }
+    .raffle__cta { justify-self: start; width: 100%; justify-content: center; }
+    .raffle__title { font-size: clamp(1.5rem, 6vw, 2rem); }
+  }
+</style>
