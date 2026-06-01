@@ -1,37 +1,36 @@
 {
-  "eyebrow": "Lineup / Vol. 05",
-  "rollout_note": "Rollout schedule · Feb · Apr · Jul · Sep",
+  "eyebrow": "Lineup / Vol. 04",
+  "rollout_note": "Rollout schedule",
   "cta_text": "Lock in Tickets",
   "cta_href": "#tickets",
-  "headliners": [
-    "Sorry X",
+  "tier_1": [
     "Emerald Isle",
-    "death dot gov"
-  ],
-  "main": [
-    "Diva Bleach",
-    "Victory Tonight",
     "Something Outrageous",
+    "Those Kind Of People",
     "rio wiley",
     "Arsenic Kitchen",
-    "No Halos",
+    "death dot gov",
+    "No Halos"
+  ],
+  "tier_2": [
     "Danny Silvertone",
-    "Those Kind Of People",
+    "Diva Bleach",
     "Killed by Yeti",
     "An Awful Mess",
     "Phage",
-    "Hometurf",
     "SLOWBVRN",
-    "After The Calm",
-    "Gnumb",
-    "Brace Yourself"
+    "Hometurf"
   ],
-  "support": [
+  "tier_3": [
+    "Phantom Spring",
+    "Gnumb",
     "sophia bavishi",
+    "Shane Pogue",
     "Chris Crimmins",
     "Chris Crawford",
     "yesterdayssoup",
     "Doublespeak"
   ],
+  "tier_4": [],
   "visible": false
 }
