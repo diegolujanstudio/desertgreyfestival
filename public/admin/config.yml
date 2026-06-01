@@ -207,9 +207,10 @@ collections:
           - { label: "Rollout Note", name: "rollout_note", widget: "string" }
           - { label: "CTA Button Text", name: "cta_text", widget: "string" }
           - { label: "CTA Button Link", name: "cta_href", widget: "string" }
-          - { label: "Headliners (huge, top tier)", name: "headliners", widget: "list" }
-          - { label: "Main Bill (medium tier)", name: "main", widget: "list" }
-          - { label: "Support / Openers (small tier)", name: "support", widget: "list" }
+          - { label: "Tier 1 — Headliners (huge text, alternating neon/bone)", name: "tier_1", widget: "list", required: false }
+          - { label: "Tier 2 — Featured (large text)", name: "tier_2", widget: "list", required: false }
+          - { label: "Tier 3 — Mid-bill (medium text)", name: "tier_3", widget: "list", required: false }
+          - { label: "Tier 4 — Also appearing (small inline list, dot-separated)", name: "tier_4", widget: "list", required: false }
 
   # 9. Schedule
   - name: "schedule"
@@ -269,6 +270,28 @@ collections:
             fields:
               - { label: "Tier Label (Presenting / Official / Community)", name: "label", widget: "string" }
               - { label: "Partner Names", name: "partners", widget: "list" }
+
+  # 10b. Raffle (compact hype banner above Tickets)
+  - name: "raffle"
+    label: "🎟️  Raffle"
+    files:
+      - label: "Raffle Section"
+        name: "raffle"
+        file: "src/data/raffle.json"
+        fields:
+          - label: "👁️ Show this section on the site"
+            name: "visible"
+            widget: "boolean"
+            default: true
+            hint: "Turn OFF to hide this section from the public site. Other sections stay visible."
+          - { label: "Eyebrow", name: "eyebrow", widget: "string", required: false, hint: "Small caps line above the headline" }
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Headline Emphasis Word (italic + neon)", name: "headline_emphasis", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Prize Items (chips beneath description)", name: "prize_items", widget: "list", required: false, hint: "Short examples — e.g. 'Band Merch', 'Vendor Gift Cards'" }
+          - { label: "Fine Print", name: "fine_print", widget: "text", required: false }
+          - { label: "Button Text", name: "cta_text", widget: "string" }
+          - { label: "Button Link", name: "cta_href", widget: "string", required: false, hint: "Where the button takes visitors. Leave blank to link to #tickets." }
 
   # 11. Tickets
   - name: "tickets"
