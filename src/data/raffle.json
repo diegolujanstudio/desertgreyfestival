@@ -1,0 +1,16 @@
+{
+  "visible": true,
+  "eyebrow": "Win Big",
+  "headline": "Festival Raffle",
+  "headline_emphasis": "Raffle",
+  "description": "Buy raffle tickets for a shot at exclusive band merch, gift cards from local Phoenix vendors, and more festival goodies. Winners drawn the day of the event.",
+  "prize_items": [
+    "Band Merch",
+    "Local Vendor Gift Cards",
+    "VIP Upgrades",
+    "Limited Posters"
+  ],
+  "fine_print": "Proceeds support local artists and venues.",
+  "cta_text": "Get Raffle Tickets",
+  "cta_href": ""
+}
