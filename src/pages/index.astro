@@ -42,7 +42,6 @@ const show = (data) => data?.visible !== false;
       <Nav />
       <main>
         {show(hero) && <Hero />}
-        {show(marquee) && <Marquee />}
         {show(intro) && <Intro />}
         {show(lineup) && <Lineup />}
         {show(schedule) && <Schedule />}
