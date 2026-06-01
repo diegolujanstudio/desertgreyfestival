@@ -5,92 +5,124 @@ const headlineParts = emph && data.headline && data.headline.includes(emph) ? da
 const prizeItems = Array.isArray(data.prize_items) ? data.prize_items : [];
 const ctaHref = data.cta_href || '#tickets';
 ---
-<section id="raffle" class="raffle">
-  <div class="container raffle__inner">
-    <div class="raffle__copy">
-      <span class="eyebrow raffle__eyebrow">{data.eyebrow}</span>
-      <h2 class="display raffle__title">
-        {headlineParts.length > 1 ? (
-          <>{headlineParts[0]}<span class="raffle__em">{emph}</span>{headlineParts.slice(1).join(emph)}</>
-        ) : data.headline}
-      </h2>
-      <p class="raffle__lead">{data.description}</p>
-      {prizeItems.length > 0 && (
-        <ul class="raffle__prizes mono" aria-label="Example prizes">
-          {prizeItems.map((p) => (
-            <li class="raffle__chip">{p}</li>
-          ))}
-        </ul>
-      )}
-      {data.fine_print && <p class="raffle__fine mono">{data.fine_print}</p>}
+<section id="raffle" class="raffle-wrap">
+  <div class="container">
+    <div class="raffle-card">
+      <span class="raffle-card__accent" aria-hidden="true"></span>
+      <div class="raffle-card__body">
+        <div class="raffle-card__copy">
+          <span class="eyebrow raffle-card__eyebrow">{data.eyebrow}</span>
+          <h2 class="display raffle-card__title">
+            {headlineParts.length > 1 ? (
+              <>{headlineParts[0]}<span class="raffle-card__em">{emph}</span>{headlineParts.slice(1).join(emph)}</>
+            ) : data.headline}
+          </h2>
+          <p class="raffle-card__lead">{data.description}</p>
+          {prizeItems.length > 0 && (
+            <ul class="raffle-card__prizes mono" aria-label="Example prizes">
+              {prizeItems.map((p) => (
+                <li class="raffle-card__chip">{p}</li>
+              ))}
+            </ul>
+          )}
+          {data.fine_print && <p class="raffle-card__fine mono">{data.fine_print}</p>}
+        </div>
+        {data.cta_text && (
+          <a href={ctaHref} class="btn btn--acid raffle-card__cta">{data.cta_text} →</a>
+        )}
+      </div>
     </div>
-    {data.cta_text && (
-      <a href={ctaHref} class="btn btn--acid raffle__cta">{data.cta_text} →</a>
-    )}
   </div>
 </section>
 
 <style>
-  .raffle {
+  /* Wrapper section: pure dark background that hosts the elevated card.
+     Generous vertical spacing so the card visually separates from neighbors. */
+  .raffle-wrap {
     background: var(--ink);
     color: var(--bone);
-    padding-block: clamp(2.25rem, 5vw, 4rem);
-    border-block: 1px solid color-mix(in oklab, var(--bone) 14%, transparent);
-    position: relative;
+    padding-block: clamp(3rem, 7vw, 6rem);
   }
-  .raffle::before {
-    content: '';
-    position: absolute; left: 0; top: 0; bottom: 0;
-    width: 4px;
+
+  /* The card itself — slightly lighter than the surrounding ink, rounded,
+     bordered. This is what visually says "callout / promo". */
+  .raffle-card {
+    position: relative;
+    background: color-mix(in oklab, var(--bone) 7%, var(--ink));
+    border: 1px solid color-mix(in oklab, var(--bone) 16%, transparent);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow:
+      0 1px 0 color-mix(in oklab, var(--bone) 8%, transparent) inset,
+      0 30px 60px -40px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Neon left accent stripe — keeps the brand pop without overpowering. */
+  .raffle-card__accent {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 5px;
     background: var(--neon);
   }
-  .raffle__inner {
+
+  .raffle-card__body {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: clamp(1.25rem, 3vw, 2.5rem);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
     align-items: center;
+    padding: clamp(1.75rem, 3.5vw, 2.75rem) clamp(1.5rem, 3.5vw, 3rem);
+    padding-left: clamp(1.75rem, 4vw, 3rem); /* a touch more on left for accent */
   }
-  .raffle__copy { display: grid; gap: 0.85rem; max-width: 64rem; }
-  .raffle__eyebrow { color: var(--neon); }
-  .raffle__title {
+
+  .raffle-card__copy { display: grid; gap: 0.85rem; max-width: 62rem; }
+  .raffle-card__eyebrow { color: var(--neon); }
+  .raffle-card__title {
     font-size: clamp(1.8rem, 3.8vw, 2.8rem);
     line-height: 1;
     letter-spacing: -0.01em;
     color: var(--bone);
   }
-  .raffle__em { color: var(--neon); font-style: italic; }
-  .raffle__lead {
+  .raffle-card__em { color: var(--neon); font-style: italic; }
+  .raffle-card__lead {
     font-size: 1rem;
     line-height: 1.55;
     color: var(--lavender);
     max-width: 60ch;
   }
-  .raffle__prizes {
+  .raffle-card__prizes {
     display: flex; flex-wrap: wrap; gap: 0.5rem 0.6rem;
     list-style: none; padding: 0; margin: 0.25rem 0 0;
   }
-  .raffle__chip {
+  .raffle-card__chip {
     display: inline-block;
     padding: 0.35rem 0.75rem;
     border: 1px solid color-mix(in oklab, var(--bone) 22%, transparent);
+    background: color-mix(in oklab, var(--ink) 70%, transparent);
     border-radius: 999px;
     font-size: 0.62rem;
     letter-spacing: 0.14em;
     color: var(--bone);
     text-transform: uppercase;
   }
-  .raffle__fine {
+  .raffle-card__fine {
     margin-top: 0.5rem;
     color: var(--lavender);
     font-size: 0.65rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
-  .raffle__cta { white-space: nowrap; align-self: center; }
+  .raffle-card__cta {
+    white-space: nowrap;
+    align-self: center;
+  }
 
   @media (max-width: 720px) {
-    .raffle__inner { grid-template-columns: 1fr; }
-    .raffle__cta { justify-self: start; width: 100%; justify-content: center; }
-    .raffle__title { font-size: clamp(1.5rem, 6vw, 2rem); }
+    .raffle-card__body {
+      grid-template-columns: 1fr;
+      padding: clamp(1.5rem, 5vw, 2rem);
+      padding-left: clamp(1.75rem, 6vw, 2.25rem);
+    }
+    .raffle-card__cta { justify-self: stretch; width: 100%; justify-content: center; }
+    .raffle-card__title { font-size: clamp(1.5rem, 6vw, 2rem); }
   }
 </style>
