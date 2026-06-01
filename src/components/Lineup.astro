@@ -1,17 +1,21 @@
 ---
 import data from '../data/lineup.json';
 
-// Support both new (tier_1..tier_4) and legacy (headliners/main/support) keys.
+// Support legacy keys (headliners/main/support) and new keys (tier_1..tier_4).
 const tier1 = data.tier_1 || data.headliners || [];
 const tier2 = data.tier_2 || data.main || [];
 const tier3 = data.tier_3 || data.support || [];
 const tier4 = data.tier_4 || [];
 
+// Each band entry can be either a plain string OR an object { name, instagram }.
+// Normalize so we can render uniformly.
+const norm = (b) => (typeof b === 'string') ? { name: b, instagram: '' } : { name: b?.name ?? '', instagram: b?.instagram ?? '' };
+
 const tiers = [
-  { items: tier1, mod: '1' },
-  { items: tier2, mod: '2' },
-  { items: tier3, mod: '3' },
-  { items: tier4, mod: '4' },
+  { items: tier1.map(norm), mod: '1' },
+  { items: tier2.map(norm), mod: '2' },
+  { items: tier3.map(norm), mod: '3' },
+  { items: tier4.map(norm), mod: '4' },
 ].filter(t => t.items && t.items.length > 0);
 ---
 <section id="lineup" class="lineup grain-soft">
@@ -28,12 +32,20 @@ const tiers = [
             t.items.map((b, i) => (
               <>
                 {i > 0 && <span class="lineup__sep" aria-hidden="true">·</span>}
-                <span class="lineup__band lineup__band--4">{b}</span>
+                {b.instagram ? (
+                  <a href={b.instagram} target="_blank" rel="noopener noreferrer" class={`lineup__band lineup__band--4`}>{b.name}</a>
+                ) : (
+                  <span class={`lineup__band lineup__band--4`}>{b.name}</span>
+                )}
               </>
             ))
           ) : (
             t.items.map((b) => (
-              <span class={`lineup__band lineup__band--${t.mod}`}>{b}</span>
+              b.instagram ? (
+                <a href={b.instagram} target="_blank" rel="noopener noreferrer" class={`lineup__band lineup__band--${t.mod}`}>{b.name}</a>
+              ) : (
+                <span class={`lineup__band lineup__band--${t.mod}`}>{b.name}</span>
+              )
             ))
           )}
         </div>
@@ -64,6 +76,7 @@ const tiers = [
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: baseline;
     text-align: center;
     padding: clamp(1rem, 2.5vh, 2rem) 0;
   }
@@ -72,47 +85,57 @@ const tiers = [
     font-family: var(--f-display);
     text-transform: uppercase;
     display: inline-block;
-    transition: color .3s var(--ease), transform .3s var(--ease);
+    text-decoration: none;
+    transition: color .25s var(--ease), transform .25s var(--ease);
+    cursor: pointer;
   }
-  .lineup__band:hover { color: var(--rust); transform: translateY(-2px); }
+  /* Plain spans get default cursor; only the <a> tags should look interactive. */
+  span.lineup__band { cursor: default; }
+  .lineup__band:hover { color: var(--neon); }
+  a.lineup__band:hover { transform: translateY(-2px); }
 
-  /* TIER 1 — Headliners. Huge, alternating neon/bone, 2 per row max. */
+  /* TIER 1 — Headliners. Big text, natural widths, single uniform color.
+     Lets multi-word names wrap with neighbours instead of stretching across a row. */
   .lineup__tier--1 {
-    gap: clamp(0.5rem, 1vw, 1rem) clamp(2rem, 5vw, 4rem);
+    gap: 0.35rem clamp(1.5rem, 3.5vw, 3rem);
+    max-width: 88rem;
+    margin: 0 auto;
   }
   .lineup__band--1 {
-    font-size: clamp(2.2rem, 6.4vw, 5.6rem);
+    font-size: clamp(1.7rem, 4.4vw, 4rem);
     letter-spacing: -0.01em;
-    line-height: 0.92;
-    flex: 1 1 40%;
+    line-height: 1;
     color: var(--bone);
+    padding: 0 0.1em;
   }
-  .lineup__band--1:nth-child(odd) { color: var(--neon); }
 
-  /* TIER 2 — Featured. Big, multiple per row. */
+  /* TIER 2 — Featured */
   .lineup__tier--2 {
-    gap: clamp(0.5rem, 1vw, 0.85rem) clamp(1.5rem, 3vw, 2.5rem);
+    gap: 0.4rem clamp(1.25rem, 2.6vw, 2.25rem);
+    max-width: 80rem;
+    margin: 0 auto;
   }
   .lineup__band--2 {
-    font-size: clamp(1.5rem, 3.2vw, 2.6rem);
+    font-size: clamp(1.2rem, 2.6vw, 2.2rem);
     line-height: 1.02;
     color: var(--bone);
   }
 
-  /* TIER 3 — Mid-bill. Medium, more per row. */
+  /* TIER 3 — Mid-bill */
   .lineup__tier--3 {
-    gap: clamp(0.45rem, 0.9vw, 0.75rem) clamp(1rem, 2vw, 1.75rem);
+    gap: 0.4rem clamp(1rem, 1.9vw, 1.6rem);
+    max-width: 72rem;
+    margin: 0 auto;
   }
   .lineup__band--3 {
-    font-size: clamp(1rem, 1.8vw, 1.55rem);
+    font-size: clamp(0.95rem, 1.6vw, 1.4rem);
     line-height: 1.05;
-    color: color-mix(in oklab, var(--bone) 90%, transparent);
+    color: color-mix(in oklab, var(--bone) 88%, transparent);
   }
 
-  /* TIER 4 — Also appearing. Small mono, single block w/ dot separators. */
+  /* TIER 4 — Also appearing */
   .lineup__tier--4 {
     gap: 0.45rem 0.7rem;
-    align-items: baseline;
     max-width: 56rem;
     margin: 0 auto;
   }
@@ -146,13 +169,10 @@ const tiers = [
 
   @media (max-width: 560px) {
     .lineup__head { margin-bottom: 2.5rem; }
-    .lineup__tier { padding: 1rem 0; gap: 0.5rem 1.25rem; }
-    .lineup__band--1 {
-      font-size: clamp(1.8rem, 11vw, 3rem);
-      flex: 1 1 100%;
-    }
-    .lineup__band--2 { font-size: clamp(1.15rem, 5.2vw, 1.7rem); }
-    .lineup__band--3 { font-size: clamp(0.92rem, 4vw, 1.25rem); }
+    .lineup__tier { padding: 1rem 0; }
+    .lineup__band--1 { font-size: clamp(1.4rem, 8.5vw, 2.4rem); }
+    .lineup__band--2 { font-size: clamp(1.05rem, 4.5vw, 1.5rem); }
+    .lineup__band--3 { font-size: clamp(0.9rem, 3.6vw, 1.15rem); }
     .lineup__band--4 { font-size: 0.66rem; letter-spacing: 0.1em; }
     .lineup__sep { font-size: 0.75rem; }
     .lineup__rule { margin: 1.25rem auto; }
