@@ -9,6 +9,7 @@ import intro from '../data/intro.json';
 import lineup from '../data/lineup.json';
 import schedule from '../data/schedule.json';
 import partners from '../data/partners.json';
+import raffle from '../data/raffle.json';
 import tickets from '../data/tickets.json';
 import venue from '../data/venue.json';
 import faq from '../data/faq.json';
@@ -20,6 +21,7 @@ import Intro from '../components/Intro.astro';
 import Lineup from '../components/Lineup.astro';
 import Schedule from '../components/Schedule.astro';
 import Partners from '../components/Partners.astro';
+import Raffle from '../components/Raffle.astro';
 import Tickets from '../components/Tickets.astro';
 import Venue from '../components/Venue.astro';
 import FAQ from '../components/FAQ.astro';
@@ -46,6 +48,7 @@ const show = (data) => data?.visible !== false;
         {show(schedule) && <Schedule />}
         {show(partners) && <Partners />}
         {show(marquee) && <Marquee variant="secondary" />}
+        {show(raffle) && <Raffle />}
         {show(tickets) && <Tickets />}
         {show(venue) && <Venue />}
         {show(faq) && <FAQ />}
