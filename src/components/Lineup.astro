@@ -1,5 +1,18 @@
 ---
 import data from '../data/lineup.json';
+
+// Support both new (tier_1..tier_4) and legacy (headliners/main/support) keys.
+const tier1 = data.tier_1 || data.headliners || [];
+const tier2 = data.tier_2 || data.main || [];
+const tier3 = data.tier_3 || data.support || [];
+const tier4 = data.tier_4 || [];
+
+const tiers = [
+  { items: tier1, mod: '1' },
+  { items: tier2, mod: '2' },
+  { items: tier3, mod: '3' },
+  { items: tier4, mod: '4' },
+].filter(t => t.items && t.items.length > 0);
 ---
 <section id="lineup" class="lineup grain-soft">
   <div class="container">
@@ -7,31 +20,29 @@ import data from '../data/lineup.json';
       <span class="eyebrow">{data.eyebrow}</span>
     </header>
 
-    <div class="lineup__tier lineup__tier--head">
-      {data.headliners.map((b, i) => (
-        <span class="lineup__band lineup__band--head" style={`--i:${i}`}>{b}</span>
-      ))}
-    </div>
-
-    <div class="rule lineup__rule"></div>
-
-    <div class="lineup__tier lineup__tier--main">
-      {data.main.map((b) => (
-        <span class="lineup__band lineup__band--main">{b}</span>
-      ))}
-    </div>
-
-    <div class="rule lineup__rule"></div>
-
-    <div class="lineup__tier lineup__tier--support">
-      {data.support.map((b) => (
-        <span class="lineup__band lineup__band--sup">{b}</span>
-      ))}
-    </div>
+    {tiers.map((t, idx) => (
+      <>
+        {idx > 0 && <div class="rule lineup__rule"></div>}
+        <div class={`lineup__tier lineup__tier--${t.mod}`}>
+          {t.mod === '4' ? (
+            t.items.map((b, i) => (
+              <>
+                {i > 0 && <span class="lineup__sep" aria-hidden="true">·</span>}
+                <span class="lineup__band lineup__band--4">{b}</span>
+              </>
+            ))
+          ) : (
+            t.items.map((b) => (
+              <span class={`lineup__band lineup__band--${t.mod}`}>{b}</span>
+            ))
+          )}
+        </div>
+      </>
+    ))}
 
     <footer class="lineup__foot">
       <p class="mono">{data.rollout_note}</p>
-      <a href={data.cta_href} class="btn btn--acid">{data.cta_text}</a>
+      {data.cta_text && <a href={data.cta_href} class="btn btn--acid">{data.cta_text}</a>}
     </footer>
   </div>
 </section>
@@ -48,20 +59,13 @@ import data from '../data/lineup.json';
     text-align: center;
     display: grid; gap: 1rem; justify-items: center;
   }
-  .lineup__title {
-    font-size: clamp(3rem, 8vw, 7rem);
-    line-height: 0.9;
-  }
-  .lineup__title .editorial { color: var(--rust); font-style: italic; }
-  .lineup__sub { color: var(--stone); max-width: 42ch; }
 
   .lineup__tier {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: clamp(0.5rem, 1vw, 1rem) clamp(1rem, 2.5vw, 2rem);
     text-align: center;
-    padding: 2rem 0;
+    padding: clamp(1rem, 2.5vh, 2rem) 0;
   }
 
   .lineup__band {
@@ -72,23 +76,58 @@ import data from '../data/lineup.json';
   }
   .lineup__band:hover { color: var(--rust); transform: translateY(-2px); }
 
-  .lineup__band--head {
-    font-size: clamp(2.8rem, 7.2vw, 6.5rem);
+  /* TIER 1 — Headliners. Huge, alternating neon/bone, 2 per row max. */
+  .lineup__tier--1 {
+    gap: clamp(0.5rem, 1vw, 1rem) clamp(2rem, 5vw, 4rem);
+  }
+  .lineup__band--1 {
+    font-size: clamp(2.2rem, 6.4vw, 5.6rem);
     letter-spacing: -0.01em;
     line-height: 0.92;
-    flex: 1 1 100%;
+    flex: 1 1 40%;
+    color: var(--bone);
+  }
+  .lineup__band--1:nth-child(odd) { color: var(--neon); }
+
+  /* TIER 2 — Featured. Big, multiple per row. */
+  .lineup__tier--2 {
+    gap: clamp(0.5rem, 1vw, 0.85rem) clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .lineup__band--2 {
+    font-size: clamp(1.5rem, 3.2vw, 2.6rem);
+    line-height: 1.02;
+    color: var(--bone);
   }
 
-  .lineup__band--main {
-    font-size: clamp(1.6rem, 3.2vw, 2.8rem);
-    line-height: 1;
+  /* TIER 3 — Mid-bill. Medium, more per row. */
+  .lineup__tier--3 {
+    gap: clamp(0.45rem, 0.9vw, 0.75rem) clamp(1rem, 2vw, 1.75rem);
+  }
+  .lineup__band--3 {
+    font-size: clamp(1rem, 1.8vw, 1.55rem);
+    line-height: 1.05;
+    color: color-mix(in oklab, var(--bone) 90%, transparent);
   }
 
-  .lineup__band--sup {
+  /* TIER 4 — Also appearing. Small mono, single block w/ dot separators. */
+  .lineup__tier--4 {
+    gap: 0.45rem 0.7rem;
+    align-items: baseline;
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+  .lineup__band--4 {
     font-family: var(--f-mono);
-    font-size: clamp(0.8rem, 1vw, 0.95rem);
-    letter-spacing: 0.15em;
-    color: var(--stone);
+    font-size: clamp(0.7rem, 1vw, 0.88rem);
+    letter-spacing: 0.12em;
+    color: var(--lavender);
+    text-transform: uppercase;
+  }
+  .lineup__sep {
+    color: color-mix(in oklab, var(--lavender) 55%, transparent);
+    font-family: var(--f-mono);
+    font-size: 0.85rem;
+    user-select: none;
   }
 
   .lineup__rule { margin: 1.75rem auto; max-width: 80%; opacity: 0.15; }
@@ -104,20 +143,18 @@ import data from '../data/lineup.json';
     border-top: 1px solid color-mix(in oklab, var(--bone) 14%, transparent);
   }
   .lineup__foot .mono { color: var(--lavender); }
-  .lineup__band--sup { color: var(--lavender); }
 
   @media (max-width: 560px) {
     .lineup__head { margin-bottom: 2.5rem; }
     .lineup__tier { padding: 1rem 0; gap: 0.5rem 1.25rem; }
-    .lineup__band--head {
-      font-size: clamp(2rem, 13vw, 3.4rem);
-      line-height: 0.95;
+    .lineup__band--1 {
+      font-size: clamp(1.8rem, 11vw, 3rem);
+      flex: 1 1 100%;
     }
-    .lineup__band--main { font-size: clamp(1.2rem, 5vw, 1.8rem); }
-    .lineup__band--sup {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-    }
+    .lineup__band--2 { font-size: clamp(1.15rem, 5.2vw, 1.7rem); }
+    .lineup__band--3 { font-size: clamp(0.92rem, 4vw, 1.25rem); }
+    .lineup__band--4 { font-size: 0.66rem; letter-spacing: 0.1em; }
+    .lineup__sep { font-size: 0.75rem; }
     .lineup__rule { margin: 1.25rem auto; }
     .lineup__foot {
       margin-top: 2.5rem;
