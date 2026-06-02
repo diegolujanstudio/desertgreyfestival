@@ -109,15 +109,21 @@ const tiers = [
     padding: 0 0.1em;
   }
 
-  /* TIER 2 — Featured */
+  /* TIER 2 — Featured. Fixed 4-per-row so 7 names lay out as 4 + 3 (orphan row auto-centers via justify-content). */
   .lineup__tier--2 {
-    gap: 0.4rem clamp(1.25rem, 2.6vw, 2.25rem);
-    max-width: 80rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    text-align: center;
+    gap: 0.5rem clamp(1rem, 2.4vw, 2rem);
+    max-width: 88rem;
     margin: 0 auto;
   }
   .lineup__band--2 {
-    font-size: clamp(1.2rem, 2.6vw, 2.2rem);
-    line-height: 1.02;
+    flex: 0 0 calc(25% - clamp(1rem, 2.4vw, 2rem));
+    font-size: clamp(1.1rem, 2.4vw, 2rem);
+    line-height: 1.04;
     color: var(--bone);
   }
 
@@ -171,7 +177,10 @@ const tiers = [
     .lineup__head { margin-bottom: 2.5rem; }
     .lineup__tier { padding: 1rem 0; }
     .lineup__band--1 { font-size: clamp(1.4rem, 8.5vw, 2.4rem); }
-    .lineup__band--2 { font-size: clamp(1.05rem, 4.5vw, 1.5rem); }
+    .lineup__band--2 {
+      font-size: clamp(1.05rem, 4.5vw, 1.5rem);
+      flex: 0 0 calc(50% - 0.75rem); /* 2 per row on small screens */
+    }
     .lineup__band--3 { font-size: clamp(0.9rem, 3.6vw, 1.15rem); }
     .lineup__band--4 { font-size: 0.66rem; letter-spacing: 0.1em; }
     .lineup__sep { font-size: 0.75rem; }
@@ -183,5 +192,10 @@ const tiers = [
     }
     .lineup__foot .mono { flex: 1 1 100%; }
     .lineup__foot .btn { width: 100%; justify-content: center; }
+  }
+
+  /* Phone-narrow: tier 2 stacks to 1 per row so long names breathe. */
+  @media (max-width: 420px) {
+    .lineup__band--2 { flex: 0 0 100%; }
   }
 </style>
