@@ -173,6 +173,14 @@ const tiers = [
   }
   .lineup__foot .mono { color: var(--lavender); }
 
+  /* Tablet: tier 2 wraps to 2-per-row so names breathe on iPad-sized screens. */
+  @media (max-width: 900px) and (min-width: 561px) {
+    .lineup__band--2 {
+      flex: 0 0 calc(50% - clamp(0.75rem, 2vw, 1.5rem));
+      font-size: clamp(1.05rem, 2.6vw, 1.6rem);
+    }
+  }
+
   @media (max-width: 560px) {
     .lineup__head { margin-bottom: 2.5rem; }
     .lineup__tier { padding: 1rem 0; }
