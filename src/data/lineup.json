@@ -1,8 +1,7 @@
 {
-  "eyebrow": "Lineup / Vol. 04",
   "rollout_note": "Rollout schedule",
-  "cta_text": "Lock in Tickets",
-  "cta_href": "#tickets",
+  "eyebrow": "Lineup / Vol. 04",
+  "visible": false,
   "tier_1": [
     {
       "name": "Emerald Isle",
@@ -98,5 +97,6 @@
     }
   ],
   "tier_4": [],
-  "visible": true
+  "cta_href": "#tickets",
+  "cta_text": "Lock in Tickets"
 }
