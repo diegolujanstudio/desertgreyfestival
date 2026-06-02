@@ -40,12 +40,15 @@ const tiers = [
               </>
             ))
           ) : (
-            t.items.map((b) => (
-              b.instagram ? (
-                <a href={b.instagram} target="_blank" rel="noopener noreferrer" class={`lineup__band lineup__band--${t.mod}`}>{b.name}</a>
-              ) : (
-                <span class={`lineup__band lineup__band--${t.mod}`}>{b.name}</span>
-              )
+            t.items.map((b, i) => (
+              <>
+                {b.instagram ? (
+                  <a href={b.instagram} target="_blank" rel="noopener noreferrer" class={`lineup__band lineup__band--${t.mod}`}>{b.name}</a>
+                ) : (
+                  <span class={`lineup__band lineup__band--${t.mod}`}>{b.name}</span>
+                )}
+                {t.mod === '2' && (i + 1) % 4 === 0 && i + 1 < t.items.length && <div class="lineup__break"></div>}
+              </>
             ))
           )}
         </div>
@@ -109,22 +112,29 @@ const tiers = [
     padding: 0 0.1em;
   }
 
-  /* TIER 2 — Featured. Fixed 4-per-row so 7 names lay out as 4 + 3 (orphan row auto-centers via justify-content). */
+  /* TIER 2 — Featured. Natural-width items with a forced break after every
+     4 items in markup → "4-per-row, orphan centered" without huge column gaps. */
   .lineup__tier--2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: baseline;
     text-align: center;
-    gap: 0.5rem clamp(1rem, 2.4vw, 2rem);
+    gap: 0.5rem clamp(1.5rem, 3vw, 2.75rem);
     max-width: 88rem;
     margin: 0 auto;
   }
   .lineup__band--2 {
-    flex: 0 0 calc(25% - clamp(1rem, 2.4vw, 2rem));
-    font-size: clamp(1.1rem, 2.4vw, 2rem);
+    flex: 0 1 auto;
+    font-size: clamp(1.15rem, 2.5vw, 2.1rem);
     line-height: 1.04;
     color: var(--bone);
+  }
+  .lineup__break {
+    flex-basis: 100%;
+    height: 0;
+    margin: 0;
+    padding: 0;
   }
 
   /* TIER 3 — Mid-bill */
@@ -185,10 +195,8 @@ const tiers = [
     .lineup__head { margin-bottom: 2.5rem; }
     .lineup__tier { padding: 1rem 0; }
     .lineup__band--1 { font-size: clamp(1.4rem, 8.5vw, 2.4rem); }
-    .lineup__band--2 {
-      font-size: clamp(1.05rem, 4.5vw, 1.5rem);
-      flex: 0 0 calc(50% - 0.75rem); /* 2 per row on small screens */
-    }
+    .lineup__band--2 { font-size: clamp(1.05rem, 4.5vw, 1.5rem); }
+    .lineup__break { display: none; }
     .lineup__band--3 { font-size: clamp(0.9rem, 3.6vw, 1.15rem); }
     .lineup__band--4 { font-size: 0.66rem; letter-spacing: 0.1em; }
     .lineup__sep { font-size: 0.75rem; }
@@ -202,8 +210,5 @@ const tiers = [
     .lineup__foot .btn { width: 100%; justify-content: center; }
   }
 
-  /* Phone-narrow: tier 2 stacks to 1 per row so long names breathe. */
-  @media (max-width: 420px) {
-    .lineup__band--2 { flex: 0 0 100%; }
-  }
+
 </style>
