@@ -1,7 +1,7 @@
 {
   "rollout_note": "Rollout schedule",
   "eyebrow": "Lineup / Vol. 04",
-  "visible": true,
+  "visible": false,
   "tier_1": [
     {
       "name": "Emerald Isle",
