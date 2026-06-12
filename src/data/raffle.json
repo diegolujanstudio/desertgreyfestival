@@ -1,16 +1,17 @@
 {
   "headline_emphasis": "Giveaways",
-  "fine_print": "Proceeds support local artists and venues.",
+  "fine_print": "",
   "eyebrow": "Win Big",
   "visible": true,
   "prize_items": [
+    "Experiences",
+    "Gift Cards",
     "Band Merch",
-    "Local Vendor Gift Cards",
-    "VIP Upgrades",
-    "Limited Posters"
+    "Festival Branded Gear",
+    "and more!"
   ],
   "headline": "Festival Giveaways",
   "cta_href": "",
-  "cta_text": "Get Giveaway Entries",
-  "description": "Buy entries for a shot at exclusive band merch, gift cards from local Phoenix vendors, and more festival goodies. Winners drawn the day of the event."
+  "cta_text": "AVAILABLE FOR PURCHASE DAY OF FESTIVAL",
+  "description": "The Desert Grey Festival Giveaway runs throughout festival day, with 8–10 live drawings for sponsor-donated prizes, gift bags, experiences, gift cards, and branded gear. Fans can purchase giveaway entries at the festival, and winners will be announced live from the main stage throughout the day. You must be present to win, so stick around and listen for your name."
 }
