@@ -33,15 +33,15 @@
     },
     {
       "title": "Stay",
-      "description": "Partner rates at Hotel Valley Ho and The Clarendon."
+      "description": "Nearby hotels listed for your convenience:\n- Travelodge by Wyndham Mesa — closest budget option, about 0.3 miles away.\n- Knights Inn Mesa — about 0.6 miles away, very close but more basic.\n- Delta Hotels by Marriott Phoenix Mesa — about 0.7 miles away, best overall option and the one I’d recommend publicly."
     },
     {
       "title": "Drive",
-      "description": "Parking at Arizona Center & Civic Space Park."
+      "description": "Parking is available behind The Nile Theater, along nearby open street parking, and in public"
     },
     {
-      "title": "Shuttle",
-      "description": "Free Grey Line shuttle: 6th Ave + Roosevelt, every 20 min."
+      "title": "Light Rail",
+      "description": "The Nile Theater is easily accessible by Valley Metro light rail, with the Center/Main Street stop just a short walk from the venue."
     }
   ],
   "map_embed_src": "https://maps.google.com/maps?q=Nile%20Theater%20Mesa%20AZ&t=k&z=16&output=embed",
