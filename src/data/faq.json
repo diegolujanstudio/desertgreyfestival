@@ -5,28 +5,32 @@
   "footer_note": "Didn't find it? More info drops closer to the gate — we'll announce on the 2026 Spotify playlist and inside the ticket confirmation.",
   "items": [
     {
-      "question": "When do tickets go on sale?",
-      "answer": "General tickets are on sale now. Inner Circle passes drop in waves — we announce each release on our newsletter 48 hours prior."
+      "question": " When and where is Desert Grey Music Festival?",
+      "answer": "Desert Grey Music Festival happens Saturday, October 3, 2026 at The Nile Theater, 105 W Main St, Mesa, AZ 85201.\n\nDoors open at 2:00 PM. Music runs across three stages — Main, Underground, and Coffee Shop — until 11:00 PM."
+    },
+    {
+      "question": "How much are tickets, and what do bundles include?",
+      "answer": "Four ways to come through:\n\n1. Ticket Only* — $25. Festival admission. Gets you in.\n2. Desert Pack** — $35. Festival admission + commemorative ticket + poster.\n3. Grey Pack** — $55. Festival admission + commemorative ticket + poster + festival tee.\n4. Wolf Pack** — $65. Festival admission + commemorative ticket + tee + tote + laminate + poster + front-of-line entry.\n\n*Early Bird tickets are $20 the first week only — limited quantity. Day-of door price is $30.\n\n**Package items will be available for pickup at the festival.  If not picked up day of festival, they will be shipped out to the purchaser in the week following the festival."
+    },
+    {
+      "question": "Who's playing?",
+      "answer": "25+ bands across three stages. The lineup drops in two waves:\n\nWave 1 — June 10. Most of the lineup\nWave 1.5 - Mid-June. Battle of the Bands launch.\nWave 2 — August. Remaining bands + the Battle of the Bands winner.\n\nFollow @desertgreymusicfestival for announcements."
     },
     {
       "question": "Is the festival all-ages?",
-      "answer": "Yes. Under-18s must be accompanied by a legal guardian after 9pm. Valid ID required for the 21+ bar. The main floor is step-free."
+      "answer": "Yes. Desert Grey is an all-ages event at the Nile Theater. Bring ID — under-21 patrons get one wristband, 21+ get a different wristband for the bar."
     },
     {
-      "question": "What about re-entry, bags and food?",
-      "answer": "Re-entry is allowed until 10pm with your wristband. Small bags (12\" × 12\") are welcome. Six food trucks, vegan options at each. No outside food or drink."
+      "question": "What's the schedule? When does my favorite band play?",
+      "answer": "The full stage-by-stage schedule drops the week of the festival.\n\nWe keep set times confidential until close to the festival to encourage cross-stage discovery. Every band on this lineup brings something worth catching."
     },
     {
-      "question": "How does the payment plan work?",
-      "answer": "At checkout you can split any ticket into three interest-free payments via Klarna or Affirm. Last instalment must clear by 10.18.25."
+      "question": "Can I watch the livestream if I can't make it?",
+      "answer": "Yes. We're livestreaming all three stages through the official Desert Grey Discord. Stream pass access is $10 and includes:\n\nDiscord invite to all 3 stages\nReal-time chat with other fans and bands\n10% off festival merch during the stream\n72 hours of replay access after the festival"
     },
     {
-      "question": "Can I transfer my ticket?",
-      "answer": "Yes — through our official ticketing partner until seven days before the festival. After that, tickets are name-locked."
-    },
-    {
-      "question": "What happens if it rains?",
-      "answer": "The festival is indoor across all three stages. Rain or shine, Desert Grey happens. Flash-flood warning? Check our channels for updates."
+      "question": "What's the Battle of the Bands and the Festival Giveaway?",
+      "answer": "Battle of the Bands is a campaign within the festival. Local and regional bands apply between June 10 and July 5, contestants get voted on by fans through July and August, and the winner earns a Main Stage slot at Desert Grey 2026.\n\nThe festival giveaway runs throughout festival day. At the festival, you will be able to purchase as many giveaway entries as you would like! We pull around 8-10 drawings during the festival for sponsor-donated prizes and gift bags including: experiences, gift cards, branded gear. Winners are announced live on the main stage throughout the day!"
     }
   ],
   "visible": true
