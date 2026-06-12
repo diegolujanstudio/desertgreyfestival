@@ -3,7 +3,7 @@
   "headline": "Lock in your pass.",
   "headline_emphasis": "your pass.",
   "description": "Checkout runs on PurplePass — pick a tier, split the total into three payments at checkout, and your wristband waits at will-call.",
-  "fine_print": "All ticket sales are final, and service, processing, facility, and delivery fees may apply and are generally non-refundable. Refunds or exchanges are only available if approved through Purplepass/event policy for a canceled, postponed, or significantly changed event; tickets may be transferred, but only the first valid scan will be accepted.",
+  "fine_print": "Ticket prices do not include Purplepass service or processing fees. Payment plans may be available through Purplepass checkout, tickets are transferable until 10 days before the festival, and all sales are final with no refunds.",
   "tiers": [
     {
       "name": "Ticket Only",
