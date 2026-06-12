@@ -38,20 +38,20 @@
   "festival_name": "Desert Grey",
   "follow_items": [
     {
-      "label": "Instagram — soon",
-      "href": ""
+      "label": "Instagram",
+      "href": "https://www.instagram.com/desertgreymusicfestival/"
     },
     {
-      "label": "TikTok — soon",
-      "href": ""
-    },
-    {
-      "label": "YouTube — soon",
-      "href": ""
+      "label": "YouTube",
+      "href": "https://www.youtube.com/@BeRealNotRight"
     },
     {
       "label": "Spotify playlist",
       "href": "https://open.spotify.com/playlist/4u9vTmmW3SQiMWSyFTVgHJ"
+    },
+    {
+      "label": "TikTok — coming soon",
+      "href": ""
     }
   ],
   "legal_strip": "Privacy · Terms · Accessibility",
