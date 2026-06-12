@@ -25,7 +25,7 @@
       ],
       "cta": "Buy pass",
       "cta_href": "https://www.purplepass.com/events/372944-desert-grey-music-festival-2026-oct-3rd",
-      "featured": true
+      "featured": false
     },
     {
       "name": "Grey Pack",
@@ -36,7 +36,7 @@
       ],
       "cta": "Buy pass",
       "cta_href": "https://www.purplepass.com/events/372944-desert-grey-music-festival-2026-oct-3rd",
-      "featured": false
+      "featured": true
     },
     {
       "featured": false,
