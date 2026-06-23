@@ -1,7 +1,7 @@
 {
   "rollout_note": "Rollout schedule",
   "eyebrow": "Lineup / Vol. 04",
-  "visible": false,
+  "visible": true,
   "tier_1": [
     {
       "name": "Emerald Isle",
@@ -9,14 +9,6 @@
     },
     {
       "name": "Something Outrageous",
-      "instagram": ""
-    },
-    {
-      "name": "Those Kind Of People",
-      "instagram": ""
-    },
-    {
-      "name": "rio wiley",
       "instagram": ""
     },
     {
@@ -30,17 +22,17 @@
     {
       "name": "No Halos",
       "instagram": ""
-    }
-  ],
-  "tier_2": [
+    },
     {
       "name": "Danny Silvertone",
       "instagram": ""
     },
     {
-      "name": "Diva Bleach",
+      "name": "SLØWBVRN",
       "instagram": ""
-    },
+    }
+  ],
+  "tier_2": [
     {
       "name": "Killed By A Yeti",
       "instagram": ""
@@ -54,33 +46,36 @@
       "instagram": ""
     },
     {
-      "name": "SLØWBVRN",
+      "name": "rio wiley",
       "instagram": ""
     },
     {
       "name": "HOMETURF",
       "instagram": ""
-    }
-  ],
-  "tier_3": [
+    },
+    {
+      "name": "In Lessons",
+      "instagram": ""
+    },
     {
       "name": "Phantom Spring",
       "instagram": ""
     },
     {
-      "name": "GNUMB",
-      "instagram": ""
-    },
+      "name": "Gnumb"
+    }
+  ],
+  "tier_3": [
     {
       "name": "Sophia Bavishi",
       "instagram": ""
     },
     {
-      "name": "Shane Pogue",
+      "name": "crimmins",
       "instagram": ""
     },
     {
-      "name": "crimmins",
+      "name": "Shane Pogue",
       "instagram": ""
     },
     {
