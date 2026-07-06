@@ -112,7 +112,11 @@
       "name": "Daphne + The Glitches"
     }
   ],
-  "tier_4": [],
+  "tier_4": [
+    {
+      "name": "Battle of the Bands Winner (TBA)"
+    }
+  ],
   "cta_href": "#tickets",
   "cta_text": "Lock in Tickets"
 }
