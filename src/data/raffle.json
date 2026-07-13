@@ -1,17 +1,11 @@
 {
-  "headline_emphasis": "Giveaways",
+  "headline_emphasis": "Merchandise",
   "fine_print": "",
   "eyebrow": "",
   "visible": true,
-  "prize_items": [
-    "Experiences",
-    "Gift Cards",
-    "Band Merch",
-    "Festival Branded Gear",
-    "and more!"
-  ],
-  "headline": "Festival Giveaways",
-  "cta_href": "",
-  "cta_text": "MORE INFO TBA",
-  "description": "The Desert Grey Festival Giveaway runs throughout festival day, with 8–10 live drawings for sponsor-donated prizes, gift bags, experiences, gift cards, and branded gear. You must be present to win, so stick around and listen for your name."
+  "prize_items": [],
+  "headline": "Festival Merchandise",
+  "cta_href": "https://berealnotright.com/pages/shop",
+  "cta_text": "SHOP NOW",
+  "description": "The Official 2026 Desert Grey Festival Giveaway is available for pre-order for a discounted price ahead of October 3. Order now and pick-up at the merch table at The Nile Theater the day of the festival."
 }
