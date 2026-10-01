@@ -2,7 +2,7 @@
   "eyebrow": "Schedule · Saturday · October 3, 2026",
   "headline": "The running order.",
   "headline_emphasis": "order.",
-  "description": "Doors at 2:00 PM. Twenty-nine sets across three rooms — The Nile, Underground, and The Nile Coffee Shop.",
+  "description": "Doors at 2:00 PM. Twenty-eight sets across three rooms — The Nile, Underground, and The Nile Coffee Shop.",
   "fine_print": "Set times subject to change. Final schedule locks 72 hours before doors.",
   "stages": [
     {
@@ -11,27 +11,27 @@
       "slots": [
         {
           "time": "2:30 – 2:55",
-          "band": "Nile",
-          "note": "Winner of B.o.B"
+          "band": "Right Rosemary",
+          "note": ""
         },
         {
           "time": "3:10 – 3:35",
-          "band": "TBD",
+          "band": "Talking Bombs",
           "note": ""
         },
         {
           "time": "3:50 – 4:15",
-          "band": "Victory Tonight",
+          "band": "Fairy Bones",
           "note": ""
         },
         {
           "time": "4:30 – 4:55",
-          "band": "rio wiley",
+          "band": "In Lessons",
           "note": ""
         },
         {
           "time": "5:10 – 5:35",
-          "band": "Diva Bleach",
+          "band": "rio wiley",
           "note": ""
         },
         {
@@ -41,12 +41,12 @@
         },
         {
           "time": "6:30 – 6:55",
-          "band": "Those Kind Of People",
+          "band": "Something Outrageous",
           "note": ""
         },
         {
           "time": "7:10 – 7:40",
-          "band": "No Halos",
+          "band": "In Parallel With You",
           "note": ""
         },
         {
@@ -56,23 +56,23 @@
         },
         {
           "time": "9:00 – 9:30",
-          "band": "Emerald Isle",
+          "band": "Brace Yourself",
           "note": ""
         },
         {
           "time": "10:00 – END",
-          "band": "Sorry X",
+          "band": "Emerald Isle",
           "note": "Closer"
         }
       ]
     },
     {
       "id": "underground",
-      "name": "Underground",
+      "name": "The Underground",
       "slots": [
         {
           "time": "2:50 – 3:15",
-          "band": "Phage",
+          "band": "Shane Pogue",
           "note": ""
         },
         {
@@ -82,7 +82,7 @@
         },
         {
           "time": "4:10 – 4:35",
-          "band": "SLOWBVRN",
+          "band": "Phantom Spring",
           "note": ""
         },
         {
@@ -92,12 +92,12 @@
         },
         {
           "time": "5:30 – 5:55",
-          "band": "TBD",
+          "band": "Killed By A Yeti",
           "note": ""
         },
         {
           "time": "6:10 – 6:35",
-          "band": "Killed by Yeti",
+          "band": "Phage",
           "note": ""
         },
         {
@@ -112,12 +112,12 @@
         },
         {
           "time": "8:30 – 9:00",
-          "band": "Something Outrageous",
+          "band": "Jonny Lemons",
           "note": ""
         },
         {
           "time": "9:30 – 10:00",
-          "band": "Perfect Sense",
+          "band": "Out Of Time",
           "note": ""
         }
       ]
@@ -127,47 +127,42 @@
       "name": "Coffee Shop",
       "slots": [
         {
-          "time": "3:00 – 3:25",
-          "band": "TBA",
+          "time": "3:15 – 3:45",
+          "band": "Nate Whitmer",
           "note": ""
         },
         {
-          "time": "3:40 – 4:05",
+          "time": "4:00-4:30",
           "band": "Doublespeak",
           "note": ""
         },
         {
-          "time": "4:20 – 4:45",
-          "band": "TBA",
+          "time": "4:45-5:15",
+          "band": "yesterdayssoup",
           "note": ""
         },
         {
-          "time": "5:00 – 5:25",
+          "time": "5:30-6:00",
           "band": "Chris Crawford",
           "note": ""
         },
         {
-          "time": "5:40 – 6:05",
-          "band": "YesterdaySoup",
+          "time": "6:15-6:45",
+          "band": "Daphne + The Gltiches",
           "note": ""
         },
         {
-          "time": "6:20 – 6:45",
-          "band": "Chris Crimmins",
+          "time": "7:00-7:30",
+          "band": "Crimmins",
           "note": ""
         },
         {
-          "time": "7:00 – 7:25",
-          "band": "TBA",
-          "note": ""
-        },
-        {
-          "time": "7:40 – 8:05",
-          "band": "sophia bavishi",
+          "time": "7:45-8:15",
+          "band": "Zaagi'",
           "note": ""
         }
       ]
     }
   ],
-  "visible": false
+  "visible": true
 }
