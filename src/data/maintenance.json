@@ -1,11 +1,11 @@
 {
-  "enabled": false,
-  "message": "Saturday · October 3, 2026 · Phoenix, AZ. The full site lands soon — tickets and lineup just around the corner.",
+  "enabled": true,
+  "message": "Autumn 2027",
   "eyebrow": "Coming soon",
-  "show_cta": false,
+  "show_cta": true,
   "show_countdown": false,
   "subtitle": "Music Festival",
   "title": "Desert Grey",
-  "cta_href": "https://www.purplepass.com/events/303008-desert-grey-music-festival-2025-oct-25th",
-  "cta_text": "Reserve early access"
+  "cta_href": "https://forms.gle/uL3veLswW1MsK94GA",
+  "cta_text": "Artist Submissions open"
 }
